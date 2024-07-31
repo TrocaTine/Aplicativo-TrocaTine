@@ -1,4 +1,4 @@
-name: Android CI
+name: Android PADRÃO
 
 on:
   pull_request:
