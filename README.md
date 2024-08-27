@@ -23,7 +23,7 @@ O aplicativo tem como foco realizar a troca e venda de artigos infantis, como ro
 - Troca e venda dos artigos infantis, sistema de carrinho, endereço da entrega e forma de pagamento.
 - Chats e grupos, permitindo que os usuários conversem para negociar trocas ou vendas.
 - Sistema de recompensa, ao comprar e vender algo o usuário ganha um valor de "trocadinhas", que o garante benefícios.
-- Notificações de mensagens e solicitações de toca.
+- Notificações de mensagens e solicitações de troca.
 
 
 ## Requisitos
