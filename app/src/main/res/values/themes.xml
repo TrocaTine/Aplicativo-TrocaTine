@@ -1,0 +1,23 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Trocatine" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+         <item name="colorPrimary">@color/gray</item>
+    </style>
+    <style name="ListaThema" parent="Theme.AppCompat.DayNight.NoActionBar"/>
+
+    <style name="AppFullscreen" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="Theme.EstudosMobile" parent="Base.Theme.Trocatine" />
+    <style name="Theme.Trocatine" parent="Base.Theme.Trocatine" />
+
+    <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>
+    </style>
+
+    <style name="ThemeOverlay.App.BottomNavigationView" parent="">
+        <item name="colorOnPrimary">@color/orange</item>
+    </style>
+</resources>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundBeige"
+    tools:context=".buy.Buy3CardMethod">
+
+    <Button
+        android:id="@+id/buttonEnd"
+        android:layout_width="282dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="68dp"
+        android:background="@drawable/button_fill"
+        android:onClick="onClickEnd"
+        android:text="Finalizar"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout1"
+        android:layout_width="314dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/errorTextExpirationDate">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fullName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome completo" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout6"
+        android:layout_width="159dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="7dp"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayout5"
+        app:layout_constraintTop_toBottomOf="@+id/errorTextCardNumber">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cvvNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="CVV"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout5"
+        android:layout_width="149dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/errorTextCardNumber">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/expirationDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Data de validade" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout0"
+        android:layout_width="314dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cardNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número do cartão"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="314dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="20dp"
+        android:text="Digite as informações do cartão a ser usado para o pagamento"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="88dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/flow_purchase3" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="36dp"
+        android:text="Informações do cartão"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="14dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:onClick="OnClickBackActivity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_arrow_back" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"
+        android:text="Comprar"
+        android:textColor="@color/orange"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageView12"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="312dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="2dp"
+        android:textColor="@color/red"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout1"
+        tools:layout_editor_absoluteX="48dp" />
+
+    <TextView
+        android:id="@+id/errorTextExpirationDate"
+        android:layout_width="149dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="48dp"
+        android:textColor="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout5" />
+
+    <TextView
+        android:id="@+id/errorTextCvvNumber"
+        android:layout_width="159dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="7dp"
+        android:textColor="@color/red"
+        app:layout_constraintStart_toEndOf="@+id/errorTextExpirationDate"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout6" />
+
+    <TextView
+        android:id="@+id/errorTextFullNameCard"
+        android:layout_width="313dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="48dp"
+        android:textColor="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout1" />
+
+    <TextView
+        android:id="@+id/errorTextCardNumber"
+        android:layout_width="314dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="3dp"
+        android:textColor="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout0" />
+</androidx.constraintlayout.widget.ConstraintLayout>
