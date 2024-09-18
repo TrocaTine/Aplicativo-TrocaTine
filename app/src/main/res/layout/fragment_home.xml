@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="#FEFBF7"
+            android:src="@drawable/icon_filter"
+            app:layout_constraintTop_toTopOf="@+id/searchBar"
+            tools:layout_editor_absoluteX="343dp" />
+
+        <Button
+            android:id="@+id/buttonTrade2"
+            android:layout_width="77dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/button_buy_trade"
+            android:drawableStart="@drawable/icon_arrows_trade"
+            android:padding="8dp"
+            android:text="Trocar"
+            android:textAllCaps="false"
+            android:textColor="#5D564F"
+            app:layout_constraintStart_toEndOf="@+id/buttonBuy2"
+            app:layout_constraintTop_toBottomOf="@+id/initialText2" />
+
+        <TextView
+            android:id="@+id/initialText2"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#000000"
+            android:text="Good Morning, usuario!"
+            android:textColor="#222222"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/buttonTrocadinhas"
+            android:layout_width="77dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/button_border"
+            app:layout_constraintStart_toEndOf="@+id/initialText2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="19dp"
+            android:text="Veja o que preparamos para você"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchBar" />
+
+
+        <ImageButton
+            android:id="@+id/buttonNotification"
+            android:layout_width="41dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/button_fill"
+            app:layout_constraintStart_toEndOf="@+id/buttonTrocadinhas"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/icon_notification" />
+
+        <Button
+            android:id="@+id/buttonBuy2"
+            android:layout_width="95dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_buy_trade"
+            android:drawableStart="@drawable/icon_bag_buy"
+            android:padding="8dp"
+
+            android:text="Comprar"
+            android:textAllCaps="false"
+            android:textColor="#5D564F"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/initialText2" />
+
+        <EditText
+            android:id="@+id/searchBar"
+            android:layout_width="351dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="19dp"
+            android:background="@drawable/search_bar"
+            android:drawableStart="?android:attr/actionModeWebSearchDrawable"
+            android:ems="10"
+            android:hint="Pesquisar"
+            android:inputType="text"
+            android:paddingLeft="30px"
+            android:textColor="#AFAFAF"
+            android:textColorHint="#9E9E9E"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonTrade2" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/productRv"
+            android:layout_width="413dp"
+            android:layout_height="486dp"
+            android:layout_marginTop="56dp"
+            android:background="#F0F0F0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchBar"
+            tools:listitem="@layout/activity_card_product" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Trocatine"
+        tools:targetApi="31">
+        <activity
+            android:name=".footer.Footer"
+            android:exported="false" />
+        <activity
+            android:name=".product.card_cart_product"
+            android:exported="false" />
+        <activity
+            android:name=".buy.Buy4PurchaseMade"
+            android:exported="false" />
+        <activity
+            android:name=".buy.Buy3CardMethod"
+            android:exported="false" />
+        <activity
+            android:name=".buy.Buy3PicpayMethod"
+            android:exported="false" />
+        <activity
+            android:name=".buy.Buy2"
+            android:exported="false" />
+        <activity
+            android:name=".buy.Buy1"
+            android:exported="false" />
+        <activity
+            android:name=".cart.Cart"
+            android:exported="false" />
+        <activity
+            android:name=".product.ProductTrade"
+            android:exported="false" />
+        <activity
+            android:name=".product.ProductBuy"
+            android:exported="false" />
+        <activity
+            android:name=".home.CardProduct"
+            android:exported="false" />
+        <activity
+            android:name=".home.Home"
+            android:exported="false" />
+        <activity
+            android:name=".register.Register3"
+            android:exported="false" />
+        <activity
+            android:name=".register.Register2"
+            android:exported="false" />
+        <activity
+            android:name=".register.Register1"
+            android:exported="false" />
+        <activity
+            android:name=".login.Login"
+            android:exported="false" />
+        <activity
+            android:name=".beginning.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".beginning.SplashScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
