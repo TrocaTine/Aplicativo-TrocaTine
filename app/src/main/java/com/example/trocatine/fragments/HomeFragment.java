@@ -1,5 +1,7 @@
 package com.example.trocatine.fragments;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.trocatine.R;
@@ -39,6 +43,9 @@ public class HomeFragment extends Fragment {
     }
     private RecyclerView productRv;
     private TextView initialText;
+    private Dialog dialog;
+    private Button buttonCancel;
+    private ImageButton buttonFilter;
 
     List<Product> listProduct = new ArrayList<>();
 
@@ -73,12 +80,12 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        // Configurando Recycle View
+
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
         productRv = view.findViewById(R.id.productRv);
+        buttonFilter = view.findViewById(R.id.buttonFilter);
         productRv.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
-//        initialText = view.findViewById(R.id.initialText);
-
         //Populando a recycle view
         listProduct.add(new Product(1, 1, "nome", "descricao", 2.99, 5, "05/12/2007", true));
         listProduct.add(new Product(1, 1, "nome", "descricao", 2.99, 5, "05/12/2007", true));
@@ -90,6 +97,27 @@ public class HomeFragment extends Fragment {
         AdapterProduct adapterProduct = new AdapterProduct(listProduct);
         productRv.setAdapter(adapterProduct);
         productRv.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
+
+        //Configurando o filtro
+
+        dialog = new Dialog(view.getContext());
+        dialog.setContentView(R.layout.card_filter);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.custom_dialog_bg);
+        dialog.setCancelable(false);
+        buttonCancel = dialog.findViewById(R.id.buttonCancel);
+        buttonFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.show();
+            }
+        });
+        buttonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
 
         return view;
     }

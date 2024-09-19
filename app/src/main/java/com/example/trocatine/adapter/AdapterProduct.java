@@ -1,7 +1,6 @@
 package com.example.trocatine.adapter;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,16 +8,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trocatine.R;
-import com.example.trocatine.beginning.MainActivity;
-import com.example.trocatine.home.Home;
 import com.example.trocatine.models.Product;
 import com.example.trocatine.product.ProductBuy;
-import com.example.trocatine.register.Register1;
-import com.example.trocatine.register.Register2;
 
 import java.util.List;
 
@@ -74,7 +68,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         ImageView image, flagTroca;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            value = itemView.findViewById(R.id.productValue);
+            value = itemView.findViewById(R.id.cartProductValue);
             name = itemView.findViewById(R.id.productdName);
             createdAt = itemView.findViewById(R.id.productCreatedAt);
             image = itemView.findViewById(R.id.productImage);

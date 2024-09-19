@@ -36,6 +36,8 @@ public class CartFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private TextView totalPriceCart;
+
     private RecyclerView cartProductRv;
     private TextView initialText;
 
@@ -76,8 +78,7 @@ public class CartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
-
-
+        totalPriceCart = view.findViewById(R.id.totalPriceCart);
         cartProductRv = view.findViewById(R.id.cartProductRv);
         cartProductRv.setLayoutManager(new GridLayoutManager(view.getContext(), 1));
         Product product = new Product(1, 1, "nome", "descricao", 2.99, 5, "05/12/2007", true);

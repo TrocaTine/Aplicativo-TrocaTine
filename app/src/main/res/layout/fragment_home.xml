@@ -13,14 +13,15 @@
         android:layout_height="match_parent">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/buttonFilter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="20dp"
             android:background="#FEFBF7"
             android:src="@drawable/icon_filter"
-            app:layout_constraintTop_toTopOf="@+id/searchBar"
-            tools:layout_editor_absoluteX="343dp" />
+            app:layout_constraintEnd_toEndOf="@+id/searchBar"
+            app:layout_constraintTop_toTopOf="@+id/searchBar" />
 
         <Button
             android:id="@+id/buttonTrade2"
