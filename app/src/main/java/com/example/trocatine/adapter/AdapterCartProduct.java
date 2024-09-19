@@ -1,6 +1,5 @@
 package com.example.trocatine.adapter;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trocatine.R;
 import com.example.trocatine.models.CartProduct;
-import com.example.trocatine.models.Product;
-import com.example.trocatine.product.ProductBuy;
 
 import java.util.List;
 
@@ -30,7 +27,7 @@ public class AdapterCartProduct extends RecyclerView.Adapter<AdapterCartProduct.
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //carregando o template de visualização
-        View viewItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_card_product, parent, false);
+        View viewItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_card_cart_product, parent, false);
         //chamar o ViewHolder para carregar os objetos
         return new AdapterCartProduct.ViewHolder(viewItem);
 
@@ -58,6 +55,7 @@ public class AdapterCartProduct extends RecyclerView.Adapter<AdapterCartProduct.
                 cartProduct.setQuantity(quantity);
                 notifyItemChanged(position);
             }
+
         });
         holder.decreaseQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,10 +63,16 @@ public class AdapterCartProduct extends RecyclerView.Adapter<AdapterCartProduct.
                 int quantity = cartProduct.getQuantity();
                 if (quantity > 1) {
                     quantity -= 1;
+                    cartProduct.setQuantity(quantity);
+                    notifyItemChanged(position);
+                } else {
+                    listProduct.remove(holder.getAdapterPosition());
+                    notifyItemRemoved(holder.getAdapterPosition());
                 }
-                cartProduct.setQuantity(quantity);
             }
         });
+        holder.quantity.setText("Quantidade: "+String.valueOf(cartProduct.getQuantity()));
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -78,12 +82,12 @@ public class AdapterCartProduct extends RecyclerView.Adapter<AdapterCartProduct.
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            value = itemView.findViewById(R.id.productValue);
-            quantity = itemView.findViewById(R.id.quantity);
+            value = itemView.findViewById(R.id.cartProductValue);
+            quantity = itemView.findViewById(R.id.cartQuantity);
             addQuantity = itemView.findViewById(R.id.addQuantity);
             decreaseQuantity = itemView.findViewById(R.id.decreaseQuantity);
-            name = itemView.findViewById(R.id.productdName);
-            image = itemView.findViewById(R.id.productImage);
+            name = itemView.findViewById(R.id.cartProductName);
+            image = itemView.findViewById(R.id.cartProductImage);
         }
     }
 }

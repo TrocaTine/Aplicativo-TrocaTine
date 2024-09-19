@@ -15,7 +15,7 @@
 
 
         <TextView
-            android:id="@+id/productValue"
+            android:id="@+id/cartProductValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -55,7 +55,7 @@
             android:textColor="#000000"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/productValue" />
+            app:layout_constraintTop_toBottomOf="@+id/cartProductValue" />
 
         <TextView
             android:id="@+id/textView8"

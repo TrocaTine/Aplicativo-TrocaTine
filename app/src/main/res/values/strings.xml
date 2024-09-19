@@ -5,6 +5,14 @@
     <string name="menu_newProduct">Anúnciar</string>
     <string name="menu_community">Comunidade</string>
     <string name="menu_userProfile">Perfil</string>
+    <string-array name="spinner_color">
+        <item>Preto</item>
+        <item>Branco</item>
+        <item>Vermelho</item>
+        <item>Azul</item>
+        <item>Roxo</item>
+
+    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
