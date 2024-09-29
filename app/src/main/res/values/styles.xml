@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="estilo_img">
+        <item name="cornerSize">10dp</item>
+    </style>
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">#2CA0EC</item>
+    </style>
+    <style name="fotoRedonda" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">75dp</item>
+        <item name="color">@color/black</item>
+    </style>
+
+</resources>

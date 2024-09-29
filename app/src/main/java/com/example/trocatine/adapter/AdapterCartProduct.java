@@ -76,7 +76,7 @@ public class AdapterCartProduct extends RecyclerView.Adapter<AdapterCartProduct.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name, quantity, value;
+        TextView name, quantity, value, description;
         ImageButton addQuantity, decreaseQuantity;
         ImageView image;
 
@@ -84,6 +84,7 @@ public class AdapterCartProduct extends RecyclerView.Adapter<AdapterCartProduct.
             super(itemView);
             value = itemView.findViewById(R.id.cartProductValue);
             quantity = itemView.findViewById(R.id.cartQuantity);
+            description = itemView.findViewById(R.id.description);
             addQuantity = itemView.findViewById(R.id.addQuantity);
             decreaseQuantity = itemView.findViewById(R.id.decreaseQuantity);
             name = itemView.findViewById(R.id.cartProductName);

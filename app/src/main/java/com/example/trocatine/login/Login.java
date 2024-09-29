@@ -8,13 +8,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trocatine.R;
 import com.example.trocatine.home.Home;
-import com.example.trocatine.register.Register2;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -43,7 +41,7 @@ public class Login extends AppCompatActivity {
             startActivity(main);
         }
 
-        Button logar = findViewById(R.id.button_login);
+        Button logar = findViewById(R.id.button_next);
     }
     public void onClickNext(View view) {
         //Verificações de input do usuário

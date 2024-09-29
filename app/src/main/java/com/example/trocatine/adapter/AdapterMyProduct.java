@@ -16,25 +16,24 @@ import com.example.trocatine.product.ProductBuy;
 
 import java.util.List;
 
-public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHolder>{
-
+public class AdapterMyProduct extends RecyclerView.Adapter<AdapterMyProduct.ViewHolder>{
     private List<Product> listProduct;
 
-    public AdapterProduct(List<Product> arg){
+    public AdapterMyProduct(List<Product> arg){
         this.listProduct = arg;
     }
     @NonNull
     @Override
-    public AdapterProduct.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterMyProduct.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //carregando o template de visualização
-        View viewItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_card_product,parent, false);
+        View viewItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_card_fav_product,parent, false);
         //chamar o ViewHolder para carregar os objetos
-        return new ViewHolder(viewItem);
+        return new AdapterMyProduct.ViewHolder(viewItem);
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterMyProduct.ViewHolder holder, int position) {
 
         Product product = listProduct.get(position);
 

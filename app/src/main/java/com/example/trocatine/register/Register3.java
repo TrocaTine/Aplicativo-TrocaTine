@@ -31,7 +31,7 @@ public class Register3 extends AppCompatActivity {
         errorTextState = findViewById(R.id.errorTextState);
         errorTextStreet = findViewById(R.id.errorTextStreet);
         errorTextCity = findViewById(R.id.errorTextCity);
-        errorTextCep = findViewById(R.id.textView3);
+        errorTextCep = findViewById(R.id.BirthDate);
     }
     public void onClickNext(View view) {
         //Verificações de input do usuário
