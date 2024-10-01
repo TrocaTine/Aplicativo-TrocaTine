@@ -43,8 +43,7 @@ public class DatabaseCamera {
                             }
                         });
                     }
-                });
-
+                });;
     }
     public void downloadGaleria(ImageView img, Uri urlFirebase) {
         img.setRotation(0);
