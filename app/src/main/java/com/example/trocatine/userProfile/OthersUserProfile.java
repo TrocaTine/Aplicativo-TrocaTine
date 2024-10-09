@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.trocatine.R;
 
-public class editProfile extends AppCompatActivity {
+public class OthersUserProfile extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_profile);
+        setContentView(R.layout.activity_others_user_profile);
     }
 }

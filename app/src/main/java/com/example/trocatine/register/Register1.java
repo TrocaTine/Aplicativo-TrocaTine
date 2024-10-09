@@ -6,12 +6,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trocatine.R;
+import com.example.trocatine.api.StandardResponseDTO;
+import com.example.trocatine.api.UsersRepository;
+import com.example.trocatine.api.models.Users;
+import com.example.trocatine.api.requestDTO.CheckingEmailAlreadyRegisteredRequestDTO;
+import com.example.trocatine.api.requestDTO.CreateUserRequestDTO;
+import com.example.trocatine.api.responseDTO.CheckingEmailAlreadyRegisteredResponseDTO;
+import com.example.trocatine.beginning.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -19,9 +28,21 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
+import java.io.IOException;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class Register1 extends AppCompatActivity {
     private EditText email, password, phone;
     private TextView errorTextEmail, errorTextPassword, errorTextPhone;
+    private ImageView backSet;
+    private Retrofit retrofit;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,56 +50,61 @@ public class Register1 extends AppCompatActivity {
         setContentView(R.layout.activity_register1);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-        phone = findViewById(R.id.expirationDate);
+        phone = findViewById(R.id.phone);
         errorTextEmail = findViewById(R.id.errorTextEmail);
         errorTextPassword = findViewById(R.id.errorTextPassword);
         errorTextPhone = findViewById(R.id.errorTextPhone);
+        backSet = findViewById(R.id.backSet);
+        backSet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Register1.this, MainActivity.class);
+                finish();
+                startActivity(intent);
+            }
+        });
+
     }
 
     public void onClickNext(View view) {
-        //Verificações de input do usuário
+        // Verificações de input do usuário
         boolean hasError = false;
-        if (email.getText().toString().equals("")) {
-            showError("Digite a informação necessária ", errorTextEmail);
-            hasError = false;
-        } else {
-            hideError(errorTextEmail);
-        }
-        if (email.getText().toString().equals("")) {
-            showError("Digite a informação necessária", errorTextEmail);
-            hasError = true;
-//        } else if (!email.getText().toString().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
-//            showError("Digite um e-mail válido", errorTextEmail);
-//            hasError = true;
-        } else {
-            hideError(errorTextEmail);
-        }
 
+        if (email.getText().toString().equals("")) {
+            email.setError("Digite o e-mail necessário");
+            email.requestFocus();
+            hasError = true;
+        }
 
         if (password.getText().toString().equals("")) {
-            showError("Digite a informação necessária ", errorTextPassword);
+            password.setError("Digite a senha necessária");
+            password.requestFocus();
             hasError = true;
-        } else {
-            hideError(errorTextPassword);
         }
 
         if (phone.getText().toString().equals("")) {
-            showError("Digite a informação necessária", errorTextPhone);
+            phone.setError("Digite o telefone necessário");
+            phone.requestFocus();
             hasError = true;
         } else if (phone.getText().toString().length() != 11) {
-            showError("O telefone precisa ter 11 dígitos (inclue DDD)", errorTextPhone);
+            phone.setError("O telefone precisa ter 11 dígitos (inclui DDD)");
+            phone.requestFocus();
             hasError = true;
-        } else {
-            hideError(errorTextPhone);
         }
 
         if (!hasError) {
-            Intent intent = new Intent(Register1.this, Register2.class);
+            chamarAPI_Retrofit(email.getText().toString());
+            Bundle dados = new Bundle();
             salvarLogin(email.getText().toString(), password.getText().toString());
+            dados.putString("email",email.getText().toString());
+            dados.putString("password",password.getText().toString());
+            dados.putString("phone",phone.getText().toString());
+
+            Intent intent = new Intent(this, Register2.class);
+            intent.putExtras(dados);
             finish();
             startActivity(intent);
         }
-
     }
     private void salvarLogin(String emailStr, String senhaStr) {
         //fazer o cadastro no firebase
@@ -96,6 +122,7 @@ public class Register1 extends AppCompatActivity {
                             .setDisplayName("nome provisório")
                             .setPhotoUri(Uri.parse("https://www.vagalume.com.br/bruno-mars/images/bruno-mars.webp"))
                             .build();
+
                     user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -108,14 +135,34 @@ public class Register1 extends AppCompatActivity {
             }
         });
     }
-    //Método que quando acionado, deixa a mensagem de erro do input visivel
-    public void showError(String mensagem, TextView texto){
-        texto.setText(mensagem);
-        texto.setVisibility(View.VISIBLE);
-    }
-    //Método que quando acionado, deixa a mensagem de erro do input invisivel
 
-    public void hideError(TextView erro){
-        erro.setVisibility(View.INVISIBLE);
+    private void chamarAPI_Retrofit(String email) {
+        String API = "https://api-spring-boot-trocatine.onrender.com/";
+        retrofit = new Retrofit.Builder()
+                .baseUrl(API)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        UsersRepository userAPI = retrofit.create(UsersRepository.class);
+        CheckingEmailAlreadyRegisteredRequestDTO request = new CheckingEmailAlreadyRegisteredRequestDTO(email);
+        Call<StandardResponseDTO> call = userAPI.checkEmail(request);
+        call.enqueue(new Callback<StandardResponseDTO>() {
+            @Override
+            public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    Log.e("Sucesso", "Email verificado: " + response.body()+ response.message()+ response.toString());
+                    Object responseDTO = response.body().getData();
+                    Log.e("retorno fofo: ", "Email verificado: " + responseDTO);
+
+                } else {
+                    Log.e("Erro", "Resposta não foi sucesso: " + response.code() + " - " + response.message());
+                }
+            }
+            @Override
+            public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
+                Log.e("ERRO", throwable.getMessage());
+            }
+        });
     }
+
 }

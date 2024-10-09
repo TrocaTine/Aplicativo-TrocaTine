@@ -1,4 +1,4 @@
-package com.example.trocatine.models;
+package com.example.trocatine.RecycleViewModels;
 
 public class Product {
     private int idProduct;

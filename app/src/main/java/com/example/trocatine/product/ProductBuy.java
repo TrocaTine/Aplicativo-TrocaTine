@@ -5,13 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.trocatine.R;
 import com.example.trocatine.buy.Buy1;
 import com.example.trocatine.home.Home;
 import com.example.trocatine.login.Login;
+import com.example.trocatine.userProfile.OthersUserProfile;
 
 public class ProductBuy extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,5 +36,11 @@ public class ProductBuy extends AppCompatActivity {
     }
 
     public void onClickAddToCart(View view) {
+    }
+
+    public void onClickOtherUserProfile(View view) {
+        Intent intent = new Intent(ProductBuy.this, OthersUserProfile.class);
+        finish();
+        startActivity(intent);
     }
 }

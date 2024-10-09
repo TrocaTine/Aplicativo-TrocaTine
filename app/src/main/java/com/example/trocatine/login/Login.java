@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trocatine.R;
+import com.example.trocatine.beginning.MainActivity;
 import com.example.trocatine.home.Home;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 public class Login extends AppCompatActivity {
     private TextInputEditText loginEmail, loginPassword;
     private TextView errorTextLoginEmail, errorTextLoginPassword;
+    private ImageView backSet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,15 @@ public class Login extends AppCompatActivity {
         }
 
         Button logar = findViewById(R.id.button_next);
+        backSet = findViewById(R.id.backSet);
+        backSet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Login.this, MainActivity.class);
+                finish();
+                startActivity(intent);
+            }
+        });
     }
     public void onClickNext(View view) {
         //Verificações de input do usuário

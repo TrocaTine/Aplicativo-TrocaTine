@@ -7,6 +7,16 @@
     tools:context=".product.ProductTrade">
 
     <TextView
+        android:id="@+id/openUserProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="usuario"
+        app:layout_constraintStart_toEndOf="@+id/buttonBack"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/textView56"
         android:layout_width="86dp"
         android:layout_height="29dp"
@@ -37,8 +47,8 @@
         android:id="@+id/imageView11"
         android:layout_width="317dp"
         android:layout_height="267dp"
-        android:layout_marginStart="44dp"
         android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/product_photo" />
@@ -65,7 +75,7 @@
         android:onClick="OnClickBackActivity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_arrow_back" />
+        app:srcCompat="@drawable/icon_back" />
 
     <TextView
         android:id="@+id/textView9"

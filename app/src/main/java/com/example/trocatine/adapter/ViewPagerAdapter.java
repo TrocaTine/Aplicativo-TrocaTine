@@ -4,10 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 
-import com.example.trocatine.fragments.UserProfileFragment;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
+import com.example.trocatine.fragments.MyUserProfileFragment;
 
-import java.util.List;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import tabs.FavAnnouncement;
 import tabs.MyAnnouncement;
@@ -26,7 +25,7 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
             case 1:
                 return new MyAnnouncement();
             default:
-                return new UserProfileFragment();
+                return new MyUserProfileFragment();
         }
     }
 

@@ -1,7 +1,6 @@
 package com.example.trocatine.fragments;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,7 +16,7 @@ import android.widget.TextView;
 
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.AdapterProduct;
-import com.example.trocatine.models.Product;
+import com.example.trocatine.RecycleViewModels.Product;
 
 import java.util.ArrayList;
 import java.util.List;
