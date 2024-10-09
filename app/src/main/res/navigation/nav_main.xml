@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/menu_userProfile"
-        android:name="com.example.trocatine.fragments.UserProfileFragment"
+        android:name="com.example.trocatine.fragments.MyUserProfileFragment"
         android:label="fragment_user_profile"
-        tools:layout="@layout/fragment_user_profile" />
+        tools:layout="@layout/fragment_my_user_profile" />
 </navigation>

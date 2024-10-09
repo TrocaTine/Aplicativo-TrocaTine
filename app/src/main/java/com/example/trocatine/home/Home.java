@@ -4,20 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
 
 import com.example.trocatine.R;
-import com.example.trocatine.adapter.AdapterProduct;
-import com.example.trocatine.databinding.ActivityMainBinding;
-import com.example.trocatine.models.Product;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 
 public class Home extends AppCompatActivity {
     //Configurando binding

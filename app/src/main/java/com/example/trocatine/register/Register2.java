@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.trocatine.R;
 
@@ -15,13 +15,14 @@ public class Register2 extends AppCompatActivity {
 
     private EditText fullname, username, cpf, birthdate;
     private TextView errorTextFullname, errorTextUsername, errorTextCpf, errorTextBirthdate;
+    private ImageView backSet;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register2);
-        fullname = findViewById(R.id.fullname);
+        fullname = findViewById(R.id.password);
         username = findViewById(R.id.username);
         cpf = findViewById(R.id.cpf);
         birthdate = findViewById(R.id.birthdate);
@@ -30,6 +31,16 @@ public class Register2 extends AppCompatActivity {
         errorTextUsername = findViewById(R.id.errorTextUserName);
         errorTextCpf = findViewById(R.id.errorTextCpf);
         errorTextBirthdate = findViewById(R.id.errorTextBirthDate);
+
+        backSet = findViewById(R.id.backSet);
+        backSet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Register2.this, Register1.class);
+                finish();
+                startActivity(intent);
+            }
+        });
     }
 
     public void onClickNext(View view) {
@@ -67,7 +78,18 @@ public class Register2 extends AppCompatActivity {
         }
 
         if (!hasError) {
-            Intent intent = new Intent(Register2.this, Register3.class);
+            Bundle dados = getIntent().getExtras();
+
+            dados.putString("email",dados.getString("email"));
+            dados.putString("password",dados.getString("password"));
+            dados.putString("phone",dados.getString("phone"));
+
+            dados.putString("fullName",fullname.getText().toString());
+            dados.putString("userName",username.getText().toString());
+            dados.putString("cpf",cpf.getText().toString());
+            dados.putString("birthDate",birthdate.getText().toString());
+            Intent intent = new Intent(this, Register3.class);
+            intent.putExtras(dados);
             finish();
             startActivity(intent);
         }

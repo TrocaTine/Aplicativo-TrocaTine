@@ -1,0 +1,15 @@
+package com.example.trocatine.api.responseDTO;
+
+import java.time.LocalDate;
+import java.util.Set;
+
+public class FindPersonalInformationResponseDTO {
+//    Set<String> phone;
+//    String cpf;
+//    LocalDate birthDate;
+//    Set<AddressDTO> addresses;
+//    String fullName;
+//    String nickname;
+//    String email;
+
+}

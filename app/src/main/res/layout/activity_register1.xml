@@ -8,28 +8,40 @@
     tools:context=".register.Register1">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/sadaasda"
-        android:layout_width="352dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="19dp"
-        android:background="@drawable/button_border"
-        android:gravity="center"
-        android:hint="E-mail"
-        android:orientation="vertical"
-        android:textColorHint="@color/gray"
-        app:hintTextAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:hintTextColor="@color/gray"
+        android:id="@+id/textInputLayout4"
+        android:layout_width="312dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/initialText">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email"
-            android:layout_width="316dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:textSize="17sp" />
+            android:hint="E-mail" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout10"
+        android:layout_width="312dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="8dp"
+        app:endIconMode="password_toggle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/errorTextEmail">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Senha"
+            android:inputType="text|textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -37,12 +49,12 @@
         android:id="@+id/initialText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
         android:layout_marginTop="12dp"
         android:backgroundTint="#000000"
         android:text="Preencha as informações a seguir"
-        android:textSize="22sp"
+        android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
@@ -51,107 +63,99 @@
     <!-- Campo Telefone com o mesmo estilo do campo de E-mail -->
     <TextView
         android:id="@+id/errorTextEmail"
-        android:layout_width="329dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="36dp"
+        android:layout_width="315dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:textColor="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sadaasda" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout1"
-        android:layout_width="352dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="28dp"
-        android:background="@drawable/button_border"
-        android:gravity="center"
-        android:hint="Telefone"
-        android:orientation="vertical"
-        android:textColorHint="@color/gray"
-        app:hintTextAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:hintTextColor="@color/gray"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/errorTextEmail">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/expirationDate"
-            android:layout_width="316dp"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:inputType="number"
-            android:textSize="17sp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
 
     <TextView
         android:id="@+id/errorTextPassword"
         android:layout_width="309dp"
         android:layout_height="22dp"
-        android:layout_marginStart="48dp"
+        android:layout_marginTop="4dp"
         android:layout_weight="1"
-        android:textColor="@color/red"
-        app:layout_constraintStart_toStartOf="parent"
-         />
-
-    <TextView
-        android:id="@+id/errorTextPhone"
-        android:layout_width="321dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="1dp"
         android:textColor="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout1" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout10" />
+
+    <TextView
+        android:id="@+id/errorTextPhone"
+        android:layout_width="311dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="7dp"
+        android:textColor="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout11" />
 
     <Button
         android:id="@+id/button_next"
         android:layout_width="297dp"
         android:layout_height="45dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/button_fill"
         android:onClick="onClickNext"
         android:text="Próximo"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout1" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/register_arrow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="302dp"
+        android:layout_height="228dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/draw_mom_grandma" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:id="@+id/textInputLayout11"
+        android:layout_width="305dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/errorTextPhone">
+        app:layout_constraintTop_toBottomOf="@+id/errorTextPassword">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/password"
+            android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="hint" />
+            android:hint="Telefone" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textView39"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Cadastro"
+        android:textColor="@color/orange"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/backSet"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/backSet"
+        android:layout_width="16dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_back" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

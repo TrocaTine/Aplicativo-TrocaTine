@@ -21,7 +21,7 @@ public class Buy3CardMethod extends AppCompatActivity {
         setContentView(R.layout.activity_buy3_card_method);
         fullName = findViewById(R.id.fullName);
         cardNumber = findViewById(R.id.cardNumber);
-        expirationDate = findViewById(R.id.expirationDate);
+        expirationDate = findViewById(R.id.password);
         cvvNumber = findViewById(R.id.cvvNumber);
 
         errorTextFullNameCard = findViewById(R.id.errorTextFullNameCard);
@@ -68,7 +68,7 @@ public class Buy3CardMethod extends AppCompatActivity {
         }
 
         if (!hasError) {
-            Intent intent = new Intent(Buy3CardMethod.this, Home.class);
+            Intent intent = new Intent(Buy3CardMethod.this, Buy4PurchaseMade.class);
             finish();
             startActivity(intent);
         }

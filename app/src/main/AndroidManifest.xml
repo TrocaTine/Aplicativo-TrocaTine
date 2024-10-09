@@ -16,6 +16,7 @@
         android:maxSdkVersion="28" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -26,7 +27,19 @@
         android:theme="@style/Theme.Trocatine"
         tools:targetApi="31">
         <activity
-            android:name=".userProfile.editProfile"
+            android:name=".community.CommunityRv"
+            android:exported="false" />
+        <activity
+            android:name="tabs.UserReviewsRv"
+            android:exported="false" />
+        <activity
+            android:name="tabs.UserReviews"
+            android:exported="false" />
+        <activity
+            android:name=".userProfile.OthersUserProfile"
+            android:exported="false" />
+        <activity
+            android:name=".userProfile.EditProfile"
             android:exported="false" />
         <activity
             android:name=".newProduct.NewProduct3"
@@ -57,9 +70,6 @@
             android:exported="false" />
         <activity
             android:name=".buy.Buy1"
-            android:exported="false" />
-        <activity
-            android:name=".cart.Cart"
             android:exported="false" />
         <activity
             android:name=".product.ProductTrade"

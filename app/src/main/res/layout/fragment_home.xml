@@ -52,16 +52,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/buttonTrocadinhas"
-            android:layout_width="77dp"
-            android:layout_height="42dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/button_border"
-            app:layout_constraintStart_toEndOf="@+id/initialText2"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
@@ -78,10 +68,10 @@
             android:id="@+id/buttonNotification"
             android:layout_width="41dp"
             android:layout_height="42dp"
-            android:layout_marginStart="7dp"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/button_fill"
-            app:layout_constraintStart_toEndOf="@+id/buttonTrocadinhas"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/icon_notification" />
 
@@ -108,6 +98,8 @@
             android:layout_marginTop="19dp"
             android:background="@drawable/search_bar"
             android:drawableStart="?android:attr/actionModeWebSearchDrawable"
+            android:drawableEnd="@drawable/icon_filter"
+
             android:ems="10"
             android:hint="Pesquisar"
             android:inputType="text"
@@ -127,6 +119,37 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchBar"
             tools:listitem="@layout/activity_card_product" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="79dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/button_border"
+            app:layout_constraintEnd_toStartOf="@+id/buttonNotification"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView23"
+                android:layout_width="26dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/icon_trocadinhas"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <TextView
+                android:id="@+id/textView45"
+                android:layout_width="26dp"
+                android:layout_height="21dp"
+                android:layout_marginEnd="8dp"
+                android:text="0"
+                android:textColor="@color/seaGreen"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.AdapterProduct;
-import com.example.trocatine.models.Product;
+import com.example.trocatine.RecycleViewModels.Product;
 
 import java.util.ArrayList;
 import java.util.List;
