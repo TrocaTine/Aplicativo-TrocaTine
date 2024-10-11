@@ -78,7 +78,7 @@ public class Register2 extends AppCompatActivity {
         }
 
         if (!hasError) {
-            Bundle dados = getIntent().getExtras();
+            Bundle dados = new Bundle();
 
             dados.putString("email",dados.getString("email"));
             dados.putString("password",dados.getString("password"));
@@ -89,9 +89,7 @@ public class Register2 extends AppCompatActivity {
             dados.putString("cpf",cpf.getText().toString());
             dados.putString("birthDate",birthdate.getText().toString());
             Intent intent = new Intent(this, Register3.class);
-            intent.putExtras(dados);
 
-            intent = new Intent(Register2.this, Register3.class);
             finish();
             startActivity(intent);
         }

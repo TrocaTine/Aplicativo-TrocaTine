@@ -7,19 +7,29 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.AdapterProduct;
 import com.example.trocatine.RecycleViewModels.Product;
+import com.example.trocatine.api.StandardResponseDTO;
+import com.example.trocatine.api.repository.ProductRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,6 +46,8 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Retrofit retrofit;
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -79,6 +91,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
         // Configurando Recycle View
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
@@ -118,6 +131,31 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        Bundle dados = new Bundle();
+        String usuario = dados.getString("usuario");
+        Log.i("USUARIO", "usuario: "+usuario);
         return view;
     }
+//    private void chamarAPI_Retrofit() {
+//        String API = "https://jsonplaceholder.typicode.com/";
+//        retrofit = new Retrofit.Builder()
+//                .baseUrl(API)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//        ProductRepository photoApi = retrofit.create(ProductRepository.class);
+//        Call<List<StandardResponseDTO>> call = photoApi.findProductCard();
+//
+//        call.enqueue(new Callback<List<Foto>>() {
+//            @Override
+//            public void onResponse(Call<List<Foto>> call, Response<List<Foto>> response) {
+//                List<Foto> fotos = response.body();
+//                fotorecyclerview.setAdapter(new FotoAdapter(fotos));
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Foto>> call, Throwable throwable) {
+//                Log.e("ERRO", throwable.getMessage());
+//            }
+//        });
+//    }
 }

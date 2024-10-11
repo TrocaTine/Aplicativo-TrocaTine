@@ -5,9 +5,13 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.trocatine.R;
+import com.example.trocatine.fragments.HomeFragment;
+import com.example.trocatine.register.Register3;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Home extends AppCompatActivity {
@@ -26,6 +30,15 @@ public class Home extends AppCompatActivity {
         initNavigation();
         bottom_navigation = findViewById(R.id.bottom_navigation);
         bottom_navigation.setSelectedItemId(R.id.menu_home);
+
+
+//        if (dados != null) {
+//            // Obtenha o fragmento atual e passe os dados
+//            HomeFragment homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+//            if (homeFragment != null) {
+//                homeFragment.setArguments(dados); // Passa os dados para o fragmento
+//            }
+//        }
     }
 
 //    private void initNavigation() {

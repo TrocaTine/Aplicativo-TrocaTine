@@ -9,20 +9,17 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.trocatine.R;
 import com.example.trocatine.api.StandardResponseDTO;
-import com.example.trocatine.api.UsersRepository;
+import com.example.trocatine.api.repository.UsersRepository;
+import com.example.trocatine.api.models.LoginDTO;
 import com.example.trocatine.api.requestDTO.CreateUserRequestDTO;
 import com.example.trocatine.home.Home;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,10 +33,11 @@ public class Register3 extends AppCompatActivity {
     private Retrofit retrofit;
     private LocalDate date;
     private int number;
-    private Bundle dadosParaHome;
-    private String firstName,lastName,emailBundle, passwordBundle, nameBundle, cpfBundle, birthDateBundle, phoneBundle, complementBundle, houseNumberBundle, stateBundle, streetBundle, cityBundle, cepBundle, userNameBundle;
+    private Bundle dadosParaHome = new Bundle();
+    private String firstName, lastName, emailBundle, passwordBundle, nameBundle, cpfBundle, birthDateBundle, phoneBundle, complementBundle, houseNumberBundle, stateBundle, streetBundle, cityBundle, cepBundle, userNameBundle;
 
     private ImageView backSet;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +67,7 @@ public class Register3 extends AppCompatActivity {
         });
 
     }
+
     public void onClickNext(View view) {
         // Verificações de input do usuário
         boolean hasError = false;
@@ -120,12 +119,13 @@ public class Register3 extends AppCompatActivity {
         }
 
         if (!hasError) {
-            Bundle dados = getIntent().getExtras();
+            Bundle dados = new Bundle();
             dadosParaHome = new Bundle();
 
 
             if (dados != null) {
                 emailBundle = dados.getString("email");
+                Log.e("Register3", "emailbundle: "+emailBundle);
                 phoneBundle = dados.getString("phone");
                 passwordBundle = dados.getString("password");
 
@@ -149,28 +149,14 @@ public class Register3 extends AppCompatActivity {
                 cityBundle = city.getText().toString();
                 cepBundle = cep.getText().toString();
 
-//                SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyy");
-//                try {
-//                    Date dateObject = formatter.parse(dados.getString("birt hDate"));
-//                    Instant instant = dateObject.toInstant();
-//                    ZoneId zoneId = ZoneId.systemDefault();
-//                    date = instant.atZone(zoneId).toLocalDate();
-//                } catch (Exception e) {
-//                    Log.e("Register3", "Erro ao converter data: " + e.getMessage());
-//                    return;
-//                }
                 birthDateBundle = dados.getString("birthDate");
+
                 assert birthDateBundle != null;
                 Log.e("Register3", birthDateBundle);
                 Log.e("Register3", birthDateBundle.getClass().getName());
-
-
-                criarUsuarioApi(firstName, passwordBundle, phoneBundle, lastName, userNameBundle, cpfBundle, birthDateBundle,
+                createNewUserApi(firstName, passwordBundle, phoneBundle, lastName, userNameBundle, cpfBundle, birthDateBundle,
                         complementBundle, number, stateBundle, streetBundle, cityBundle, cepBundle, emailBundle);
-
-                Intent intent = new Intent(Register3.this, Home.class);
-                finish();
-                startActivity(intent);
+                login(emailBundle, passwordBundle);
             } else {
                 Log.e("Register3", "Nenhum dado foi passado do Bundle");
             }
@@ -182,20 +168,23 @@ public class Register3 extends AppCompatActivity {
         texto.setText(mensagem);
         texto.setVisibility(View.VISIBLE);
     }
+
     //Método que quando acionado, deixa a mensagem de erro do input invisivel
     public void hideError(TextView erro) {
         erro.setVisibility(View.INVISIBLE);
     }
-    private void criarUsuarioApi(String firstNameRequest, String passwordRequest, String phoneRequest,
-                                 String lastNameRequest, String userNameRequest, String cpfRequest,
-                                 String birthDateRequest, String complementRequest,
-                                 int houseNumberRequest, String stateRequest, String streetRequest,
-                                 String cityRequest, String cepRequest, String emailRequest) {
+
+    private void createNewUserApi(String firstNameRequest, String passwordRequest, String phoneRequest,
+                                     String lastNameRequest, String userNameRequest, String cpfRequest,
+                                     String birthDateRequest, String complementRequest,
+                                     int houseNumberRequest, String stateRequest, String streetRequest,
+                                     String cityRequest, String cepRequest, String emailRequest) {
         String API = "https://api-spring-boot-trocatine.onrender.com/";
         retrofit = new Retrofit.Builder()
                 .baseUrl(API)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        boolean hasError = false;
 
         UsersRepository userAPI = retrofit.create(UsersRepository.class);
         CreateUserRequestDTO request = new CreateUserRequestDTO(firstNameRequest, lastNameRequest, emailRequest,
@@ -207,20 +196,26 @@ public class Register3 extends AppCompatActivity {
             @Override
             public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
                 if (response.isSuccessful()) {
-                    Log.e("Sucesso", "Usuario criado: " + response.body() + response.message() + response.toString());
                     Object responseDTO = response.body().getData();
-//                    CreateUserRequestDTO request = new CreateUserRequestDTO(firstNameRequest, lastNameRequest, emailRequest,
-//                            cpfRequest, birthDateRequest, false, userNameRequest, passwordRequest,
-//                            streetRequest, houseNumberRequest, cityRequest, stateRequest,
-//                            "bairro", complementRequest, cepRequest, phoneRequest);
-//                    dadosParaHome.putString("usuario",request.toString());
-//                    Log.e("informação no bundle: ", "usuario criado: " +request);
+                    CreateUserRequestDTO request = new CreateUserRequestDTO(firstNameRequest, lastNameRequest, emailRequest,
+                            cpfRequest, birthDateRequest, false, userNameRequest, passwordRequest,
+                            streetRequest, houseNumberRequest, cityRequest, stateRequest,
+                            "bairro", complementRequest, cepRequest, phoneRequest);
+                    dadosParaHome.putString("usuario",emailBundle);
 
+                    Log.e("informação no bundle: ", "usuario criado: " +request.toString());
+                    Log.e("Sucesso", "Usuario criado: " + response.body() + response.message() + response.toString());
                     Log.e("retorno fofo: ", "usuario criado: " + responseDTO);
+
+                    Intent intent = new Intent(Register3.this, Home.class);
+                    finish();
+                    startActivity(intent);
 
                 } else {
                     try {
                         Log.e("Erro", "Resposta não foi sucesso: " + response.code() + " - " + response.errorBody().string());
+                        Toast.makeText(Register3.this, "mlk deu erro no onresponse", Toast.LENGTH_SHORT).show();
+
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -229,7 +224,44 @@ public class Register3 extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
-                Log.e("ERRO", throwable.getMessage());
+                Log.e("ERRO", "Falha na requisição: " + throwable.getMessage(), throwable);
+                Toast.makeText(Register3.this, "mlk deu erro no onfailure", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    private void login(String emailBundle, String passwordBundle) {
+        String API = "https://api-spring-boot-trocatine.onrender.com/";
+        retrofit = new Retrofit.Builder()
+                .baseUrl(API)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        UsersRepository userAPI = retrofit.create(UsersRepository.class);
+        LoginDTO request = new LoginDTO(emailBundle, passwordBundle);
+        Call<StandardResponseDTO> call = userAPI.login(request);
+        call.enqueue(new Callback<StandardResponseDTO>() {
+            @Override
+            public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    Object responseDTO = response.body().getData();
+                    Log.e("informação no bundle: ", "token criado: " +request.toString());
+                    Log.e("Sucesso", "token criado: " + response.body() + response.message() + response.toString());
+                    Log.e("retorno fofo: ", "token criado: " + responseDTO);
+                } else {
+                    try {
+                        Log.e("Erro", "Resposta não foi sucesso: " + response.code() + " - " + response.errorBody().string());
+                        Toast.makeText(Register3.this, "mlk deu erro no onresponse", Toast.LENGTH_SHORT).show();
+
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
+                Log.e("ERRO", "Falha na requisição: " + throwable.getMessage(), throwable);
+                Toast.makeText(Register3.this, "mlk deu erro no onfailure", Toast.LENGTH_SHORT).show();
             }
         });
     }

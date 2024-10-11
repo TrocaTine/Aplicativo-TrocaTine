@@ -12,6 +12,7 @@
         android:layout_width="312dp"
         android:layout_height="51dp"
         android:layout_marginTop="40dp"
+        android:background="@drawable/button_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
@@ -132,7 +133,8 @@
             android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Telefone" />
+            android:hint="Telefone"
+            android:maxLength="11" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
