@@ -21,41 +21,37 @@ public class Home extends AppCompatActivity {
 
     private BottomNavigationView bottom_navigation;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        initNavigation();
+
         bottom_navigation = findViewById(R.id.bottom_navigation);
         bottom_navigation.setSelectedItemId(R.id.menu_home);
 
+        Bundle dados = getIntent().getExtras();
+        if (dados != null) {
+            navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+            navController = navHostFragment.getNavController();
+            String usuario = dados.getString("usuario");
+            String token = dados.getString("token");
 
-//        if (dados != null) {
-//            // Obtenha o fragmento atual e passe os dados
-//            HomeFragment homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-//            if (homeFragment != null) {
-//                homeFragment.setArguments(dados); // Passa os dados para o fragmento
-//            }
-//        }
+            Bundle bundle = new Bundle();
+            bundle.putString("usuario", usuario);
+            bundle.putString("token", token);
+            Log.e("home.class", "usuario: "+usuario+" token: "+token);
+//            homeFragment.setArguments(bundle);
+            navController.navigate(R.id.menu_home, bundle);
+
+        } else {
+            Log.e("HomeActivity", "Dados da Intent estão nulos.");
+        }
+//        initNavigation();
+
     }
+//private void initNavigation() {
+//    BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+//    NavigationUI.setupWithNavController(bottomNavigationView, navController);
+//}
 
-//    private void initNavigation() {
-//        navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_main);
-//        if (navHostFragment != null) {
-//            navController = navHostFragment.getNavController();
-//            BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-//            NavigationUI.setupWithNavController(bottomNavigationView, navController);
-//            Log.e("Home", "deu certo, navigation nao é nula");
-//        } else {
-//            Log.e("Home", "NavHostFragment entrou no nuloo");
-//        }
-//    }
-private void initNavigation() {
-    navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-    navController = navHostFragment.getNavController();
-    BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-    NavigationUI.setupWithNavController(bottomNavigationView, navController);
-}
 }

@@ -88,14 +88,13 @@ public class Register1 extends AppCompatActivity {
 
         if (!hasError) {
             chamarAPI_Retrofit(email.getText().toString());
+            Intent intent = new Intent(Register1.this, Register2.class);
             Bundle dados = new Bundle();
-            salvarLogin(email.getText().toString(), password.getText().toString());
-            dados.putString("email",email.getText().toString());
-            dados.putString("password",password.getText().toString());
-            dados.putString("phone",phone.getText().toString());
+            dados.putString("email", email.getText().toString());
+            dados.putString("password", password.getText().toString());
+            dados.putString("phone", phone.getText().toString());
 
-            Intent intent = new Intent(this, Register2.class);
-            finish();
+            intent.putExtras(dados);
             startActivity(intent);
         }
     }

@@ -4,9 +4,13 @@ import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,17 +18,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.AdapterProduct;
 import com.example.trocatine.RecycleViewModels.Product;
 import com.example.trocatine.api.StandardResponseDTO;
 import com.example.trocatine.api.repository.ProductRepository;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,10 +61,14 @@ public class HomeFragment extends Fragment {
     public HomeFragment() {
         // Required empty public constructor
     }
+
     private RecyclerView productRv;
     private TextView initialText;
     private Dialog dialog;
+    private NavController navController;
     private Button buttonCancel;
+    private String token;
+
     private ImageButton buttonFilter;
 
     List<Product> listProduct = new ArrayList<>();
@@ -98,13 +111,6 @@ public class HomeFragment extends Fragment {
         productRv = view.findViewById(R.id.productRv);
         buttonFilter = view.findViewById(R.id.buttonFilter);
         productRv.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
-        //Populando a recycle view
-        listProduct.add(new Product(1, 1, "nome", "descricao", 2.99, 5, "05/12/2007", true));
-        listProduct.add(new Product(1, 1, "nome", "descricao", 2.99, 5, "05/12/2007", true));
-        listProduct.add(new Product(1, 1, "nome", "descricao", 2.99, 5, "05/12/2007", true));
-        listProduct.add(new Product(1, 1, "nome", "descricao", 2.99, 5, "05/12/2007", true));
-        listProduct.add(new Product(1, 1, "nome", "descricao", 2.99, 5, "05/12/2007", true));
-        listProduct.add(new Product(1, 1, "nome", "descricao", 2.99, 5, "05/12/2007", true));
 
         AdapterProduct adapterProduct = new AdapterProduct(listProduct);
         productRv.setAdapter(adapterProduct);
@@ -131,31 +137,76 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        Bundle dados = new Bundle();
-        String usuario = dados.getString("usuario");
-        Log.i("USUARIO", "usuario: "+usuario);
+        Bundle bundle = getArguments();
+        Handler handler = new Handler(Looper.getMainLooper());
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (bundle != null) {
+                    token = bundle.getString("token");
+                    String usuario = bundle.getString("usuario");
+                    initialText = view.findViewById(R.id.initialText2);
+
+                    initialText.setText("Boa tarde, " + usuario);
+                    NavHostFragment navHostFragment = new NavHostFragment();
+                    listProducts(productRv, token);
+                }
+                else {
+                    handler.postDelayed(this, 2000);
+                }
+            }
+
+        }, 1000);
+
         return view;
     }
-//    private void chamarAPI_Retrofit() {
-//        String API = "https://jsonplaceholder.typicode.com/";
-//        retrofit = new Retrofit.Builder()
-//                .baseUrl(API)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//        ProductRepository photoApi = retrofit.create(ProductRepository.class);
-//        Call<List<StandardResponseDTO>> call = photoApi.findProductCard();
-//
-//        call.enqueue(new Callback<List<Foto>>() {
-//            @Override
-//            public void onResponse(Call<List<Foto>> call, Response<List<Foto>> response) {
-//                List<Foto> fotos = response.body();
-//                fotorecyclerview.setAdapter(new FotoAdapter(fotos));
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<Foto>> call, Throwable throwable) {
-//                Log.e("ERRO", throwable.getMessage());
-//            }
-//        });
-//    }
+
+
+    private void listProducts(RecyclerView recyclerView, String token) {
+        String API = "https://api-spring-boot-trocatine.onrender.com/";
+        Log.e("list products", "token: "+token);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        Request originalRequest = chain.request();
+                        Request newRequest = originalRequest.newBuilder()
+                                .header("Authorization", token)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ProductRepository productApi = retrofit.create(ProductRepository.class);
+        Call<StandardResponseDTO> call = productApi.findProductCard();
+        call.enqueue(new Callback<StandardResponseDTO>() {
+            @Override
+            public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    List<Product> products = new Gson().fromJson(new Gson().toJson(response.body().getData()), new TypeToken<List<Product>>(){}.getType());
+                    recyclerView.setAdapter(new AdapterProduct(products));
+                } else {
+                    try {
+                        Log.e("Erro", "Resposta não foi sucesso no home fragment: " + response.code() + " - " + response.errorBody().string()+"token: "+token);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
+                Log.e("ERRO no onFailure", throwable.getMessage());
+            }
+        });
+    }
+
 }

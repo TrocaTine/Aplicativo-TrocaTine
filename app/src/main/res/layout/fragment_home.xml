@@ -40,8 +40,8 @@
 
         <TextView
             android:id="@+id/initialText2"
-            android:layout_width="200dp"
-            android:layout_height="60dp"
+            android:layout_width="169dp"
+            android:layout_height="70dp"
             android:layout_marginStart="28dp"
             android:layout_marginTop="16dp"
             android:backgroundTint="#000000"

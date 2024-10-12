@@ -31,7 +31,7 @@ public class Register3 extends AppCompatActivity {
     private EditText complement, houseNumber, state, street, city, cep;
     private TextView errorTextComplement, errorTextHouseNumber, errorTextState, errorTextStreet, errorTextCity, errorTextCep;
     private Retrofit retrofit;
-    private LocalDate date;
+    private String token;
     private int number;
     private Bundle dadosParaHome = new Bundle();
     private String firstName, lastName, emailBundle, passwordBundle, nameBundle, cpfBundle, birthDateBundle, phoneBundle, complementBundle, houseNumberBundle, stateBundle, streetBundle, cityBundle, cepBundle, userNameBundle;
@@ -119,7 +119,7 @@ public class Register3 extends AppCompatActivity {
         }
 
         if (!hasError) {
-            Bundle dados = new Bundle();
+            Bundle dados = getIntent().getExtras();
             dadosParaHome = new Bundle();
 
 
@@ -175,47 +175,32 @@ public class Register3 extends AppCompatActivity {
     }
 
     private void createNewUserApi(String firstNameRequest, String passwordRequest, String phoneRequest,
-                                     String lastNameRequest, String userNameRequest, String cpfRequest,
-                                     String birthDateRequest, String complementRequest,
-                                     int houseNumberRequest, String stateRequest, String streetRequest,
-                                     String cityRequest, String cepRequest, String emailRequest) {
+                                  String lastNameRequest, String userNameRequest, String cpfRequest,
+                                  String birthDateRequest, String complementRequest,
+                                  int houseNumberRequest, String stateRequest, String streetRequest,
+                                  String cityRequest, String cepRequest, String emailRequest) {
         String API = "https://api-spring-boot-trocatine.onrender.com/";
         retrofit = new Retrofit.Builder()
                 .baseUrl(API)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        boolean hasError = false;
 
         UsersRepository userAPI = retrofit.create(UsersRepository.class);
         CreateUserRequestDTO request = new CreateUserRequestDTO(firstNameRequest, lastNameRequest, emailRequest,
                 cpfRequest, birthDateRequest, false, userNameRequest, passwordRequest,
                 streetRequest, houseNumberRequest, cityRequest, stateRequest,
                 "bairro", complementRequest, cepRequest, phoneRequest);
+
         Call<StandardResponseDTO> call = userAPI.createUser(request);
         call.enqueue(new Callback<StandardResponseDTO>() {
             @Override
             public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
                 if (response.isSuccessful()) {
-                    Object responseDTO = response.body().getData();
-                    CreateUserRequestDTO request = new CreateUserRequestDTO(firstNameRequest, lastNameRequest, emailRequest,
-                            cpfRequest, birthDateRequest, false, userNameRequest, passwordRequest,
-                            streetRequest, houseNumberRequest, cityRequest, stateRequest,
-                            "bairro", complementRequest, cepRequest, phoneRequest);
-                    dadosParaHome.putString("usuario",emailBundle);
-
-                    Log.e("informação no bundle: ", "usuario criado: " +request.toString());
-                    Log.e("Sucesso", "Usuario criado: " + response.body() + response.message() + response.toString());
-                    Log.e("retorno fofo: ", "usuario criado: " + responseDTO);
-
-                    Intent intent = new Intent(Register3.this, Home.class);
-                    finish();
-                    startActivity(intent);
-
+                    // Após criar o usuário, chamar login e passar a navegação para Home dentro dele
+                    login(emailRequest, passwordRequest);
                 } else {
                     try {
                         Log.e("Erro", "Resposta não foi sucesso: " + response.code() + " - " + response.errorBody().string());
-                        Toast.makeText(Register3.this, "mlk deu erro no onresponse", Toast.LENGTH_SHORT).show();
-
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -225,11 +210,11 @@ public class Register3 extends AppCompatActivity {
             @Override
             public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
                 Log.e("ERRO", "Falha na requisição: " + throwable.getMessage(), throwable);
-                Toast.makeText(Register3.this, "mlk deu erro no onfailure", Toast.LENGTH_SHORT).show();
             }
         });
     }
-    private void login(String emailBundle, String passwordBundle) {
+
+    private void login(String email, String password) {
         String API = "https://api-spring-boot-trocatine.onrender.com/";
         retrofit = new Retrofit.Builder()
                 .baseUrl(API)
@@ -237,21 +222,27 @@ public class Register3 extends AppCompatActivity {
                 .build();
 
         UsersRepository userAPI = retrofit.create(UsersRepository.class);
-        LoginDTO request = new LoginDTO(emailBundle, passwordBundle);
+        LoginDTO request = new LoginDTO(email, password);
         Call<StandardResponseDTO> call = userAPI.login(request);
         call.enqueue(new Callback<StandardResponseDTO>() {
             @Override
             public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
                 if (response.isSuccessful()) {
                     Object responseDTO = response.body().getData();
-                    Log.e("informação no bundle: ", "token criado: " +request.toString());
-                    Log.e("Sucesso", "token criado: " + response.body() + response.message() + response.toString());
-                    Log.e("retorno fofo: ", "token criado: " + responseDTO);
+                    token = responseDTO.toString();
+                    token = token.replace("{token=", "").replace("}", "");
+
+                    // Navegar para Home após o login bem-sucedido
+                    Intent intent = new Intent(Register3.this, Home.class);
+
+                    dadosParaHome.putString("usuario", email);
+                    dadosParaHome.putString("token", token);
+                    intent.putExtras(dadosParaHome);
+                    finish();
+                    startActivity(intent);
                 } else {
                     try {
                         Log.e("Erro", "Resposta não foi sucesso: " + response.code() + " - " + response.errorBody().string());
-                        Toast.makeText(Register3.this, "mlk deu erro no onresponse", Toast.LENGTH_SHORT).show();
-
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -261,10 +252,10 @@ public class Register3 extends AppCompatActivity {
             @Override
             public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
                 Log.e("ERRO", "Falha na requisição: " + throwable.getMessage(), throwable);
-                Toast.makeText(Register3.this, "mlk deu erro no onfailure", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 
 
 }

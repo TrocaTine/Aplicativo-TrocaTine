@@ -10,8 +10,6 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface ProductRepository {
-    @POST("/api/auth/login")
-    Call<StandardResponseDTO> findProductCard(
-            @Header("Authorization") String token
-    );
+    @POST("/products/find-product-card")
+    Call<StandardResponseDTO> findProductCard();
 }
