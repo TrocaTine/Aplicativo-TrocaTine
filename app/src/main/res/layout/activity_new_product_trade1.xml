@@ -37,8 +37,7 @@
             android:id="@+id/inputDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Descrição"
-            android:inputType="textPassword" />
+            android:hint="Descrição" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,8 +57,7 @@
             android:id="@+id/inputTradeFor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Objetos que troca por"
-            android:inputType="textPassword" />
+            android:hint="Objetos que troca por" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,13 +77,12 @@
             android:id="@+id/inputTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Título"
-            android:inputType="textPassword" />
+            android:hint="Título" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/productDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -107,7 +104,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.38"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/productDescription" />
 
     <ImageView
         android:id="@+id/imageView10"

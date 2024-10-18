@@ -9,17 +9,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.trocatine.R;
-import com.example.trocatine.api.StandardResponseDTO;
+import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.api.repository.UsersRepository;
 import com.example.trocatine.api.models.LoginDTO;
 import com.example.trocatine.api.requestDTO.CreateUserRequestDTO;
 import com.example.trocatine.home.Home;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -232,7 +230,6 @@ public class Register3 extends AppCompatActivity {
                     token = responseDTO.toString();
                     token = token.replace("{token=", "").replace("}", "");
 
-                    // Navegar para Home após o login bem-sucedido
                     Intent intent = new Intent(Register3.this, Home.class);
 
                     dadosParaHome.putString("usuario", email);
@@ -255,7 +252,4 @@ public class Register3 extends AppCompatActivity {
             }
         });
     }
-
-
-
 }

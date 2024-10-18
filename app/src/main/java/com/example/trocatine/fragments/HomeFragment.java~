@@ -141,8 +141,43 @@ public class HomeFragment extends Fragment {
         initialText.setText("Boa tarde, " + AndroidUtil.email);
         Log.e("home fragment", "email do android util"+AndroidUtil.email);
 
+//        Bundle bundle = getArguments();
+//        Handler handler = new Handler(Looper.getMainLooper());
         token = AndroidUtil.token;
         listProducts(productRv, token);
+
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                if (bundle != null) {
+//                    Bundle dadosParaProduto = new Bundle();
+//
+//                    token = bundle.getString("token");
+//                    String usuario = bundle.getString("usuario");
+//
+//                    initialText = view.findViewById(R.id.initialText2);
+//                    initialText.setText("Boa tarde, " + usuario);
+//
+//                    navController = NavHostFragment.findNavController(HomeFragment.this);
+//
+//                    dadosParaProduto.putString("emailUser", usuario);
+//                    dadosParaProduto.putString("token", token);
+//
+//                    AndroidUtil.token = token;
+//                    AndroidUtil.email = usuario;
+//                    Log.e("TESTE NO HOMEFRAGMENTE", "email" + usuario+ "- token" + token);
+//
+//                    NewProductFragment newProductFragment = new NewProductFragment();
+//                    newProductFragment.setArguments(dadosParaProduto);
+//                    Log.e("TESTE", "email" + usuario+ "- token" + token);
+//                }
+//                else {
+//                    handler.postDelayed(this, 2000);
+//                }
+//            }
+//
+//        }, 1000);
+
         return view;
     }
 

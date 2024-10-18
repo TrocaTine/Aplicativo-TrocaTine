@@ -76,7 +76,6 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         ImageView image, flagTroca;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             description = itemView.findViewById(R.id.description);
             value = itemView.findViewById(R.id.cartProductValue);
             name = itemView.findViewById(R.id.productdName);

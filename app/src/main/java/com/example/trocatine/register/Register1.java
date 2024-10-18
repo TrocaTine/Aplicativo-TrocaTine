@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trocatine.R;
-import com.example.trocatine.api.StandardResponseDTO;
+import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.api.repository.UsersRepository;
 import com.example.trocatine.api.requestDTO.CheckingEmailAlreadyRegisteredRequestDTO;
 import com.example.trocatine.beginning.MainActivity;

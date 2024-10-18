@@ -40,8 +40,8 @@
 
         <TextView
             android:id="@+id/initialText2"
-            android:layout_width="169dp"
-            android:layout_height="70dp"
+            android:layout_width="223dp"
+            android:layout_height="73dp"
             android:layout_marginStart="28dp"
             android:layout_marginTop="16dp"
             android:backgroundTint="#000000"
@@ -53,7 +53,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/userBirthDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"

@@ -26,8 +26,8 @@
 
         <ImageView
             android:id="@+id/imageView16"
-            android:layout_width="121dp"
-            android:layout_height="113dp"
+            android:layout_width="122dp"
+            android:layout_height="117dp"
             android:layout_marginTop="40dp"
             android:scaleType="centerCrop"
             android:src="@drawable/user_default_img"
@@ -36,7 +36,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView21"
+            android:id="@+id/userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -49,7 +49,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView16" />
 
         <TextView
-            android:id="@+id/textView22"
+            android:id="@+id/userEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -57,7 +57,7 @@
             android:textColor="@color/orange"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+            app:layout_constraintTop_toBottomOf="@+id/userName" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
@@ -66,7 +66,7 @@
             android:layout_marginTop="217dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView22">
+            app:layout_constraintTop_toBottomOf="@+id/userEmail">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tagFavAnnouncement"
@@ -103,7 +103,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView22"
+            app:layout_constraintTop_toBottomOf="@+id/userEmail"
             app:layout_constraintVertical_bias="0.28">
 
             <TextView
@@ -140,44 +140,44 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/userCpf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="10dp"
                 android:text="11 9876432"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                app:layout_constraintStart_toEndOf="@+id/textView5"
+                app:layout_constraintTop_toBottomOf="@+id/userPhone" />
 
             <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="12dp"
+                android:id="@+id/userAddress"
+                android:layout_width="194dp"
+                android:layout_height="17dp"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="11dp"
                 android:text="11 9876432"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintStart_toEndOf="@+id/textView1"
+                app:layout_constraintTop_toBottomOf="@+id/BirthDate" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/userPhone"
                 android:layout_width="76dp"
                 android:layout_height="21dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
                 android:text="11 9876432"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/openEditProfile" />
+                app:layout_constraintStart_toEndOf="@+id/textView8"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/userBirthDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
                 android:text="11 9876432"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                app:layout_constraintStart_toEndOf="@+id/BirthDate"
+                app:layout_constraintTop_toBottomOf="@+id/userCpf" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -194,8 +194,8 @@
 
             <ImageButton
                 android:id="@+id/openEditProfile"
-                android:layout_width="34dp"
-                android:layout_height="33dp"
+                android:layout_width="28dp"
+                android:layout_height="26dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/icon_edit"

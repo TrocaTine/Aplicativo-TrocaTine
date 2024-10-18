@@ -5,23 +5,22 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.trocatine.R;
-import com.example.trocatine.buy.Buy1;
-import com.example.trocatine.newProduct.NewProduct3;
 import com.example.trocatine.newProduct.NewProductTrade1;
-import com.google.android.material.badge.BadgeUtils;
+import com.example.trocatine.util.AndroidUtil;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link newProductFragment#newInstance} factory method to
+ * Use the {@link NewProductFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class newProductFragment extends Fragment {
+public class NewProductFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,9 +31,10 @@ public class newProductFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private Button buttonTrade;
     private String mParam1;
+    String emailUser, token;
     private String mParam2;
 
-    public newProductFragment() {
+    public NewProductFragment() {
         // Required empty public constructor
     }
 
@@ -44,11 +44,11 @@ public class newProductFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment newProductFragment.
+     * @return A new instance of fragment NewProductFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static newProductFragment newInstance(String param1, String param2) {
-        newProductFragment fragment = new newProductFragment();
+    public static NewProductFragment newInstance(String param1, String param2) {
+        NewProductFragment fragment = new NewProductFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,10 +59,8 @@ public class newProductFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        Log.e("New Product Fragment", "Email do usuario: "+AndroidUtil.email+"- Token: "+AndroidUtil.token);
+
     }
 
     @Override
@@ -71,6 +69,8 @@ public class newProductFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_new_product, container, false);
         buttonTrade = view.findViewById(R.id.buttonTrade);
+
+        Log.e("NEW PRODUCT FRAGMENT", "emailuser"+emailUser+" - token: "+token);
         buttonTrade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -53,7 +53,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView21"
+            android:id="@+id/userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -66,7 +66,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView16" />
 
         <TextView
-            android:id="@+id/textView22"
+            android:id="@+id/userEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -74,7 +74,7 @@
             android:textColor="@color/orange"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+            app:layout_constraintTop_toBottomOf="@+id/userName" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
@@ -83,7 +83,7 @@
             android:layout_marginTop="217dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView22">
+            app:layout_constraintTop_toBottomOf="@+id/userEmail">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tagFavAnnouncement"
@@ -121,7 +121,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView22"
+            app:layout_constraintTop_toBottomOf="@+id/userEmail"
             app:layout_constraintVertical_bias="0.129">
 
             <ImageView

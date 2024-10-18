@@ -12,6 +12,7 @@ import android.util.Log;
 import com.example.trocatine.R;
 import com.example.trocatine.fragments.HomeFragment;
 import com.example.trocatine.register.Register3;
+import com.example.trocatine.util.AndroidUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Home extends AppCompatActivity {
@@ -30,28 +31,21 @@ public class Home extends AppCompatActivity {
         bottom_navigation.setSelectedItemId(R.id.menu_home);
 
         Bundle dados = getIntent().getExtras();
-        if (dados != null) {
-            navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-            navController = navHostFragment.getNavController();
-            String usuario = dados.getString("usuario");
-            String token = dados.getString("token");
+        navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        navController = navHostFragment.getNavController();
+        initNavigation();
+        String usuario = AndroidUtil.email;
+        String token = AndroidUtil.token;
 
-            Bundle bundle = new Bundle();
-            bundle.putString("usuario", usuario);
-            bundle.putString("token", token);
-            Log.e("home.class", "usuario: "+usuario+" token: "+token);
-//            homeFragment.setArguments(bundle);
-            navController.navigate(R.id.menu_home, bundle);
-
-        } else {
-            Log.e("HomeActivity", "Dados da Intent estão nulos.");
-        }
-//        initNavigation();
+        Bundle bundle = new Bundle();
+        bundle.putString("usuario", usuario);
+        bundle.putString("token", token);
+        Log.e("TESTE NO HOME", "email" + usuario+ "- token" + token);
+        navController.navigate(R.id.menu_home);
 
     }
-//private void initNavigation() {
-//    BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-//    NavigationUI.setupWithNavController(bottomNavigationView, navController);
-//}
-
+private void initNavigation() {
+    BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+    NavigationUI.setupWithNavController(bottomNavigationView, navController);
+}
 }

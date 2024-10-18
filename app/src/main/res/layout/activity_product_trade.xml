@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView11" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/productName"
         android:layout_width="245dp"
         android:layout_height="30dp"
         android:layout_marginStart="48dp"
@@ -78,7 +78,7 @@
         app:srcCompat="@drawable/icon_back" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/userPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -88,7 +88,7 @@
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/productDescription" />
 
     <TextView
         android:id="@+id/buttonBack"
@@ -102,7 +102,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/productDescription"
         android:layout_width="241dp"
         android:layout_height="46dp"
         android:layout_marginStart="48dp"
@@ -110,7 +110,7 @@
         android:text="Definitivamente uma das camisetas azuis sociais, muito bonita"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/productName" />
 
     <Button
         android:id="@+id/buttonNext"
@@ -124,17 +124,17 @@
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/userPhone" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/productCreated"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="152dp"
         android:layout_marginTop="172dp"
         android:text="24/05/24"
         android:textColor="@color/orange"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintStart_toEndOf="@+id/userPhone"
         app:layout_constraintTop_toBottomOf="@+id/imageView11" />
 
     <TextView
@@ -151,7 +151,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView11" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/userCpf"
         android:layout_width="224dp"
         android:layout_height="27dp"
         android:text="Lorem ipsum, Lorem ipsum, Lorem ipsum"

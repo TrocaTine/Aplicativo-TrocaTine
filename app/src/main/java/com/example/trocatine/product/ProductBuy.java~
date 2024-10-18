@@ -9,8 +9,12 @@ import android.widget.TextView;
 
 import com.example.trocatine.R;
 import com.example.trocatine.buy.Buy1;
+import com.example.trocatine.fragments.HomeFragment;
 import com.example.trocatine.home.Home;
+import com.example.trocatine.login.Login;
 import com.example.trocatine.userProfile.OthersUserProfile;
+
+import org.w3c.dom.Text;
 
 public class ProductBuy extends AppCompatActivity {
     TextView productName, productDescription, productCreatedAt, productValue;
@@ -24,7 +28,7 @@ public class ProductBuy extends AppCompatActivity {
         productName = findViewById(R.id.productName);
         productDescription = findViewById(R.id.productDescription);
         productCreatedAt = findViewById(R.id.productCreated);
-        productValue = findViewById(R.id.userPhone);
+        productValue = findViewById(R.id.productValue);
 
         Bundle dados = getIntent().getExtras();
         productValue.setText("R$ "+String.valueOf(dados.getDouble("value")));

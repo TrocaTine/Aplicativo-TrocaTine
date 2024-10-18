@@ -11,11 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.ViewPagerAdapter;
 import com.example.trocatine.userProfile.EditProfile;
+import com.example.trocatine.util.AndroidUtil;
 import com.google.android.material.tabs.TabLayout;
+
+import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +33,7 @@ public class MyUserProfileFragment extends Fragment {
     private ViewPagerAdapter viewPagerAdapter;
     private TabLayout tabLayout;
     private ViewPager2 viewPager;
+    private TextView userName, userEmail, userPhone, userAdress, userCpf, userBirthDate;
     private ImageButton buttonEditProfile;
     private ImageView backSet;
 
@@ -75,8 +80,9 @@ public class MyUserProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_user_profile, container, false);
-        buttonEditProfile = view.findViewById(R.id.openEditProfile);
         backSet = view.findViewById(R.id.backSet);
+        userEmail = view.findViewById(R.id.userEmail);
+        userEmail.setText(AndroidUtil.email);
 
         buttonEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
