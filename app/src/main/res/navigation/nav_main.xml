@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/menu_home">
+    app:startDestination="@id/menu_home"
+    >
 
     <fragment
         android:id="@+id/menu_cart"
@@ -25,7 +26,7 @@
 
     <fragment
         android:id="@+id/menu_newProduct"
-        android:name="com.example.trocatine.fragments.newProductFragment"
+        android:name="com.example.trocatine.fragments.NewProductFragment"
         android:label="fragment_new_product"
         tools:layout="@layout/fragment_new_product" />
 

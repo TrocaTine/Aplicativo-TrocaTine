@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/productDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
@@ -73,7 +73,7 @@
         android:layout_marginTop="20dp"
         android:text="Selecione um dos métodos de pagamento a seguir"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/productDescription" />
 
     <TextView
         android:id="@+id/textView13"

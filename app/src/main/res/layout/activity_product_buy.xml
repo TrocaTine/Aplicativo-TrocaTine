@@ -10,13 +10,13 @@
         android:id="@+id/buttonAddCart"
         android:layout_width="282dp"
         android:layout_height="43dp"
-        android:layout_marginStart="64dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/button_border"
         android:onClick="onClickAddToCart"
         android:text="Adicionar ao carrinho"
         android:textAllCaps="false"
         android:textColor="@color/seaGreen"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonBuyNow" />
 
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView11" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/productName"
         android:layout_width="245dp"
         android:layout_height="30dp"
         android:layout_marginStart="48dp"
@@ -69,7 +69,7 @@
         app:srcCompat="@drawable/icon_back" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/userPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -79,7 +79,7 @@
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/productDescription" />
 
     <TextView
         android:id="@+id/buttonBack"
@@ -93,7 +93,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/productDescription"
         android:layout_width="241dp"
         android:layout_height="46dp"
         android:layout_marginStart="48dp"
@@ -101,31 +101,33 @@
         android:text="Definitivamente uma das camisetas azuis sociais, muito bonita"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/productName" />
 
     <Button
         android:id="@+id/buttonBuyNow"
         android:layout_width="282dp"
         android:layout_height="43dp"
-        android:layout_marginStart="64dp"
         android:layout_marginTop="44dp"
         android:background="@drawable/button_fill"
         android:onClick="onClickBuyNow"
         android:text="Comprar"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/userPhone" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/productCreated"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="172dp"
         android:layout_marginTop="172dp"
         android:text="24/05/24"
         android:textColor="@color/orange"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toEndOf="@+id/userPhone"
         app:layout_constraintTop_toBottomOf="@+id/imageView11" />
 
     <TextView

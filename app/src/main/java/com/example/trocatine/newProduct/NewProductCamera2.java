@@ -22,7 +22,6 @@ import android.util.Log;
 import android.view.OrientationEventListener;
 import android.view.Surface;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -38,7 +37,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class NewProductCamera extends AppCompatActivity {
+public class NewProductCamera2 extends AppCompatActivity {
     private static final String[] REQUIRED_PERMISSIONS = {
             android.Manifest.permission.CAMERA,
             Manifest.permission.RECORD_AUDIO
@@ -108,21 +107,16 @@ public class NewProductCamera extends AppCompatActivity {
 
         cameraProviderFuture.addListener(() -> {
             try {
-                // Used to bind the lifecycle of cameras to the lifecycle owner
                 ProcessCameraProvider cameraProvider = cameraProviderFuture.get();
 
-                // Preview
                 Preview preview = new Preview.Builder().build();
                 preview.setSurfaceProvider(viewFinder.getSurfaceProvider());
 
-                // ImageCapture
                 imageCapture = new ImageCapture.Builder().build();
 
                 try {
-                    // Unbind use cases before rebinding
                     cameraProvider.unbindAll();
 
-                    // Bind use cases to camera
                     cameraProvider.bindToLifecycle(
                             this,
                             cameraSelector,
@@ -144,21 +138,18 @@ public class NewProductCamera extends AppCompatActivity {
             return;
         }
 
-        // Definir nome e caminho pra imagem
         String name = "IMG_" + System.currentTimeMillis() + ".jpg";
         ContentValues values = new ContentValues();
         values.put(MediaStore.MediaColumns.DISPLAY_NAME, name);
         values.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg");
         values.put(MediaStore.MediaColumns.RELATIVE_PATH, "Pictures/CameraSalaF");
 
-        // Carregar imagem com as configs
         ImageCapture.OutputFileOptions outputOptions = new ImageCapture.OutputFileOptions.Builder(
                 getContentResolver(),
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 values
         ).build();
 
-        // Orientação da Imagem
         OrientationEventListener orientationEventListener = new OrientationEventListener(this) {
             @Override
             public void onOrientationChanged(int orientation) {
@@ -180,7 +171,6 @@ public class NewProductCamera extends AppCompatActivity {
         };
         orientationEventListener.enable();
 
-        // Salvar Imagem
         imageCapture.takePicture(outputOptions, ContextCompat.getMainExecutor(this), new ImageCapture.OnImageSavedCallback() {
             @Override
             public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
@@ -214,7 +204,6 @@ public class NewProductCamera extends AppCompatActivity {
     private ActivityResultLauncher<String[]> activityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.RequestMultiplePermissions(),
             permissions -> {
-                // Handle Permission granted/rejected
                 boolean permissionGranted = true;
                 for (Map.Entry<String, Boolean> entry : permissions.entrySet()) {
                     if (Arrays.asList(REQUIRED_PERMISSIONS).contains(entry.getKey()) && !entry.getValue()) {
@@ -226,7 +215,6 @@ public class NewProductCamera extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Permissão NEGADA.",Toast.LENGTH_SHORT).show();
                 } else {
                     startCamera();
-                    // ok acessos liberados ;
                 }
             });
 
@@ -240,12 +228,13 @@ public class NewProductCamera extends AppCompatActivity {
             });
 
     public void onClickNext(View view) {
-        Intent intent = new Intent(NewProductCamera.this, NewProduct3.class);
+        Intent intent = new Intent(NewProductCamera2.this, NewProduct3.class);
         startActivity(intent);
+        finish();
     }
 
     public void OnClickBack(View view) {
-        Intent intent = new Intent(NewProductCamera.this, NewProductTrade1.class);
+        Intent intent = new Intent(NewProductCamera2.this, NewProductTrade1.class);
         startActivity(intent);
     }
 }

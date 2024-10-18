@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -80,16 +81,16 @@ public class Register2 extends AppCompatActivity {
         if (!hasError) {
             Bundle dados = getIntent().getExtras();
 
-            dados.putString("email",dados.getString("email"));
-            dados.putString("password",dados.getString("password"));
-            dados.putString("phone",dados.getString("phone"));
-
+            assert dados != null;
             dados.putString("fullName",fullname.getText().toString());
+            Log.e("register2", fullname.getText().toString());
             dados.putString("userName",username.getText().toString());
             dados.putString("cpf",cpf.getText().toString());
             dados.putString("birthDate",birthdate.getText().toString());
             Intent intent = new Intent(this, Register3.class);
+
             intent.putExtras(dados);
+
             finish();
             startActivity(intent);
         }

@@ -1,4 +1,4 @@
-package com.example.trocatine.api;
+package com.example.trocatine.api.responseDTO;
 
 public class StandardResponseDTO {
     private boolean error;

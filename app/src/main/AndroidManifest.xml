@@ -45,7 +45,7 @@
             android:name=".newProduct.NewProduct3"
             android:exported="false" />
         <activity
-            android:name=".newProduct.NewProductCamera"
+            android:name=".newProduct.NewProductCamera2"
             android:exported="false" />
         <activity
             android:name=".newProduct.NewProductTrade1"
@@ -108,5 +108,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

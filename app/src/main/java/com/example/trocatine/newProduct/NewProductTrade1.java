@@ -5,16 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.trocatine.R;
 import com.example.trocatine.fragments.HomeFragment;
-import com.example.trocatine.login.Login;
+import com.example.trocatine.util.ProductUtil;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class NewProductTrade1 extends AppCompatActivity {
     private TextInputEditText inputTitle, inputDescription, inputTradeFor;
     private TextView errorTextTitle, errorTextDescription, errorTextTradeFor;
+    private Spinner spinnerCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +56,14 @@ public class NewProductTrade1 extends AppCompatActivity {
         }
 
         if (!hasError) {
-            Intent intent = new Intent(NewProductTrade1.this, NewProductCamera.class);
-            // Passe os dados para a próxima atividade, se necessário
+            spinnerCategory = findViewById(R.id.spinnerCategory);
+
+            ProductUtil.categories.add(spinnerCategory.getSelectedItem().toString());
+            Intent intent = new Intent(NewProductTrade1.this, NewProductCamera2.class);
+            ProductUtil.name = inputTitle.getText().toString();
+            ProductUtil.description = inputDescription.getText().toString();
             startActivity(intent);
+            finish();
         }
     }
 

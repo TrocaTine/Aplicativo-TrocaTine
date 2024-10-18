@@ -14,12 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trocatine.R;
-import com.example.trocatine.api.StandardResponseDTO;
-import com.example.trocatine.api.UsersRepository;
-import com.example.trocatine.api.models.Users;
+import com.example.trocatine.api.responseDTO.StandardResponseDTO;
+import com.example.trocatine.api.repository.UsersRepository;
 import com.example.trocatine.api.requestDTO.CheckingEmailAlreadyRegisteredRequestDTO;
-import com.example.trocatine.api.requestDTO.CreateUserRequestDTO;
-import com.example.trocatine.api.responseDTO.CheckingEmailAlreadyRegisteredResponseDTO;
 import com.example.trocatine.beginning.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,9 +24,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-
-import java.io.IOException;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -94,15 +88,13 @@ public class Register1 extends AppCompatActivity {
 
         if (!hasError) {
             chamarAPI_Retrofit(email.getText().toString());
+            Intent intent = new Intent(Register1.this, Register2.class);
             Bundle dados = new Bundle();
-            salvarLogin(email.getText().toString(), password.getText().toString());
-            dados.putString("email",email.getText().toString());
-            dados.putString("password",password.getText().toString());
-            dados.putString("phone",phone.getText().toString());
+            dados.putString("email", email.getText().toString());
+            dados.putString("password", password.getText().toString());
+            dados.putString("phone", phone.getText().toString());
 
-            Intent intent = new Intent(this, Register2.class);
             intent.putExtras(dados);
-            finish();
             startActivity(intent);
         }
     }

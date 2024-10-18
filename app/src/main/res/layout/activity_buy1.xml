@@ -56,7 +56,7 @@
         app:srcCompat="@drawable/flow_purchase1" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/productDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
@@ -76,7 +76,7 @@
         android:layout_marginTop="20dp"
         android:text="Esse é seu endereço padrão de entrega, para edita-lo, clique no lápis ao lado"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/productDescription" />
 
     <Button
         android:id="@+id/button3"

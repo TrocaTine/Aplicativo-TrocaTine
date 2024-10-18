@@ -43,7 +43,7 @@
     </string-array>
     <string-array name="spinner_category">
         <item>Brinquedo</item>
-        <item>Roupa</item>
+        <item>Roupas</item>
         <item>Sapato</item>
         <item>Eletrônico</item>
     </string-array>
