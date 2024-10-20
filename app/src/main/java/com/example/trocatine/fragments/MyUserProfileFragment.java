@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +17,8 @@ import android.widget.TextView;
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.ViewPagerAdapter;
 import com.example.trocatine.userProfile.EditProfile;
-import com.example.trocatine.util.AndroidUtil;
+import com.example.trocatine.util.UserUtil;
 import com.google.android.material.tabs.TabLayout;
-
-import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -81,8 +80,23 @@ public class MyUserProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_user_profile, container, false);
         backSet = view.findViewById(R.id.backSet);
+
         userEmail = view.findViewById(R.id.userEmail);
-        userEmail.setText(AndroidUtil.email);
+        userName = view.findViewById(R.id.userName);
+        userCpf = view.findViewById(R.id.userCpf);
+        userPhone = view.findViewById(R.id.userPhone);
+        userAdress = view.findViewById(R.id.userAddress);
+        userBirthDate = view.findViewById(R.id.userBirthDate);
+
+        userEmail.setText(UserUtil.email);
+        userBirthDate.setText(UserUtil.birthDate);
+        userAdress.setText(UserUtil.address);
+        userPhone.setText(UserUtil.phone);
+        userName.setText(UserUtil.fullName);
+        userCpf.setText(UserUtil.cpf);
+
+        Log.e("userprofile", UserUtil.email+" "+UserUtil.fullName+" "+UserUtil.address+" "+UserUtil.birthDate+" "+UserUtil.cpf+" "+UserUtil.phone);
+        buttonEditProfile = view.findViewById(R.id.openEditProfile);
 
         buttonEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override

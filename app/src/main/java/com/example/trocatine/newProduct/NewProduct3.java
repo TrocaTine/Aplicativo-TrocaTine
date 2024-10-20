@@ -14,7 +14,7 @@ import com.example.trocatine.api.models.TagDTO;
 import com.example.trocatine.api.repository.ProductRepository;
 import com.example.trocatine.api.requestDTO.SaveProductRequestDTO;
 import com.example.trocatine.home.Home;
-import com.example.trocatine.util.AndroidUtil;
+import com.example.trocatine.util.UserUtil;
 import com.example.trocatine.util.ProductUtil;
 
 import java.io.IOException;
@@ -56,8 +56,8 @@ public class NewProduct3 extends AppCompatActivity {
 
         Log.e("New Product 3", "Produto util"+ ProductUtil.name+ ProductUtil.description);
 
-        saveProduct(AndroidUtil.email, ProductUtil.name, ProductUtil.description, BigDecimal.valueOf(5.99),
-                Long.parseLong("1"),true, tags, Collections.singletonList(selectedCategory), AndroidUtil.token);
+        saveProduct(UserUtil.email, ProductUtil.name, ProductUtil.description, BigDecimal.valueOf(5.99),
+                Long.parseLong("1"),true, tags, Collections.singletonList(selectedCategory), UserUtil.token);
 
         Intent intent = new Intent(NewProduct3.this, Home.class);
         startActivity(intent);
@@ -77,7 +77,7 @@ public class NewProduct3 extends AppCompatActivity {
                     public okhttp3.Response intercept(Chain chain) throws IOException {
                         Request originalRequest = chain.request();
                         Request newRequest = originalRequest.newBuilder()
-                                .header("Authorization", AndroidUtil.token)
+                                .header("Authorization", UserUtil.token)
                                 .build();
                         return chain.proceed(newRequest);
                     }

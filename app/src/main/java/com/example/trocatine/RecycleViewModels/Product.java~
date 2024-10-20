@@ -13,7 +13,7 @@ public class Product {
     private boolean flagTroca;
     @Expose(serialize = false, deserialize = false)
 
-    private String imageUrl;
+    private String urlImage;
 
     public Product(int idProduct, int idUser, String name, String description, double value, long stock, String createdAt, boolean flagTroca) {
         this.idProduct = idProduct;
@@ -86,12 +86,12 @@ public class Product {
         this.createdAt = createdAt;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getUrlImage() {
+        return urlImage;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.trocatine.login;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,16 +12,29 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.trocatine.R;
+import com.example.trocatine.RecycleViewModels.Product;
+import com.example.trocatine.adapter.AdapterProduct;
+import com.example.trocatine.api.repository.ProductRepository;
+import com.example.trocatine.api.requestDTO.FindPersonalInformationRequestDTO;
+import com.example.trocatine.api.responseDTO.FindPersonalInformationResponseDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.api.models.LoginDTO;
 import com.example.trocatine.api.repository.UsersRepository;
 import com.example.trocatine.beginning.MainActivity;
 import com.example.trocatine.home.Home;
-import com.example.trocatine.util.AndroidUtil;
+import com.example.trocatine.util.UserUtil;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.List;
 
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -139,16 +153,16 @@ public class Login extends AppCompatActivity {
                     Object responseDTO = response.body().getData();
                     token = responseDTO.toString();
                     token = token.replace("{token=", "").replace("}", "");
+                    findPersonalInformation(email);
+                    Log.e("Login", "passou do metodo");
 
                     Intent intent = new Intent(Login.this, Home.class);
-
                     dadosParaHome.putString("usuario", email);
-                    AndroidUtil.email = email;
+                    UserUtil.email = email;
                     dadosParaHome.putString("token", token);
-                    AndroidUtil.token = token;
+                    UserUtil.token = token;
                     intent.putExtras(dadosParaHome);
                     Log.e("LOGIIIJNN", "Funfou deu green");
-
                     finish();
                     startActivity(intent);
                 } else {
@@ -163,6 +177,65 @@ public class Login extends AppCompatActivity {
             @Override
             public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
                 Log.e("ERRO", "Falha na requisição: " + throwable.getMessage(), throwable);
+            }
+        });
+    }
+    private void findPersonalInformation(String email) {
+        String API = "https://api-spring-boot-trocatine.onrender.com/";
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        Request originalRequest = chain.request();
+                        Request newRequest = originalRequest.newBuilder()
+                                .header("Authorization", UserUtil.token)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        UsersRepository usersApi = retrofit.create(UsersRepository.class);
+        Call<StandardResponseDTO> call = usersApi.findPersonalInformation(new FindPersonalInformationRequestDTO(email));
+        call.enqueue(new Callback<StandardResponseDTO>() {
+            @Override
+            public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    Log.e("dados resgatados", response.body().getData().toString());
+                    StandardResponseDTO responseBody = response.body();
+
+                    Gson gson = new Gson();
+                    FindPersonalInformationResponseDTO personalInfo = gson.fromJson(
+                            gson.toJson(responseBody.getData()),
+                            FindPersonalInformationResponseDTO.class);
+
+                    UserUtil.fullName = personalInfo.getFullName();
+                    UserUtil.birthDate = String.valueOf(personalInfo.getBirthDate());
+                    UserUtil.email = personalInfo.getEmail();
+                    UserUtil.phone = personalInfo.getPhone().toString();
+                    UserUtil.address = personalInfo.getAddresses().toString();
+                    UserUtil.cpf = personalInfo.getCpf();
+
+
+                    Log.e("userutil", UserUtil.fullName+" "+UserUtil.birthDate+" "+UserUtil.cpf+" "+UserUtil.email+" "+UserUtil.phone+" "+UserUtil.address);
+                } else {
+                    try {
+                        Log.e("Erro no find personal", "Resposta não foi successosoo: " + response.code() + " - " + response.errorBody().string()+"token: "+token);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
+                Log.e("ERRO no onFailure", throwable.getMessage());
             }
         });
     }

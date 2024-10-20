@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 import com.example.trocatine.R;
 import com.example.trocatine.fragments.MyUserProfileFragment;
+import com.example.trocatine.util.UserUtil;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class EditProfile extends AppCompatActivity {
 

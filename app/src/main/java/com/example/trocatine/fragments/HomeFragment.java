@@ -5,12 +5,9 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +21,7 @@ import com.example.trocatine.adapter.AdapterProduct;
 import com.example.trocatine.RecycleViewModels.Product;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.api.repository.ProductRepository;
-import com.example.trocatine.util.AndroidUtil;
+import com.example.trocatine.util.UserUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -138,10 +135,10 @@ public class HomeFragment extends Fragment {
             }
         });
         initialText = view.findViewById(R.id.initialText2);
-        initialText.setText("Boa tarde, " + AndroidUtil.email);
-        Log.e("home fragment", "email do android util"+AndroidUtil.email);
+        initialText.setText("Boa tarde, " + UserUtil.email);
+        Log.e("home fragment", "email do android util"+ UserUtil.email);
 
-        token = AndroidUtil.token;
+        token = UserUtil.token;
         listProducts(productRv, token);
         return view;
     }
@@ -149,14 +146,14 @@ public class HomeFragment extends Fragment {
 
     private void listProducts(RecyclerView recyclerView, String token) {
         String API = "https://api-spring-boot-trocatine.onrender.com/";
-        Log.e("token no home fragment", AndroidUtil.token);
+        Log.e("token no home fragment", UserUtil.token);
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
                     @Override
                     public okhttp3.Response intercept(Chain chain) throws IOException {
                         Request originalRequest = chain.request();
                         Request newRequest = originalRequest.newBuilder()
-                                .header("Authorization", AndroidUtil.token)
+                                .header("Authorization", UserUtil.token)
                                 .build();
                         return chain.proceed(newRequest);
                     }
