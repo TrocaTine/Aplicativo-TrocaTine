@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.example.trocatine.R;
 import com.example.trocatine.database.DatabaseCamera;
+import com.example.trocatine.util.ProductUtil;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.Arrays;
@@ -117,6 +118,7 @@ public class NewProductCamera2 extends AppCompatActivity {
                 try {
                     cameraProvider.unbindAll();
 
+                    // Bind use cases to camera
                     cameraProvider.bindToLifecycle(
                             this,
                             cameraSelector,
@@ -139,6 +141,7 @@ public class NewProductCamera2 extends AppCompatActivity {
         }
 
         String name = "IMG_" + System.currentTimeMillis() + ".jpg";
+
         ContentValues values = new ContentValues();
         values.put(MediaStore.MediaColumns.DISPLAY_NAME, name);
         values.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg");
@@ -177,6 +180,10 @@ public class NewProductCamera2 extends AppCompatActivity {
                 foto.setVisibility(View.VISIBLE);
                 foto.setImageURI(outputFileResults.getSavedUri());
                 database.uploadPhoto(getApplicationContext(), foto, docData);
+                Uri savedUri = outputFileResults.getSavedUri();
+                if (savedUri != null) {
+                    ProductUtil.imageURL = savedUri.toString();
+                }
                 Toast.makeText(getApplicationContext(), "FOTO TIRADA!", Toast.LENGTH_SHORT).show();
             }
 

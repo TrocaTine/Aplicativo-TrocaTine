@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.trocatine.R;
+import com.example.trocatine.util.UserUtil;
+
+import java.time.LocalDate;
 
 public class Register2 extends AppCompatActivity {
 
@@ -87,6 +90,12 @@ public class Register2 extends AppCompatActivity {
             dados.putString("userName",username.getText().toString());
             dados.putString("cpf",cpf.getText().toString());
             dados.putString("birthDate",birthdate.getText().toString());
+
+            UserUtil.userName = username.getText().toString();
+            UserUtil.cpf = cpf.getText().toString();
+            UserUtil.fullName = fullname.getText().toString();
+            UserUtil.birthDate = birthdate.getText().toString();
+
             Intent intent = new Intent(this, Register3.class);
 
             intent.putExtras(dados);

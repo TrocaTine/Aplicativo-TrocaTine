@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.trocatine.R;
 import com.example.trocatine.RecycleViewModels.Product;
 import com.example.trocatine.product.ProductBuy;
@@ -41,16 +42,13 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
 
         if (product != null) {
             holder.name.setText(product.getName());
-            holder.value.setText(String.valueOf(product.getValue()));
+            holder.value.setText("R$ " + product.getValue());
             holder.createdAt.setText(product.getCreatedAt());
             holder.description.setText(product.getDescription());
-
-//            if (product.getFlagTroca()) {
-//                holder.flagTroca.setImageResource(R.drawable.icon_arrows_trade);
-//            } else {
-//                holder.flagTroca.setImageResource(R.drawable.icon_bag_buy);
-//            }
-//            holder.flagTroca.setImageDrawable( R.drawable.icon_arrows_trade));
+            Glide.with(holder.itemView.getContext())
+                    .load(product.getImageUrl())
+                    .error(R.drawable.product_photo)
+                    .into(holder.image);
         };
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

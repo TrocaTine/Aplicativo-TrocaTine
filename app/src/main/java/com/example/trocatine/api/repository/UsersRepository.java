@@ -1,5 +1,6 @@
 package com.example.trocatine.api.repository;
 
+import com.example.trocatine.api.requestDTO.FindPersonalInformationRequestDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.api.models.LoginDTO;
 import com.example.trocatine.api.requestDTO.CheckingEmailAlreadyRegisteredRequestDTO;
@@ -17,4 +18,6 @@ public interface UsersRepository {
     Call<StandardResponseDTO> createUser(@Body CreateUserRequestDTO request);
     @POST("/api/auth/login")
     Call<StandardResponseDTO> login(@Body LoginDTO request);
+    @POST("/users/find-personal-information")
+    Call<StandardResponseDTO> findPersonalInformation(@Body FindPersonalInformationRequestDTO request);
 }

@@ -8,7 +8,7 @@ import java.util.Set;
 public class FindPersonalInformationResponseDTO {
     private Set<String> phone;
     private String cpf;
-    private LocalDate birthDate;
+    private String birthDate;
     private Set<AdressDTO> addresses;
     private String fullName;
     private String nickname;
@@ -30,11 +30,11 @@ public class FindPersonalInformationResponseDTO {
         this.cpf = cpf;
     }
 
-    public LocalDate getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -70,7 +70,7 @@ public class FindPersonalInformationResponseDTO {
         this.email = email;
     }
 
-    public FindPersonalInformationResponseDTO(Set<String> phone, String cpf, LocalDate birthDate, Set<AdressDTO> addresses, String fullName, String nickname, String email) {
+    public FindPersonalInformationResponseDTO(Set<String> phone, String cpf, String birthDate, Set<AdressDTO> addresses, String fullName, String nickname, String email) {
         this.phone = phone;
         this.cpf = cpf;
         this.birthDate = birthDate;

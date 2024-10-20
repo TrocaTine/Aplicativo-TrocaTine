@@ -107,18 +107,14 @@ public class NewProductCamera2 extends AppCompatActivity {
 
         cameraProviderFuture.addListener(() -> {
             try {
-                // Used to bind the lifecycle of cameras to the lifecycle owner
                 ProcessCameraProvider cameraProvider = cameraProviderFuture.get();
 
-                // Preview
                 Preview preview = new Preview.Builder().build();
                 preview.setSurfaceProvider(viewFinder.getSurfaceProvider());
 
-                // ImageCapture
                 imageCapture = new ImageCapture.Builder().build();
 
                 try {
-                    // Unbind use cases before rebinding
                     cameraProvider.unbindAll();
 
                     // Bind use cases to camera
@@ -144,6 +140,7 @@ public class NewProductCamera2 extends AppCompatActivity {
         }
 
         String name = "IMG_" + System.currentTimeMillis() + ".jpg";
+
         ContentValues values = new ContentValues();
         values.put(MediaStore.MediaColumns.DISPLAY_NAME, name);
         values.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg");

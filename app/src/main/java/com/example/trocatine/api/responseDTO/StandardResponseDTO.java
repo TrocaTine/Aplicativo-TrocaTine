@@ -1,8 +1,8 @@
 package com.example.trocatine.api.responseDTO;
 
-public class StandardResponseDTO {
+public class StandardResponseDTO <T>{
     private boolean error;
-    private Object data;
+    private T data;
 
     public boolean isError() {
         return error;
@@ -12,15 +12,15 @@ public class StandardResponseDTO {
         this.error = error;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 
-    public StandardResponseDTO(boolean error, Object data) {
+    public StandardResponseDTO(boolean error, T data) {
         this.error = error;
         this.data = data;
     }

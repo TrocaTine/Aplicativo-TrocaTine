@@ -13,7 +13,7 @@ import android.widget.Button;
 
 import com.example.trocatine.R;
 import com.example.trocatine.newProduct.NewProductTrade1;
-import com.example.trocatine.util.AndroidUtil;
+import com.example.trocatine.util.UserUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,7 +59,7 @@ public class NewProductFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e("New Product Fragment", "Email do usuario: "+AndroidUtil.email+"- Token: "+AndroidUtil.token);
+        Log.e("New Product Fragment", "Email do usuario: "+ UserUtil.email+"- Token: "+ UserUtil.token);
 
     }
 
