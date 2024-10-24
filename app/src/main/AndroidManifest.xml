@@ -27,6 +27,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".trocadinha.TrocadinhasMoreDetails"
+            android:exported="false" />
+        <activity
             android:name=".trocadinha_item_rank"
             android:exported="false" />
         <activity

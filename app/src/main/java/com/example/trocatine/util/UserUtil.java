@@ -36,67 +36,68 @@ public class UserUtil {
     public static String address;
     public static Uri imageProfile;
     public static String fullName;
+    public static int countTrocadinha;
 
-    public static void findPersonalInformation(String email) {
-        String API = "https://api-spring-boot-trocatine.onrender.com/";
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(new Interceptor() {
-                    @Override
-                    public okhttp3.Response intercept(Chain chain) throws IOException {
-                        Request originalRequest = chain.request();
-                        Request newRequest = originalRequest.newBuilder()
-                                .header("Authorization", token)
-                                .build();
-                        return chain.proceed(newRequest);
-                    }
-                })
-                .build();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        UsersRepository usersApi = retrofit.create(UsersRepository.class);
-        Call<StandardResponseDTO> call = usersApi.findPersonalInformation(new FindPersonalInformationRequestDTO(email));
-        call.enqueue(new Callback<StandardResponseDTO>() {
-            @Override
-            public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
-                if (response.isSuccessful()) {
-                    Log.e("dados resgatados", response.body().getData().toString());
-                    StandardResponseDTO responseBody = response.body();
-
-                    Gson gson = new Gson();
-                    FindPersonalInformationResponseDTO personalInfo = gson.fromJson(
-                            gson.toJson(responseBody.getData()),
-                            FindPersonalInformationResponseDTO.class);
-
-                    UserUtil.fullName = personalInfo.getFullName();
-                    UserUtil.birthDate = String.valueOf(personalInfo.getBirthDate());
-                    UserUtil.email = personalInfo.getEmail();
-                    UserUtil.phone = personalInfo.getPhone().toString();
-                    UserUtil.address = personalInfo.getAddresses().toString();
-                    UserUtil.cpf = personalInfo.getCpf();
-
-                    UserUtil.token = token;
-                    Log.e("token", token);
-
-
-                    Log.e("userutil", UserUtil.fullName+" "+UserUtil.birthDate+" "+UserUtil.cpf+" "+UserUtil.email+" "+UserUtil.phone+" "+UserUtil.address);
-                } else {
-                    try {
-                        Log.e("Erro no find personal", "Resposta não foi successosoo: " + response.code() + " - " + response.errorBody().string()+"token: "+token);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
-                Log.e("ERRO no onFailure", throwable.getMessage());
-            }
-        });
-    }
+//    public static void findPersonalInformation(String email) {
+//        String API = "https://api-spring-boot-trocatine.onrender.com/";
+//        OkHttpClient client = new OkHttpClient.Builder()
+//                .addInterceptor(new Interceptor() {
+//                    @Override
+//                    public okhttp3.Response intercept(Chain chain) throws IOException {
+//                        Request originalRequest = chain.request();
+//                        Request newRequest = originalRequest.newBuilder()
+//                                .header("Authorization", token)
+//                                .build();
+//                        return chain.proceed(newRequest);
+//                    }
+//                })
+//                .build();
+//
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(API)
+//                .client(client)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//
+//        UsersRepository usersApi = retrofit.create(UsersRepository.class);
+//        Call<StandardResponseDTO> call = usersApi.findPersonalInformation(new FindPersonalInformationRequestDTO(email));
+//        call.enqueue(new Callback<StandardResponseDTO>() {
+//            @Override
+//            public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
+//                if (response.isSuccessful()) {
+//                    Log.e("dados resgatados", response.body().getData().toString());
+//                    StandardResponseDTO responseBody = response.body();
+//
+//                    Gson gson = new Gson();
+//                    FindPersonalInformationResponseDTO personalInfo = gson.fromJson(
+//                            gson.toJson(responseBody.getData()),
+//                            FindPersonalInformationResponseDTO.class);
+//
+//                    UserUtil.fullName = personalInfo.getFullName();
+//                    UserUtil.birthDate = String.valueOf(personalInfo.getBirthDate());
+//                    UserUtil.email = personalInfo.getEmail();
+//                    UserUtil.phone = personalInfo.getPhone().toString();
+//                    UserUtil.address = personalInfo.getAddresses().toString();
+//                    UserUtil.cpf = personalInfo.getCpf();
+//
+//                    UserUtil.token = token;
+//                    Log.e("token", token);
+//
+//
+//                    Log.e("userutil", UserUtil.fullName+" "+UserUtil.birthDate+" "+UserUtil.cpf+" "+UserUtil.email+" "+UserUtil.phone+" "+UserUtil.address);
+//                } else {
+//                    try {
+//                        Log.e("Erro no find personal", "Resposta não foi successosoo: " + response.code() + " - " + response.errorBody().string()+"token: "+token);
+//                    } catch (IOException e) {
+//                        throw new RuntimeException(e);
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
+//                Log.e("ERRO no onFailure", throwable.getMessage());
+//            }
+//        });
+//    }
 }

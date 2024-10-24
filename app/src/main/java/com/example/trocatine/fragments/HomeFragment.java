@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -24,7 +25,13 @@ import com.bumptech.glide.Glide;
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.AdapterProduct;
 import com.example.trocatine.RecycleViewModels.Product;
+import com.example.trocatine.api.repository.TrocadinhaRepository;
+import com.example.trocatine.api.repository.UsersRepository;
+import com.example.trocatine.api.requestDTO.FindPersonalInformationRequestDTO;
 import com.example.trocatine.api.requestDTO.FindProductCardNameRequestDTO;
+import com.example.trocatine.api.requestDTO.FindTrocadinhaCountRequestDTO;
+import com.example.trocatine.api.responseDTO.FindPersonalInformationResponseDTO;
+import com.example.trocatine.api.responseDTO.FindTrocadinhaCountResponseDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.api.repository.ProductRepository;
 import com.example.trocatine.trocadinha.TrocadinhasRank;
@@ -77,6 +84,8 @@ public class HomeFragment extends Fragment {
 
     private ImageButton buttonFilter;
     private EditText searchBar;
+    private TextView countTrocadinhas;
+    private ConstraintLayout containerTrocadinhas;
 
     List<Product> listProduct = new ArrayList<>();
 
@@ -118,6 +127,7 @@ public class HomeFragment extends Fragment {
         productRv = view.findViewById(R.id.productRv);
         buttonFilter = view.findViewById(R.id.buttonFilter);
         productRv.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
+        countTrocadinhas = view.findViewById(R.id.countTrocadinhas);
 
         AdapterProduct adapterProduct = new AdapterProduct(listProduct);
         productRv.setAdapter(adapterProduct);
@@ -149,7 +159,14 @@ public class HomeFragment extends Fragment {
 
         token = UserUtil.token;
         listProducts(productRv, UserUtil.token);
-
+        containerTrocadinhas = view.findViewById(R.id.containerTrocadinhas);
+        containerTrocadinhas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), TrocadinhasRank.class);
+                startActivity(intent);
+            }
+        });
         searchBar = view.findViewById(R.id.searchBar);
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -172,6 +189,8 @@ public class HomeFragment extends Fragment {
 
             }
         });
+        findTrocadinhaCount(UserUtil.email);
+        countTrocadinhas.setText(String.valueOf(UserUtil.countTrocadinha));
         return view;
     }
 
@@ -271,9 +290,56 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+    private void findTrocadinhaCount(String email) {
+        String API = "https://api-spring-boot-trocatine.onrender.com/";
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        Request originalRequest = chain.request();
+                        Request newRequest = originalRequest.newBuilder()
+                                .header("Authorization", token)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
 
-    public void onClickTrocadinhas(View view) {
-        Intent intent = new Intent(view.getContext(), TrocadinhasRank.class);
-        startActivity(intent);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        TrocadinhaRepository trocadinhasApi = retrofit.create(TrocadinhaRepository.class);
+        Call<StandardResponseDTO> call = trocadinhasApi.findTrocadinhaCount(new FindTrocadinhaCountRequestDTO(email));
+        call.enqueue(new Callback<StandardResponseDTO>() {
+            @Override
+            public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    Log.e("dados resgatados", response.body().getData().toString());
+                    StandardResponseDTO responseBody = response.body();
+
+                    Gson gson = new Gson();
+                    FindTrocadinhaCountResponseDTO personalInfo = gson.fromJson(
+                            gson.toJson(responseBody.getData()),
+                            FindTrocadinhaCountResponseDTO.class);
+
+                    UserUtil.countTrocadinha = personalInfo.getCountTrocadinha();
+                } else {
+                    try {
+                        Log.e("Erro no find personal", "Resposta não foi successosoo: " + response.code() + " - " + response.errorBody().string()+"token: "+token);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
+                Log.e("ERRO no onFailure", throwable.getMessage());
+            }
+        });
     }
+
 }
