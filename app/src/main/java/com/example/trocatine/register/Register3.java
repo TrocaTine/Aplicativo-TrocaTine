@@ -16,6 +16,7 @@ import com.example.trocatine.api.repository.UsersRepository;
 import com.example.trocatine.api.models.LoginDTO;
 import com.example.trocatine.api.requestDTO.CreateUserRequestDTO;
 import com.example.trocatine.home.Home;
+import com.example.trocatine.util.UserUtil;
 
 import java.io.IOException;
 
@@ -155,6 +156,12 @@ public class Register3 extends AppCompatActivity {
                 createNewUserApi(firstName, passwordBundle, phoneBundle, lastName, userNameBundle, cpfBundle, birthDateBundle,
                         complementBundle, number, stateBundle, streetBundle, cityBundle, cepBundle, emailBundle);
                 login(emailBundle, passwordBundle);
+                UserUtil.email = emailBundle;
+                UserUtil.userName = userNameBundle;
+                UserUtil.fullName = fullNameBundle;
+                UserUtil.phone = phoneBundle;
+                UserUtil.birthDate = birthDateBundle;
+                UserUtil.cpf = cpfBundle;
             } else {
                 Log.e("Register3", "Nenhum dado foi passado do Bundle");
             }
@@ -184,6 +191,7 @@ public class Register3 extends AppCompatActivity {
                 .build();
 
         UsersRepository userAPI = retrofit.create(UsersRepository.class);
+        Log.e("Data de nascimento:", birthDateRequest);
         CreateUserRequestDTO request = new CreateUserRequestDTO(firstNameRequest, lastNameRequest, emailRequest,
                 cpfRequest, birthDateRequest, false, userNameRequest, passwordRequest,
                 streetRequest, houseNumberRequest, cityRequest, stateRequest,
@@ -194,11 +202,10 @@ public class Register3 extends AppCompatActivity {
             @Override
             public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
                 if (response.isSuccessful()) {
-                    // Após criar o usuário, chamar login e passar a navegação para Home dentro dele
                     login(emailRequest, passwordRequest);
                 } else {
                     try {
-                        Log.e("Erro", "Resposta não foi sucesso: " + response.code() + " - " + response.errorBody().string());
+                        Log.e("Erro", "Resposta não foi sucesso no create user: " + response.code() + " - " + response.errorBody().string());
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -229,17 +236,17 @@ public class Register3 extends AppCompatActivity {
                     Object responseDTO = response.body().getData();
                     token = responseDTO.toString();
                     token = token.replace("{token=", "").replace("}", "");
-
                     Intent intent = new Intent(Register3.this, Home.class);
-
                     dadosParaHome.putString("usuario", email);
                     dadosParaHome.putString("token", token);
+                    UserUtil.token = token;
+                    Log.e("token:", token);
                     intent.putExtras(dadosParaHome);
                     finish();
                     startActivity(intent);
                 } else {
                     try {
-                        Log.e("Erro", "Resposta não foi sucesso: " + response.code() + " - " + response.errorBody().string());
+                        Log.e("Erro", "Resposta não foi sucesso no token: " + response.code() + " - " + response.errorBody().string());
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

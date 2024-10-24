@@ -14,8 +14,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.ViewPagerAdapter;
+import com.example.trocatine.database.DatabaseCamera;
 import com.example.trocatine.userProfile.EditProfile;
 import com.example.trocatine.util.UserUtil;
 import com.google.android.material.tabs.TabLayout;
@@ -35,6 +37,7 @@ public class MyUserProfileFragment extends Fragment {
     private TextView userName, userEmail, userPhone, userAdress, userCpf, userBirthDate;
     private ImageButton buttonEditProfile;
     private ImageView backSet;
+    private ImageView userImg;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -42,6 +45,7 @@ public class MyUserProfileFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    DatabaseCamera databaseCamera;
 
     public MyUserProfileFragment() {
         // Required empty public constructor
@@ -94,6 +98,17 @@ public class MyUserProfileFragment extends Fragment {
         userPhone.setText(UserUtil.phone);
         userName.setText(UserUtil.fullName);
         userCpf.setText(UserUtil.cpf);
+
+        userImg = view.findViewById(R.id.userImg);
+        if (UserUtil.imageProfile != null){
+            Glide.with(userImg.getContext())
+                    .asBitmap()
+                    .load(UserUtil.imageProfile)
+                    .circleCrop()
+                    .into(userImg);
+        } else {
+            Log.e("userprofile image profile", "null");
+        }
 
         Log.e("userprofile", UserUtil.email+" "+UserUtil.fullName+" "+UserUtil.address+" "+UserUtil.birthDate+" "+UserUtil.cpf+" "+UserUtil.phone);
         buttonEditProfile = view.findViewById(R.id.openEditProfile);

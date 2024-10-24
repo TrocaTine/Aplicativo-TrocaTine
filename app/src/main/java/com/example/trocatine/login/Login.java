@@ -1,20 +1,18 @@
 package com.example.trocatine.login;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.trocatine.R;
-import com.example.trocatine.RecycleViewModels.Product;
-import com.example.trocatine.adapter.AdapterProduct;
-import com.example.trocatine.api.repository.ProductRepository;
 import com.example.trocatine.api.requestDTO.FindPersonalInformationRequestDTO;
 import com.example.trocatine.api.responseDTO.FindPersonalInformationResponseDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
@@ -24,13 +22,10 @@ import com.example.trocatine.beginning.MainActivity;
 import com.example.trocatine.home.Home;
 import com.example.trocatine.util.UserUtil;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.List;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -45,8 +40,9 @@ public class Login extends AppCompatActivity {
     private TextInputEditText loginEmail, loginPassword;
     private TextView errorTextLoginEmail, errorTextLoginPassword;
     private ImageView backSet;
+    public String token;
     private Retrofit retrofit;
-    private String token;
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +61,7 @@ public class Login extends AppCompatActivity {
 //            startActivity(main);
 //        }
 
-        Button logar = findViewById(R.id.button_next);
+        Button logar = findViewById(R.id.button_save);
         backSet = findViewById(R.id.backSet);
         backSet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,17 +77,14 @@ public class Login extends AppCompatActivity {
         boolean hasError = false;
 
         if (loginEmail.getText().toString().equals("")) {
-            showError("Digite a informação necessária", errorTextLoginEmail);
+            loginEmail.setError("Digite o e-mail necessário");
             hasError = true;
-//        } else if (!loginEmail.getText().toString().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.com$")) {
-//                showError("Digite um e-mail válido", errorTextLoginEmail);
-//                hasError = true;
         } else {
             hideError(errorTextLoginEmail);
         }
 
         if (loginPassword.getText().toString().equals("")) {
-            showError("Digite a informação necessária", errorTextLoginPassword);
+            loginPassword.setError("Digite a senha necessária");
             hasError = true;
         } else {
             hideError(errorTextLoginPassword);
@@ -100,33 +93,12 @@ public class Login extends AppCompatActivity {
             String email = loginEmail.getText().toString();
             String senha = loginPassword.getText().toString();
 
-            //fazer login no firebase
-//            FirebaseAuth autenticar = FirebaseAuth.getInstance();
-//            autenticar.signInWithEmailAndPassword(email, senha)
-//                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<AuthResult> task) {
-//                            String msg="Você esqueceu...";
-//                            if (task.isSuccessful()) {
-//                                //redirecionar para a proxima tela
-//                                Intent main = new Intent(Login.this, Home.class);
-//                                startActivity(main);
-//                                finish();
-//                            }else{
-//                                try{
-//                                    throw task.getException();
-//                                }catch (FirebaseAuthInvalidUserException faiue){
-//                                    msg = "Usuário não encontrado";
-//                                }catch (FirebaseAuthInvalidCredentialsException e) {
-//                                    msg = "Senha invalidos";
-//                                }catch (Exception e){
-//                                    Log.e("ERRO",e.getMessage());
-//                                }
-//                                Toast.makeText(Login.this, msg, Toast.LENGTH_SHORT).show();
-//
-//                            }
-//                        }
-//                    });
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            auth.signInWithEmailAndPassword(email, senha).addOnSuccessListener(task -> {
+                Intent main = new Intent(Login.this, Home.class);
+                finish();
+                startActivity(main);
+            });
             login(loginEmail.getText().toString(), loginPassword.getText().toString());
         }
     }
@@ -135,7 +107,9 @@ public class Login extends AppCompatActivity {
         texto.setText(mensagem);
         texto.setVisibility(View.VISIBLE);
     }
-    private void login(String email, String password) {
+
+    public void login(String email, String password) {
+
         String API = "https://api-spring-boot-trocatine.onrender.com/";
         retrofit = new Retrofit.Builder()
                 .baseUrl(API)
@@ -161,6 +135,7 @@ public class Login extends AppCompatActivity {
                     UserUtil.email = email;
                     dadosParaHome.putString("token", token);
                     UserUtil.token = token;
+                    Log.e("token", token);
                     intent.putExtras(dadosParaHome);
                     Log.e("LOGIIIJNN", "Funfou deu green");
                     finish();
@@ -180,6 +155,7 @@ public class Login extends AppCompatActivity {
             }
         });
     }
+
     private void findPersonalInformation(String email) {
         String API = "https://api-spring-boot-trocatine.onrender.com/";
         OkHttpClient client = new OkHttpClient.Builder()
@@ -188,7 +164,7 @@ public class Login extends AppCompatActivity {
                     public okhttp3.Response intercept(Chain chain) throws IOException {
                         Request originalRequest = chain.request();
                         Request newRequest = originalRequest.newBuilder()
-                                .header("Authorization", UserUtil.token)
+                                .header("Authorization", token)
                                 .build();
                         return chain.proceed(newRequest);
                     }
@@ -221,6 +197,9 @@ public class Login extends AppCompatActivity {
                     UserUtil.phone = personalInfo.getPhone().toString();
                     UserUtil.address = personalInfo.getAddresses().toString();
                     UserUtil.cpf = personalInfo.getCpf();
+
+                    UserUtil.token = token;
+                    Log.e("token", token);
 
 
                     Log.e("userutil", UserUtil.fullName+" "+UserUtil.birthDate+" "+UserUtil.cpf+" "+UserUtil.email+" "+UserUtil.phone+" "+UserUtil.address);

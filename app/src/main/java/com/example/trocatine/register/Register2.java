@@ -13,8 +13,6 @@ import android.widget.TextView;
 import com.example.trocatine.R;
 import com.example.trocatine.util.UserUtil;
 
-import java.time.LocalDate;
-
 public class Register2 extends AppCompatActivity {
 
     private EditText fullname, username, cpf, birthdate;
@@ -28,7 +26,7 @@ public class Register2 extends AppCompatActivity {
         setContentView(R.layout.activity_register2);
         fullname = findViewById(R.id.password);
         username = findViewById(R.id.username);
-        cpf = findViewById(R.id.cpf);
+        cpf = findViewById(R.id.newFullName);
         birthdate = findViewById(R.id.birthdate);
 
         errorTextFullname = findViewById(R.id.errorTextFullName);

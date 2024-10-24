@@ -1,6 +1,7 @@
 package com.example.trocatine.fragments;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,19 +9,25 @@ import androidx.navigation.NavController;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.AdapterProduct;
 import com.example.trocatine.RecycleViewModels.Product;
+import com.example.trocatine.api.requestDTO.FindProductCardNameRequestDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.api.repository.ProductRepository;
+import com.example.trocatine.trocadinha.TrocadinhasRank;
 import com.example.trocatine.util.UserUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -28,6 +35,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -68,6 +76,7 @@ public class HomeFragment extends Fragment {
     private String token;
 
     private ImageButton buttonFilter;
+    private EditText searchBar;
 
     List<Product> listProduct = new ArrayList<>();
 
@@ -135,18 +144,40 @@ public class HomeFragment extends Fragment {
             }
         });
         initialText = view.findViewById(R.id.initialText2);
-        initialText.setText("Boa tarde, " + UserUtil.email);
+        initialText.setText("Boa tarde, \n" + UserUtil.fullName + "!");
         Log.e("home fragment", "email do android util"+ UserUtil.email);
 
         token = UserUtil.token;
-        listProducts(productRv, token);
+        listProducts(productRv, UserUtil.token);
+
+        searchBar = view.findViewById(R.id.searchBar);
+        searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String nomeProduto = s.toString();
+                if (!nomeProduto.isEmpty()) {
+                    listProductName(productRv, UserUtil.token, nomeProduto);
+                } else {
+                    productRv.setAdapter(null);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         return view;
     }
 
 
     private void listProducts(RecyclerView recyclerView, String token) {
         String API = "https://api-spring-boot-trocatine.onrender.com/";
-        Log.e("token no home fragment", UserUtil.token);
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
                     @Override
@@ -176,6 +207,57 @@ public class HomeFragment extends Fragment {
                     recyclerView.setAdapter(new AdapterProduct(products));
                 } else {
                     try {
+                        Log.e("Erro", "Resposta não foi sucesso no list products name: " + response.code() + " - " + response.errorBody().string()+"token: "+token);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
+                Log.e("ERRO no onFailure", throwable.getMessage());
+            }
+        });
+    }
+
+    private void listProductName(RecyclerView recyclerView, String token, String name) {
+        String API = "https://api-spring-boot-trocatine.onrender.com/";
+        Log.e("home fragment users util", UserUtil.token);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        Request originalRequest = chain.request();
+                        Request newRequest = originalRequest.newBuilder()
+                                .header("Authorization", UserUtil.token)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
+                .build();
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        Log.e("list product name", name);
+
+        ProductRepository productApi = retrofit.create(ProductRepository.class);
+        Call<StandardResponseDTO> call = productApi.findProductByNameIsContainingIgnoreCase(new FindProductCardNameRequestDTO(name));
+        call.enqueue(new Callback<StandardResponseDTO>() {
+            @Override
+            public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    List<Product> products = new Gson().fromJson(new Gson().toJson(response.body().getData()), new TypeToken<List<Product>>(){}.getType());
+                    recyclerView.setAdapter(new AdapterProduct(products));
+                } else {
+                    try {
                         Log.e("Erro", "Resposta não foi sucesso no home fragment: " + response.code() + " - " + response.errorBody().string()+"token: "+token);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -190,4 +272,8 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    public void onClickTrocadinhas(View view) {
+        Intent intent = new Intent(view.getContext(), TrocadinhasRank.class);
+        startActivity(intent);
+    }
 }

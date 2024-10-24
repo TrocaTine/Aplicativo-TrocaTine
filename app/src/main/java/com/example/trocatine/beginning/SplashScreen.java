@@ -8,24 +8,33 @@ import android.os.Handler;
 import android.widget.ImageView;
 
 import com.example.trocatine.R;
+import com.google.android.gms.common.util.AndroidUtilsLight;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SplashScreen extends AppCompatActivity {
-    ImageView imgSplash;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        imgSplash = findViewById(R.id.imgSplash);
-        //Glide usado para usar gif na splash screen
-        Handler handler = new Handler(); //usado para threads, usamos para definir a velocidade da splash screen na tela
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                abrirSegundaTela();
-            }
-        },2000);
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        if(auth.getCurrentUser() != null){
+            Intent main = new Intent(SplashScreen.this, MainActivity.class);
+            startActivity(main);
+            finish();
+        } else {
+            //Glide usado para usar gif na splash screen
+            Handler handler = new Handler(); //usado para threads, usamos para definir a velocidade da splash screen na tela
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    abrirSegundaTela();
+                }
+            },2000);
+        }
+
     }
 
     private void abrirSegundaTela() {
