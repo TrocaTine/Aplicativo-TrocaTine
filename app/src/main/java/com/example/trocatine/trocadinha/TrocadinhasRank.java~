@@ -80,10 +80,9 @@ public class TrocadinhasRank extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     List<FindRankingTrocadinhaResponseDTO> trocadinhas = new Gson().fromJson(new Gson().toJson(response.body().getData()), new TypeToken<List<FindRankingTrocadinhaResponseDTO>>(){}.getType());
                     recyclerView.setAdapter(new AdapterTrocadinhas(trocadinhas));
-                    Log.e("rank", "deu certo");
                 } else {
                     try {
-                        Log.e("Erro rank", "Resposta não foi sucesso no list rank trocadinhas: " + response.code() + " - " + response.errorBody().string()+"token: "+token);
+                        Log.e("Erro", "Resposta não foi sucesso no list rank trocadinhas: " + response.code() + " - " + response.errorBody().string()+"token: "+token);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -92,7 +91,7 @@ public class TrocadinhasRank extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
-                Log.e("ERRO no onFailure rank", throwable.getMessage());
+                Log.e("ERRO no onFailure", throwable.getMessage());
             }
         });
     }

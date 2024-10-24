@@ -8,7 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="380dp"
-        android:layout_height="83dp">
+        android:layout_height="83dp"
+        android:backgroundTint="@color/backgroundBeige">
 
         <ImageView
             android:id="@+id/imageView35"
@@ -21,7 +22,7 @@
             app:srcCompat="@drawable/user_default_img" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/nickName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -34,13 +35,16 @@
             android:id="@+id/imageView36"
             android:layout_width="40dp"
             android:layout_height="36dp"
+            android:layout_marginStart="77dp"
             android:layout_marginTop="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.111"
+            app:layout_constraintStart_toEndOf="@+id/nickName"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/trocadinha_silver"
-            tools:layout_editor_absoluteX="268dp" />
+            app:srcCompat="@drawable/trocadinha_silver" />
 
         <TextView
-            android:id="@+id/textView21"
+            android:id="@+id/numTrocadinhas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
