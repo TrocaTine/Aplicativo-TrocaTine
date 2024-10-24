@@ -16,9 +16,9 @@
             android:id="@+id/spinnerSize"
             android:layout_width="299dp"
             android:layout_height="30dp"
-            android:layout_marginStart="28dp"
             android:layout_marginTop="20dp"
             android:entries="@array/spinner_size"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinnerQuality" />
 
@@ -26,9 +26,9 @@
             android:id="@+id/spinnerQuality"
             android:layout_width="299dp"
             android:layout_height="30dp"
-            android:layout_marginStart="28dp"
             android:layout_marginTop="17dp"
             android:entries="@array/spinner_quality"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinnerGender" />
 
@@ -36,9 +36,9 @@
             android:id="@+id/spinnerGender"
             android:layout_width="299dp"
             android:layout_height="30dp"
-            android:layout_marginStart="28dp"
             android:layout_marginTop="19dp"
             android:entries="@array/spinner_gender"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
@@ -46,11 +46,11 @@
             android:id="@+id/buttonCancel"
             android:layout_width="175dp"
             android:layout_height="42dp"
-            android:layout_marginStart="92dp"
             android:layout_marginTop="37dp"
             android:background="@drawable/button_fill"
             android:text="Salvar"
             android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinnerSize" />
 
@@ -91,9 +91,9 @@
             android:id="@+id/spinner"
             android:layout_width="299dp"
             android:layout_height="30dp"
-            android:layout_marginStart="28dp"
             android:layout_marginTop="25dp"
             android:entries="@array/spinner_color"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView19" />
 

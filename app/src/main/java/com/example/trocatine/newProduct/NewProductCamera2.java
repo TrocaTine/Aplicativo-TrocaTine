@@ -235,7 +235,7 @@ public class NewProductCamera2 extends AppCompatActivity {
             });
 
     public void onClickNext(View view) {
-        Intent intent = new Intent(NewProductCamera2.this, NewProduct3.class);
+        Intent intent = new Intent(NewProductCamera2.this, NewProductTrade3.class);
         startActivity(intent);
         finish();
     }

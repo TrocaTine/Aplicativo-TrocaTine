@@ -16,7 +16,6 @@
         android:maxSdkVersion="28" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -25,7 +24,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Trocatine"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".trocadinha_item_rank"
+            android:exported="false" />
+        <activity
+            android:name=".trocadinha_card_rank"
+            android:exported="false" />
+        <activity
+            android:name=".trocadinha.TrocadinhasRank"
+            android:exported="false" />
         <activity
             android:name=".community.CommunityRv"
             android:exported="false" />
@@ -42,7 +51,7 @@
             android:name=".userProfile.EditProfile"
             android:exported="false" />
         <activity
-            android:name=".newProduct.NewProduct3"
+            android:name=".newProduct.NewProductTrade3"
             android:exported="false" />
         <activity
             android:name=".newProduct.NewProductCamera2"
@@ -108,4 +117,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

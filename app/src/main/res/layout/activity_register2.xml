@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/cpf"
+            android:id="@+id/newFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="CPF"
@@ -114,7 +114,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <Button
-        android:id="@+id/button_next"
+        android:id="@+id/button_save"
         android:layout_width="297dp"
         android:layout_height="45dp"
         android:layout_marginTop="36dp"

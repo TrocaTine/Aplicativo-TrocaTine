@@ -40,10 +40,10 @@
 
         <TextView
             android:id="@+id/initialText2"
-            android:layout_width="223dp"
-            android:layout_height="73dp"
+            android:layout_width="233dp"
+            android:layout_height="57dp"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:backgroundTint="#000000"
             android:text="Good Morning, usuario!"
             android:textColor="#222222"
@@ -139,10 +139,11 @@
                 tools:layout_editor_absoluteX="16dp" />
 
             <TextView
-                android:id="@+id/textView45"
+                android:id="@+id/buttonTrocadinhas"
                 android:layout_width="26dp"
                 android:layout_height="21dp"
                 android:layout_marginEnd="8dp"
+                android:onClick="onClickTrocadinhas"
                 android:text="0"
                 android:textColor="@color/seaGreen"
                 android:textStyle="bold"

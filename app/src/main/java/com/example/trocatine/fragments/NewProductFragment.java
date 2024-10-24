@@ -82,4 +82,8 @@ public class NewProductFragment extends Fragment {
 
 
     }
+
+    public void onClickBuy(View view) {
+
+    }
 }
