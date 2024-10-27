@@ -179,7 +179,7 @@ public class NewProductCamera2 extends AppCompatActivity {
             public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
                 foto.setVisibility(View.VISIBLE);
                 foto.setImageURI(outputFileResults.getSavedUri());
-                database.uploadPhoto(getApplicationContext(), foto, docData);
+                database.uploadPhoto(getApplicationContext(), foto, docData, "id do produto");
                 Uri savedUri = outputFileResults.getSavedUri();
                 if (savedUri != null) {
                     ProductUtil.imageURL = savedUri.toString();

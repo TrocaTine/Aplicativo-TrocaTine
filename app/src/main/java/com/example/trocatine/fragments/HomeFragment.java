@@ -224,6 +224,8 @@ public class HomeFragment extends Fragment {
                 if (response.isSuccessful()) {
                     List<Product> products = new Gson().fromJson(new Gson().toJson(response.body().getData()), new TypeToken<List<Product>>(){}.getType());
                     recyclerView.setAdapter(new AdapterProduct(products));
+                    Log.e("dados resgatados", response.body().getData().toString());
+                    Log.e("id do prodyto no list", String.valueOf(products.get(0).getid()));
                 } else {
                     try {
                         Log.e("Erro", "Resposta não foi sucesso no list products name: " + response.code() + " - " + response.errorBody().string()+"token: "+token);
@@ -342,4 +344,8 @@ public class HomeFragment extends Fragment {
         });
     }
 
+//    public void onClickNotifications(View view) {
+//        Intent intent = new Intent(getContext(), NotificationActivity.class);
+//        startActivity(intent);
+//    }
 }
