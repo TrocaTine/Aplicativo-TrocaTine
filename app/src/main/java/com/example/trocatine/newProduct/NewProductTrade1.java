@@ -44,8 +44,6 @@ public class NewProductTrade1 extends AppCompatActivity {
         errorTextTitle = findViewById(R.id.errorTextTitle);
         errorTextDescription = findViewById(R.id.errorTextDescription);
         errorTextTradeFor = findViewById(R.id.errorTextTradeFor);
-
-        findCategory();
     }
 
     public void onClickNext(View view) {

@@ -72,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userImage">
+        app:layout_constraintTop_toBottomOf="@+id/productImg">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/newEmail"
@@ -162,7 +162,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
-        android:id="@+id/userImage"
+        android:id="@+id/productImg"
         android:layout_width="138dp"
         android:layout_height="127dp"
         android:layout_marginTop="40dp"
@@ -180,7 +180,7 @@
         android:background="@drawable/button_notification"
         android:onClick="onClickChangeImage"
         android:src="@drawable/icon_edit_white"
-        app:layout_constraintEnd_toEndOf="@+id/userImage"
-        app:layout_constraintTop_toTopOf="@+id/userImage" />
+        app:layout_constraintEnd_toEndOf="@+id/productImg"
+        app:layout_constraintTop_toTopOf="@+id/productImg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,6 @@ import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -22,24 +21,17 @@ import android.widget.Toast;
 import com.example.trocatine.R;
 import com.example.trocatine.api.repository.UsersRepository;
 import com.example.trocatine.api.requestDTO.EditPersonalInformationRequestDTO;
-import com.example.trocatine.api.requestDTO.FindPersonalInformationRequestDTO;
-import com.example.trocatine.api.responseDTO.FindPersonalInformationResponseDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.database.DatabaseCamera;
-import com.example.trocatine.fragments.MyUserProfileFragment;
 import com.example.trocatine.util.UserUtil;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -80,7 +72,7 @@ public class EditProfile extends AppCompatActivity {
 
         newBirthdate.setText(UserUtil.birthDate);
 
-        userImage = findViewById(R.id.userImage);
+        userImage = findViewById(R.id.productImg);
     }
 
     public void onClickBack(View view) {
@@ -229,5 +221,4 @@ public class EditProfile extends AppCompatActivity {
                     }
                 });
     }
-
 }

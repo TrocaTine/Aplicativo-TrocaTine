@@ -3,7 +3,7 @@ package com.example.trocatine.RecycleViewModels;
 import com.google.gson.annotations.Expose;
 
 public class Product {
-    private int idProduct;
+    private long id;
     private int idUser;
     private String name;
     private String description;
@@ -15,8 +15,8 @@ public class Product {
 
     private String imageUrl;
 
-    public Product(int idProduct, int idUser, String name, String description, double value, long stock, String createdAt, boolean flagTroca) {
-        this.idProduct = idProduct;
+    public Product(int id, int idUser, String name, String description, double value, long stock, String createdAt, boolean flagTroca) {
+        this.id = id;
         this.idUser = idUser;
         this.name = name;
         this.description = description;
@@ -29,11 +29,11 @@ public class Product {
     public Product() {
     }
 
-    public int getIdProduct() {
-        return idProduct;
+    public long getid() {
+        return id;
     }
 
-    public int getIdUser() {
+    public long getIdUser() {
         return idUser;
     }
 
@@ -97,7 +97,7 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" +
-                "idProduct=" + idProduct +
+                "id=" + id +
                 ", idUser=" + idUser +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
