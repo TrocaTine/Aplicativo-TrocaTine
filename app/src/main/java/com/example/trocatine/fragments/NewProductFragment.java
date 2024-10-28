@@ -12,7 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.trocatine.R;
-import com.example.trocatine.newProduct.NewProductTrade1;
+import com.example.trocatine.newProduct.buy.NewProductBuy1;
+import com.example.trocatine.newProduct.trade.NewProductTrade1;
 import com.example.trocatine.util.UserUtil;
 
 /**
@@ -29,7 +30,7 @@ public class NewProductFragment extends Fragment {
 
 
     // TODO: Rename and change types of parameters
-    private Button buttonTrade;
+    private Button buttonTrade, buttonBuy;
     private String mParam1;
     String emailUser, token;
     private String mParam2;
@@ -69,8 +70,8 @@ public class NewProductFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_new_product, container, false);
         buttonTrade = view.findViewById(R.id.buttonTrade);
-
-        Log.e("NEW PRODUCT FRAGMENT", "emailuser"+emailUser+" - token: "+token);
+        buttonBuy = view.findViewById(R.id.buttonBuy);
+        Log.e("NEW PRODUCT FRAGMENT", "emailuser" + emailUser + " - token: " + token);
         buttonTrade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,12 +79,16 @@ public class NewProductFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        buttonBuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), NewProductBuy1.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
 
-
-    }
-
-    public void onClickBuy(View view) {
 
     }
 }

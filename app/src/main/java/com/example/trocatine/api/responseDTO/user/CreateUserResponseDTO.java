@@ -1,4 +1,4 @@
-package com.example.trocatine.api.responseDTO;
+package com.example.trocatine.api.responseDTO.user;
 
 public class CreateUserResponseDTO {
     private boolean create;

@@ -1,8 +1,10 @@
-package com.example.trocatine;
+package com.example.trocatine.trocadinha;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.trocatine.R;
 
 public class trocadinha_item_rank extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.trocatine.api.responseDTO;
+package com.example.trocatine.api.responseDTO.product;
 
 import com.example.trocatine.api.models.HighlightDTO;
 
@@ -6,9 +6,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-public class FindProductCardNameResponseDTO {
+public class FindProductCardResponseDTO {
     private Long id;
-    private BigDecimal value;
+    private java.math.BigDecimal value;
     private LocalDate createdAt;
     private String name;
     private String description;
@@ -16,7 +16,7 @@ public class FindProductCardNameResponseDTO {
     private List<HighlightDTO> highlight;
     private boolean flagTrade;
 
-    public FindProductCardNameResponseDTO(Long id, BigDecimal value, LocalDate createdAt, String name, String description, List<String> tags, List<HighlightDTO> highlight, boolean flagTrade) {
+    public FindProductCardResponseDTO(Long id, BigDecimal value, LocalDate createdAt, String name, String description, List<String> tags, List<HighlightDTO> highlight, boolean flagTrade) {
         this.id = id;
         this.value = value;
         this.createdAt = createdAt;
@@ -27,7 +27,7 @@ public class FindProductCardNameResponseDTO {
         this.flagTrade = flagTrade;
     }
 
-    public FindProductCardNameResponseDTO() {
+    public FindProductCardResponseDTO() {
     }
 
     public Long getId() {
@@ -96,7 +96,7 @@ public class FindProductCardNameResponseDTO {
 
     @Override
     public String toString() {
-        return "FindProductCardNameResponseDTO{" +
+        return "FindProductCardResponseDTO{" +
                 "id=" + id +
                 ", value=" + value +
                 ", createdAt=" + createdAt +

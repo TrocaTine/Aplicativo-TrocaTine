@@ -1,4 +1,4 @@
-package com.example.trocatine.api.requestDTO;
+package com.example.trocatine.api.requestDTO.product;
 
 public class FindProductCardNameRequestDTO {
     private String name;

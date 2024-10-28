@@ -1,43 +1,27 @@
-package com.example.trocatine.newProduct;
+package com.example.trocatine.newProduct.trade;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.drawable.RoundedBitmapDrawable;
-import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 
-import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.trocatine.R;
-import com.example.trocatine.api.requestDTO.FindTagByTypeRequestDTO;
+import com.example.trocatine.api.requestDTO.product.FindTagByTypeRequestDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.api.models.TagDTO;
 import com.example.trocatine.api.repository.ProductRepository;
-import com.example.trocatine.api.requestDTO.SaveProductRequestDTO;
-import com.example.trocatine.database.DatabaseCamera;
-import com.example.trocatine.home.Home;
+import com.example.trocatine.api.requestDTO.product.SaveProductRequestDTO;
 import com.example.trocatine.util.UserUtil;
 import com.example.trocatine.util.ProductUtil;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.UploadTask;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -50,7 +34,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class NewProductTrade3 extends AppCompatActivity {
+public class NewProductTrade2 extends AppCompatActivity {
     private Retrofit retrofit;
     private Spinner spinnerQuality, spinnerSize, spinnerCategory;
     private static final int REQUEST_IMAGE_PICK = 1001;
@@ -91,17 +75,17 @@ public class NewProductTrade3 extends AppCompatActivity {
 
         Log.e("New Product 3", "Produto util"+ ProductUtil.name+ ProductUtil.description);
 
-        saveProduct(UserUtil.email, ProductUtil.name, ProductUtil.description, BigDecimal.valueOf(5.99),
+        saveProduct(UserUtil.email, ProductUtil.name, ProductUtil.description, BigDecimal.valueOf(0.00),
                 Long.parseLong("1"),true, tags, category, UserUtil.token);
 
-        Intent intent = new Intent(NewProductTrade3.this, NewProductCameraNovo.class);
+        Intent intent = new Intent(NewProductTrade2.this, NewProductTrade3Camera.class);
         startActivity(intent);
         finish();
 
     }
 
     public void OnClickBack(View view) {
-        Intent intent = new Intent(NewProductTrade3.this, NewProductCamera2.class);
+        Intent intent = new Intent(NewProductTrade2.this, NewProductTrade1.class);
         startActivity(intent);
     }
     private void saveProduct(String emailUser, String name, String description, BigDecimal value, long stock, boolean flagTrade, List<TagDTO> tags, List<String> categories, String token) {

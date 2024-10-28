@@ -1,4 +1,4 @@
-package com.example.trocatine.api.responseDTO;
+package com.example.trocatine.api.responseDTO.trocadinha;
 
 public class FindRankingTrocadinhaResponseDTO {
     private String nickname;

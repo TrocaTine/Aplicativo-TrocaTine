@@ -14,8 +14,8 @@ import com.example.trocatine.R;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.api.repository.UsersRepository;
 import com.example.trocatine.api.models.LoginDTO;
-import com.example.trocatine.api.requestDTO.CreateUserRequestDTO;
-import com.example.trocatine.home.Home;
+import com.example.trocatine.api.requestDTO.user.CreateUserRequestDTO;
+import com.example.trocatine.home.HomeNavBar;
 import com.example.trocatine.util.UserUtil;
 
 import java.io.IOException;
@@ -236,7 +236,7 @@ public class Register3 extends AppCompatActivity {
                     Object responseDTO = response.body().getData();
                     token = responseDTO.toString();
                     token = token.replace("{token=", "").replace("}", "");
-                    Intent intent = new Intent(Register3.this, Home.class);
+                    Intent intent = new Intent(Register3.this, HomeNavBar.class);
                     dadosParaHome.putString("usuario", email);
                     dadosParaHome.putString("token", token);
                     UserUtil.token = token;

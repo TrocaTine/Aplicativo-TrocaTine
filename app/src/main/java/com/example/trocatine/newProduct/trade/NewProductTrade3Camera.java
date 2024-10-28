@@ -1,4 +1,4 @@
-package com.example.trocatine.newProduct;
+package com.example.trocatine.newProduct.trade;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,8 +18,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.trocatine.R;
-import com.example.trocatine.fragments.HomeFragment;
-import com.example.trocatine.home.Home;
+import com.example.trocatine.home.HomeNavBar;
 import com.example.trocatine.util.ProductUtil;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,7 +28,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-public class NewProductCameraNovo extends AppCompatActivity {
+public class NewProductTrade3Camera extends AppCompatActivity {
     private static final int REQUEST_IMAGE_PICK = 1001;
     private static final int REQUEST_IMAGE_CAPTURE = 1002;
     private Uri selectedImageUri;
@@ -121,7 +120,7 @@ public class NewProductCameraNovo extends AppCompatActivity {
 
     public void onClickNext(View view) {
         finish();
-        Intent intent = new Intent(NewProductCameraNovo.this, Home.class);
+        Intent intent = new Intent(NewProductTrade3Camera.this, HomeNavBar.class);
         startActivity(intent);
 
     }

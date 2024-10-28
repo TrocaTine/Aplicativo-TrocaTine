@@ -9,13 +9,9 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.trocatine.R;
-import com.example.trocatine.RecycleViewModels.Product;
-import com.example.trocatine.adapter.AdapterProduct;
 import com.example.trocatine.adapter.AdapterTrocadinhas;
-import com.example.trocatine.api.repository.ProductRepository;
 import com.example.trocatine.api.repository.TrocadinhaRepository;
-import com.example.trocatine.api.responseDTO.FindRankingTrocadinhaResponseDTO;
-import com.example.trocatine.api.responseDTO.FindTrocadinhaCountResponseDTO;
+import com.example.trocatine.api.responseDTO.trocadinha.FindRankingTrocadinhaResponseDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.util.UserUtil;
 import com.google.gson.Gson;

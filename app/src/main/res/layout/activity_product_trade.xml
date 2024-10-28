@@ -27,7 +27,7 @@
         android:textColor="@color/orange"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+        app:layout_constraintTop_toBottomOf="@+id/imageProduct" />
 
     <TextView
         android:id="@+id/productName"
@@ -41,10 +41,10 @@
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+        app:layout_constraintTop_toBottomOf="@+id/imageProduct" />
 
     <ImageView
-        android:id="@+id/imageView11"
+        android:id="@+id/imageProduct"
         android:layout_width="317dp"
         android:layout_height="267dp"
         android:layout_marginTop="44dp"
@@ -135,7 +135,7 @@
         android:text="24/05/24"
         android:textColor="@color/orange"
         app:layout_constraintStart_toEndOf="@+id/userPhone"
-        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+        app:layout_constraintTop_toBottomOf="@+id/imageProduct" />
 
     <TextView
         android:id="@+id/textView5"
@@ -148,7 +148,7 @@
         android:textColor="@color/orange"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+        app:layout_constraintTop_toBottomOf="@+id/imageProduct" />
 
     <TextView
         android:id="@+id/userCpf"
@@ -157,4 +157,13 @@
         android:text="Lorem ipsum, Lorem ipsum, Lorem ipsum"
         tools:layout_editor_absoluteX="48dp"
         tools:layout_editor_absoluteY="507dp" />
+
+    <ImageView
+        android:id="@+id/buttonFavorite"
+        android:layout_width="81dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="196dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageProduct"
+        app:layout_constraintTop_toTopOf="@+id/imageProduct"
+        app:srcCompat="@drawable/icon_heart" />
 </androidx.constraintlayout.widget.ConstraintLayout>

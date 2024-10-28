@@ -1,11 +1,11 @@
 package com.example.trocatine.api.repository;
 
-import com.example.trocatine.api.requestDTO.EditPersonalInformationRequestDTO;
-import com.example.trocatine.api.requestDTO.FindPersonalInformationRequestDTO;
+import com.example.trocatine.api.requestDTO.user.EditPersonalInformationRequestDTO;
+import com.example.trocatine.api.requestDTO.user.FindPersonalInformationRequestDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.api.models.LoginDTO;
-import com.example.trocatine.api.requestDTO.CheckingEmailAlreadyRegisteredRequestDTO;
-import com.example.trocatine.api.requestDTO.CreateUserRequestDTO;
+import com.example.trocatine.api.requestDTO.user.CheckingEmailAlreadyRegisteredRequestDTO;
+import com.example.trocatine.api.requestDTO.user.CreateUserRequestDTO;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

@@ -4,31 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".newProduct.trade.NewProductTrade2">
-
-    <Spinner
-        android:id="@+id/spinnerQuality"
-        android:layout_width="314dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="48dp"
-        android:entries="@array/spinner_quality"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintHorizontal_bias="0.525"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerSize" />
-
-    <Spinner
-        android:id="@+id/spinnerSize"
-        android:layout_width="314dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="32dp"
-        android:entries="@array/spinner_size"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintHorizontal_bias="0.525"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerCategory" />
+    android:background="@color/backgroundBeige"
+    tools:context=".newProduct.buy.NewProductBuy2">
 
     <ImageView
         android:id="@+id/imageView8"
@@ -39,45 +16,6 @@
         android:onClick="OnClickBack"
         android:src="@drawable/icon_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button_save"
-        android:layout_width="297dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="28dp"
-        android:background="@drawable/button_fill"
-        android:onClick="onClickNext"
-        android:text="Próximo"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.447"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="300dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="16dp"
-        android:text="As tags são para que seu produto seja detalhado e alcance mais clientes!"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productDescription" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="126dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
-        android:text="Criar anúncio"
-        android:textColor="@color/orange"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView8"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -106,6 +44,69 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
     <Spinner
+        android:id="@+id/spinnerSize"
+        android:layout_width="314dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="32dp"
+        android:entries="@array/spinner_size"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCategory" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="126dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:text="Criar anúncio"
+        android:textColor="@color/orange"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="297dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/button_fill"
+        android:onClick="onClickNext"
+        android:text="Próximo"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerQuality"
+        android:layout_width="314dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="48dp"
+        android:entries="@array/spinner_quality"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerSize" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="300dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="16dp"
+        android:text="As tags são para que seu produto seja detalhado e alcance mais clientes!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productDescription" />
+
+    <Spinner
         android:id="@+id/spinnerCategory"
         android:layout_width="314dp"
         android:layout_height="41dp"
@@ -116,5 +117,4 @@
         app:layout_constraintHorizontal_bias="0.525"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

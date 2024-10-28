@@ -1,4 +1,4 @@
-package com.example.trocatine.api.requestDTO;
+package com.example.trocatine.api.requestDTO.user;
 
 import java.time.LocalDate;
 

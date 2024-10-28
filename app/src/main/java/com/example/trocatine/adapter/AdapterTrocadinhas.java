@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trocatine.R;
-import com.example.trocatine.api.responseDTO.FindRankingTrocadinhaResponseDTO;
+import com.example.trocatine.api.responseDTO.trocadinha.FindRankingTrocadinhaResponseDTO;
 
 import java.util.List;
 

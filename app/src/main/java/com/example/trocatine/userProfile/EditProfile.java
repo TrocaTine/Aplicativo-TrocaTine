@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import com.example.trocatine.R;
 import com.example.trocatine.api.repository.UsersRepository;
-import com.example.trocatine.api.requestDTO.EditPersonalInformationRequestDTO;
+import com.example.trocatine.api.requestDTO.user.EditPersonalInformationRequestDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.database.DatabaseCamera;
 import com.example.trocatine.util.UserUtil;

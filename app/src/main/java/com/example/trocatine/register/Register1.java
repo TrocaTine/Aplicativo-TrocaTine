@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.example.trocatine.R;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.api.repository.UsersRepository;
-import com.example.trocatine.api.requestDTO.CheckingEmailAlreadyRegisteredRequestDTO;
+import com.example.trocatine.api.requestDTO.user.CheckingEmailAlreadyRegisteredRequestDTO;
 import com.example.trocatine.beginning.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

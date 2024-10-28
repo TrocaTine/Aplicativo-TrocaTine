@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.trocatine.R;
 import com.example.trocatine.RecycleViewModels.Product;
 import com.example.trocatine.database.DatabaseCamera;
@@ -44,16 +43,25 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         DatabaseCamera databaseCamera = new DatabaseCamera();
 
         if (product != null) {
-            holder.name.setText(product.getName());
-            holder.value.setText("R$ " + product.getValue());
-            holder.createdAt.setText(product.getCreatedAt());
-            holder.description.setText(product.getDescription());
-            Log.e("id do produto", String.valueOf(product.getid()));
-            databaseCamera.downloadGaleriaProduct(holder.itemView.getContext(), holder.image, String.valueOf(product.getid()));
-//            Glide.with(holder.itemView.getContext())
-//                    .load(product.getImageUrl())
-//                    .error(R.drawable.product_photo)
-//                    .into(holder.image);
+            Log.e("flag troca", String.valueOf(product.getFlagTrade()));
+            if (product.getFlagTrade()) {
+                holder.flagTroca.setImageResource(R.drawable.icon_arrows_trade);
+                holder.value.setText("Troca");
+                Log.e("é troca", "sim");
+                holder.name.setText(product.getName());
+                holder.createdAt.setText(product.getCreatedAt());
+                holder.description.setText(product.getDescription());
+                databaseCamera.downloadGaleriaProduct(holder.itemView.getContext(), holder.image, String.valueOf(product.getid()));
+            } else {
+                Log.e("é troca", "nao");
+                holder.name.setText(product.getName());
+                holder.value.setText("R$ " + product.getValue());
+                holder.createdAt.setText(product.getCreatedAt());
+                holder.description.setText(product.getDescription());
+                Log.e("id do produto", String.valueOf(product.getid()));
+                databaseCamera.downloadGaleriaProduct(holder.itemView.getContext(), holder.image, String.valueOf(product.getid()));
+            }
+
         };
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +73,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
                 dados.putDouble("value",listProduct.get(position).getValue());
                 dados.putString("createdAt",listProduct.get(position).getCreatedAt());
                 dados.putString("description",listProduct.get(position).getDescription());
+                dados.putString("id",String.valueOf(listProduct.get(position).getid()));
                 intent.putExtras(dados);
                 view.getContext().startActivity(intent);
             }
@@ -79,7 +88,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         ImageView image, flagTroca;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            flagTroca = itemView.findViewById(R.id.productFlagTroca);
             description = itemView.findViewById(R.id.description);
             value = itemView.findViewById(R.id.cartProductValue);
             name = itemView.findViewById(R.id.productdName);

@@ -7,19 +7,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.trocatine.R;
-import com.example.trocatine.api.requestDTO.FindPersonalInformationRequestDTO;
-import com.example.trocatine.api.responseDTO.FindPersonalInformationResponseDTO;
+import com.example.trocatine.api.requestDTO.user.FindPersonalInformationRequestDTO;
+import com.example.trocatine.api.responseDTO.user.FindPersonalInformationResponseDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.api.models.LoginDTO;
 import com.example.trocatine.api.repository.UsersRepository;
 import com.example.trocatine.beginning.MainActivity;
-import com.example.trocatine.home.Home;
+import com.example.trocatine.home.HomeNavBar;
 import com.example.trocatine.util.UserUtil;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -57,7 +56,7 @@ public class Login extends AppCompatActivity {
 
 //        FirebaseAuth auth = FirebaseAuth.getInstance();
 //        if(auth.getCurrentUser() != null){
-//            Intent main = new Intent(Login.this, Home.class);
+//            Intent main = new Intent(Login.this, HomeNavBar.class);
 //            startActivity(main);
 //        }
 
@@ -95,7 +94,7 @@ public class Login extends AppCompatActivity {
 
             FirebaseAuth auth = FirebaseAuth.getInstance();
             auth.signInWithEmailAndPassword(email, senha).addOnSuccessListener(task -> {
-                Intent main = new Intent(Login.this, Home.class);
+                Intent main = new Intent(Login.this, HomeNavBar.class);
                 finish();
                 startActivity(main);
             });
@@ -130,7 +129,7 @@ public class Login extends AppCompatActivity {
                     findPersonalInformation(email);
                     Log.e("Login", "passou do metodo");
 
-                    Intent intent = new Intent(Login.this, Home.class);
+                    Intent intent = new Intent(Login.this, HomeNavBar.class);
                     dadosParaHome.putString("usuario", email);
                     UserUtil.email = email;
                     dadosParaHome.putString("token", token);

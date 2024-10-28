@@ -1,4 +1,4 @@
-package com.example.trocatine.api.responseDTO;
+package com.example.trocatine.api.responseDTO.trocadinha;
 
 public class FindTrocadinhaCountResponseDTO {
     private String email;
