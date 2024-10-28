@@ -28,7 +28,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".newProduct.NewProductCameraNovo"
+            android:name=".newProduct.buy.NewProductBuy2"
+            android:exported="false" />
+        <activity
+            android:name=".newProduct.buy.NewProductBuy1"
+            android:exported="false" />
+        <activity
+            android:name=".newProduct.trade.NewProductTrade3Camera"
             android:exported="false" />
         <activity
             android:name=".notifications.Notifications"
@@ -37,10 +43,7 @@
             android:name=".trocadinha.TrocadinhasMoreDetails"
             android:exported="false" />
         <activity
-            android:name=".trocadinha_item_rank"
-            android:exported="false" />
-        <activity
-            android:name=".trocadinha_card_rank"
+            android:name=".trocadinha.trocadinha_item_rank"
             android:exported="false" />
         <activity
             android:name=".trocadinha.TrocadinhasRank"
@@ -61,13 +64,13 @@
             android:name=".userProfile.EditProfile"
             android:exported="false" />
         <activity
-            android:name=".newProduct.NewProductTrade3"
+            android:name=".newProduct.trade.NewProductTrade2"
             android:exported="false" />
         <activity
-            android:name=".newProduct.NewProductCamera2"
+            android:name=".newProduct.trade.NewProductCamera2"
             android:exported="false" />
         <activity
-            android:name=".newProduct.NewProductTrade1"
+            android:name=".newProduct.trade.NewProductTrade1"
             android:exported="false" />
         <activity
             android:name=".footer.Footer"
@@ -100,7 +103,7 @@
             android:name=".home.CardProduct"
             android:exported="false" />
         <activity
-            android:name=".home.Home"
+            android:name=".home.HomeNavBar"
             android:exported="false" />
         <activity
             android:name=".register.Register3"

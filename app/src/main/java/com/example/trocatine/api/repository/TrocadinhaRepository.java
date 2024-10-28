@@ -1,6 +1,6 @@
 package com.example.trocatine.api.repository;
 
-import com.example.trocatine.api.requestDTO.FindTrocadinhaCountRequestDTO;
+import com.example.trocatine.api.requestDTO.trocadinha.FindTrocadinhaCountRequestDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 
 import retrofit2.Call;

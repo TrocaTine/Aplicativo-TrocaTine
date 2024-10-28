@@ -12,7 +12,7 @@ import com.example.trocatine.R;
 import com.example.trocatine.util.UserUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Home extends AppCompatActivity {
+public class HomeNavBar extends AppCompatActivity {
     //Configurando binding
     private NavHostFragment navHostFragment; //Manipula os fragments
     private NavController navController; //Manipula opções de menu

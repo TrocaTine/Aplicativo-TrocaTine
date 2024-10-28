@@ -1,30 +1,6 @@
 package com.example.trocatine.util;
 
-import android.app.Dialog;
-import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
-import android.util.Log;
-
-import com.example.trocatine.api.models.LoginDTO;
-import com.example.trocatine.api.repository.UsersRepository;
-import com.example.trocatine.api.requestDTO.FindPersonalInformationRequestDTO;
-import com.example.trocatine.api.responseDTO.FindPersonalInformationResponseDTO;
-import com.example.trocatine.api.responseDTO.StandardResponseDTO;
-import com.example.trocatine.home.Home;
-import com.example.trocatine.login.Login;
-import com.google.gson.Gson;
-
-import java.io.IOException;
-
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UserUtil {
     public static String token;

@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.trocatine.R;
-import com.example.trocatine.home.Home;
 
 public class Buy3CardMethod extends AppCompatActivity {
     private EditText fullName, cardNumber, expirationDate, cvvNumber;

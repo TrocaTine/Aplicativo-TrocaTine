@@ -1,13 +1,13 @@
-package com.example.trocatine.api.requestDTO;
+package com.example.trocatine.api.requestDTO.trocadinha;
 
-public class FindPersonalInformationRequestDTO {
+public class FindTrocadinhaCountRequestDTO {
     private String email;
 
-    public FindPersonalInformationRequestDTO(String email) {
+    public FindTrocadinhaCountRequestDTO(String email) {
         this.email = email;
     }
 
-    public FindPersonalInformationRequestDTO() {
+    public FindTrocadinhaCountRequestDTO() {
     }
 
     public String getEmail() {
@@ -17,4 +17,5 @@ public class FindPersonalInformationRequestDTO {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }

@@ -1,4 +1,4 @@
-package com.example.trocatine.api.responseDTO;
+package com.example.trocatine.api.responseDTO.product;
 
 public class SaveProductResponseDTO {
     private boolean saved;

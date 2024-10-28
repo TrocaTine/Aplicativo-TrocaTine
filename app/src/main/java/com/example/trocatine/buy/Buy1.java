@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.trocatine.R;
-import com.example.trocatine.home.Home;
 import com.example.trocatine.product.ProductBuy;
 
 public class Buy1 extends AppCompatActivity {

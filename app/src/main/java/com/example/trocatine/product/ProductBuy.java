@@ -9,17 +9,20 @@ import android.widget.TextView;
 
 import com.example.trocatine.R;
 import com.example.trocatine.buy.Buy1;
-import com.example.trocatine.home.Home;
+import com.example.trocatine.database.DatabaseCamera;
+import com.example.trocatine.home.HomeNavBar;
 import com.example.trocatine.userProfile.OthersUserProfile;
 
 public class ProductBuy extends AppCompatActivity {
     TextView productName, productDescription, productCreatedAt, productValue;
+    String id;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_buy);
+        DatabaseCamera databaseCamera = new DatabaseCamera();
 
         productName = findViewById(R.id.productName);
         productDescription = findViewById(R.id.productDescription);
@@ -31,12 +34,14 @@ public class ProductBuy extends AppCompatActivity {
         productCreatedAt.setText(dados.getString("createdAt"));
         productDescription.setText(dados.getString("description"));
         productName.setText(dados.getString("name"));
+        id = dados.getString("id");
+        databaseCamera.downloadGaleriaProduct(this, findViewById(R.id.photoProduct), id);
 
     }
 
 
     public void OnClickBackActivity(View view) {
-        Intent intent = new Intent(ProductBuy.this, Home.class);
+        Intent intent = new Intent(ProductBuy.this, HomeNavBar.class);
         finish();
         startActivity(intent);
     }

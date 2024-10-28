@@ -1,10 +1,10 @@
 package com.example.trocatine.api.repository;
 
-import com.example.trocatine.api.requestDTO.EditProductRequestDTO;
-import com.example.trocatine.api.requestDTO.FindProductCardNameRequestDTO;
-import com.example.trocatine.api.requestDTO.FindTagByTypeRequestDTO;
+import com.example.trocatine.api.requestDTO.product.EditProductRequestDTO;
+import com.example.trocatine.api.requestDTO.product.FindProductCardNameRequestDTO;
+import com.example.trocatine.api.requestDTO.product.FindTagByTypeRequestDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
-import com.example.trocatine.api.requestDTO.SaveProductRequestDTO;
+import com.example.trocatine.api.requestDTO.product.SaveProductRequestDTO;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

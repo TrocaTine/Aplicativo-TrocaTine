@@ -5,9 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.trocatine.R;
-import com.example.trocatine.home.Home;
+import com.example.trocatine.home.HomeNavBar;
 
 public class ProductTrade extends AppCompatActivity {
 
@@ -18,7 +19,7 @@ public class ProductTrade extends AppCompatActivity {
     }
 
     public void OnClickBackActivity(View view) {
-        Intent intent = new Intent(ProductTrade.this, Home.class);
+        Intent intent = new Intent(ProductTrade.this, HomeNavBar.class);
         finish();
         startActivity(intent);
     }

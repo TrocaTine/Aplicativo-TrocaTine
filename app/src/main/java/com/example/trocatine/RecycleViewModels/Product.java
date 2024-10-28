@@ -10,12 +10,12 @@ public class Product {
     private double value;
     private long stock;
     private String createdAt;
-    private boolean flagTroca;
+    private boolean flagTrade;
     @Expose(serialize = false, deserialize = false)
 
     private String imageUrl;
 
-    public Product(int id, int idUser, String name, String description, double value, long stock, String createdAt, boolean flagTroca) {
+    public Product(int id, int idUser, String name, String description, double value, long stock, String createdAt, boolean flagTrade) {
         this.id = id;
         this.idUser = idUser;
         this.name = name;
@@ -23,7 +23,7 @@ public class Product {
         this.value = value;
         this.stock = stock;
         this.createdAt = createdAt;
-        this.flagTroca = flagTroca;
+        this.flagTrade = flagTrade;
     }
 
     public Product() {
@@ -57,8 +57,8 @@ public class Product {
         return createdAt;
     }
 
-    public boolean getFlagTroca() {
-        return flagTroca;
+    public boolean getFlagTrade() {
+        return flagTrade;
     }
 
 
@@ -78,8 +78,8 @@ public class Product {
         this.stock = stock;
     }
 
-    public void setFlagTroca(boolean flagTroca) {
-        this.flagTroca = flagTroca;
+    public void setFlagTrade(boolean flagTrade) {
+        this.flagTrade = flagTrade;
     }
 
     public void setCreatedAt(String createdAt) {
@@ -104,7 +104,7 @@ public class Product {
                 ", value=" + value +
                 ", stock=" + stock +
                 ", createdAt='" + createdAt + '\'' +
-                ", flagTroca=" + flagTroca +
+                ", flagTroca=" + flagTrade +
                 '}';
     }
 }
