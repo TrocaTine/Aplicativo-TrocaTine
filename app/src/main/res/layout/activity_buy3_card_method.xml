@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundBeige"
-    tools:context=".buy.Buy3CardMethod">
+    tools:context=".ui.buy.Buy3CardMethod">
 
     <Button
         android:id="@+id/buttonEnd"

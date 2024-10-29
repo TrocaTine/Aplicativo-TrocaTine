@@ -5,13 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundBeige"
-    tools:context=".product.ProductBuy">
+    tools:context=".ui.product.ProductBuy">
 
     <ImageView
         android:id="@+id/photoProduct"
-        android:layout_width="326dp"
-        android:layout_height="249dp"
+        android:layout_width="314dp"
+        android:layout_height="250dp"
         android:layout_marginTop="20dp"
+        android:background="@drawable/image_border"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/openUserProfile"
@@ -122,14 +124,12 @@
         android:id="@+id/productCreated"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="168dp"
+        android:layout_marginEnd="40dp"
         android:text="24/05/24"
         android:textColor="@color/orange"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintStart_toEndOf="@+id/userPhone"
-        app:layout_constraintTop_toBottomOf="@+id/productDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonFavorite" />
 
     <TextView
         android:id="@+id/textView5"

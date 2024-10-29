@@ -28,28 +28,28 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".newProduct.buy.NewProductBuy2"
+            android:name=".ui.newProduct.buy.NewProductBuy2"
             android:exported="false" />
         <activity
-            android:name=".newProduct.buy.NewProductBuy1"
+            android:name=".ui.newProduct.buy.NewProductBuy1"
             android:exported="false" />
         <activity
-            android:name=".newProduct.trade.NewProductTrade3Camera"
+            android:name=".ui.newProduct.trade.NewProductTrade3Camera"
             android:exported="false" />
         <activity
-            android:name=".notifications.Notifications"
+            android:name=".ui.notifications.Notifications"
             android:exported="false" />
         <activity
-            android:name=".trocadinha.TrocadinhasMoreDetails"
+            android:name=".ui.trocadinha.TrocadinhasMoreDetails"
             android:exported="false" />
         <activity
-            android:name=".trocadinha.trocadinha_item_rank"
+            android:name=".ui.trocadinha.trocadinha_item_rank"
             android:exported="false" />
         <activity
-            android:name=".trocadinha.TrocadinhasRank"
+            android:name=".ui.trocadinha.TrocadinhasRank"
             android:exported="false" />
         <activity
-            android:name=".community.CommunityRv"
+            android:name=".ui.community.CommunityRv"
             android:exported="false" />
         <activity
             android:name="tabs.UserReviewsRv"
@@ -58,70 +58,70 @@
             android:name="tabs.UserReviews"
             android:exported="false" />
         <activity
-            android:name=".userProfile.OthersUserProfile"
+            android:name=".ui.userProfile.OthersUserProfile"
             android:exported="false" />
         <activity
-            android:name=".userProfile.EditProfile"
+            android:name=".ui.userProfile.EditProfile"
             android:exported="false" />
         <activity
-            android:name=".newProduct.trade.NewProductTrade2"
+            android:name=".ui.newProduct.trade.NewProductTrade2"
             android:exported="false" />
         <activity
             android:name=".newProduct.trade.NewProductCamera2"
             android:exported="false" />
         <activity
-            android:name=".newProduct.trade.NewProductTrade1"
+            android:name=".ui.newProduct.trade.NewProductTrade1"
             android:exported="false" />
         <activity
-            android:name=".footer.Footer"
+            android:name=".ui.footer.Footer"
             android:exported="false" />
         <activity
-            android:name=".product.card_cart_product"
+            android:name=".ui.product.card_cart_product"
             android:exported="false" />
         <activity
-            android:name=".buy.Buy4PurchaseMade"
+            android:name=".ui.buy.Buy4PurchaseMade"
             android:exported="false" />
         <activity
-            android:name=".buy.Buy3CardMethod"
+            android:name=".ui.buy.Buy3CardMethod"
             android:exported="false" />
         <activity
-            android:name=".buy.Buy3PicpayMethod"
+            android:name=".ui.buy.Buy3PicpayMethod"
             android:exported="false" />
         <activity
-            android:name=".buy.Buy2"
+            android:name=".ui.buy.Buy2"
             android:exported="false" />
         <activity
-            android:name=".buy.Buy1"
+            android:name=".ui.buy.Buy1"
             android:exported="false" />
         <activity
-            android:name=".product.ProductTrade"
+            android:name=".ui.product.ProductTrade"
             android:exported="false" />
         <activity
-            android:name=".product.ProductBuy"
+            android:name=".ui.product.ProductBuy"
             android:exported="false" />
         <activity
-            android:name=".home.CardProduct"
+            android:name=".ui.product.CardProduct"
             android:exported="false" />
         <activity
-            android:name=".home.HomeNavBar"
+            android:name=".ui.home.HomeNavBar"
             android:exported="false" />
         <activity
-            android:name=".register.Register3"
+            android:name=".ui.register.Register3"
             android:exported="false" />
         <activity
-            android:name=".register.Register2"
+            android:name=".ui.register.Register2"
             android:exported="false" />
         <activity
-            android:name=".register.Register1"
+            android:name=".ui.register.Register1"
             android:exported="false" />
         <activity
-            android:name=".login.Login"
+            android:name=".ui.login.Login"
             android:exported="false" />
         <activity
-            android:name=".beginning.MainActivity"
+            android:name=".ui.beginning.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".beginning.SplashScreen"
+            android:name=".ui.beginning.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

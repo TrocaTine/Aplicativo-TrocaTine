@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundBeige"
-    tools:context=".register.Register2">
+    tools:context=".ui.register.Register2">
 
     <ImageView
         android:id="@+id/backSet"

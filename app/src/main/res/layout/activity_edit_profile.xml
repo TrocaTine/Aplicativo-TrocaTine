@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundBeige"
-    tools:context=".userProfile.EditProfile">
+    tools:context=".ui.userProfile.EditProfile">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout15"

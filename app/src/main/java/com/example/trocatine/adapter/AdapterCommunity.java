@@ -3,16 +3,13 @@ package com.example.trocatine.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trocatine.R;
-import com.example.trocatine.RecycleViewModels.CartProduct;
-import com.example.trocatine.RecycleViewModels.Community;
+import com.example.trocatine.api.models.RecycleViewModels.Community;
 
 import java.util.List;
 

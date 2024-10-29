@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundBeige"
-    tools:context=".newProduct.buy.NewProductBuy2">
+    tools:context=".ui.newProduct.buy.NewProductBuy2">
 
     <ImageView
         android:id="@+id/imageView8"

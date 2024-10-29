@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundBeige"
     android:backgroundTint="@color/backgroundBeige"
-    tools:context=".trocadinha.TrocadinhasRank">
+    tools:context=".ui.trocadinha.TrocadinhasRank">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
