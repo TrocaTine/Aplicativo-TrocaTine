@@ -1,7 +1,6 @@
 package com.example.trocatine.api.models;
 
-import com.example.trocatine.RecycleViewModels.Product;
-import com.example.trocatine.api.models.Phones;
+import com.example.trocatine.api.models.RecycleViewModels.Product;
 
 import java.time.LocalDate;
 

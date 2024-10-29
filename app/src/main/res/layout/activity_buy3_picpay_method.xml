@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".buy.Buy3PicpayMethod">
+    tools:context=".ui.buy.Buy3PicpayMethod">
 
     <ImageView
         android:id="@+id/imageView9"
