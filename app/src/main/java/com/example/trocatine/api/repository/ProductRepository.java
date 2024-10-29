@@ -2,6 +2,7 @@ package com.example.trocatine.api.repository;
 
 import com.example.trocatine.api.requestDTO.product.EditProductRequestDTO;
 import com.example.trocatine.api.requestDTO.product.FindProductCardNameRequestDTO;
+import com.example.trocatine.api.requestDTO.product.FindProductFavoriteRequestDTO;
 import com.example.trocatine.api.requestDTO.product.FindTagByTypeRequestDTO;
 import com.example.trocatine.api.requestDTO.product.SaveFavoriteProductRequestDTO;
 import com.example.trocatine.api.requestDTO.product.UnfavoriteProductRequestDTO;
@@ -32,5 +33,7 @@ public interface ProductRepository {
     Call<StandardResponseDTO> saveFavoriteProduct(@Body SaveFavoriteProductRequestDTO request);
     @POST("/favorite/unfavorite-product")
     Call<StandardResponseDTO> unfavoriteProduct(@Body UnfavoriteProductRequestDTO request);
+    @POST("/favorite/find-product-favorite")
+    Call<StandardResponseDTO> findProductFavorite(@Body FindProductFavoriteRequestDTO request);
 
 }
