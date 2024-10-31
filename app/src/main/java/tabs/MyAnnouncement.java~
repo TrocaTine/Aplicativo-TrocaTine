@@ -93,7 +93,12 @@ public class MyAnnouncement extends Fragment {
         productRv = view.findViewById(R.id.productRv);
         productRv.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
         //Populando a recycle view
-        listProductByUser(productRv, UserUtil.token);
+        listProduct.add(new Product(1, 1, "nome", "descricao", 2.99, 5, "05/12/2007", true));
+        listProduct.add(new Product(1, 1, "nome", "descricao", 2.99, 5, "05/12/2007", true));
+        listProduct.add(new Product(1, 1, "nome", "descricao", 2.99, 5, "05/12/2007", true));
+        listProduct.add(new Product(1, 1, "nome", "descricao", 2.99, 5, "05/12/2007", true));
+        listProduct.add(new Product(1, 1, "nome", "descricao", 2.99, 5, "05/12/2007", true));
+        listProduct.add(new Product(1, 1, "nome", "descricao", 2.99, 5, "05/12/2007", true));
         AdapterMyProduct adapterMyProduct = new AdapterMyProduct(listProduct);
         productRv.setAdapter(adapterMyProduct);
         productRv.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
@@ -129,7 +134,7 @@ public class MyAnnouncement extends Fragment {
             public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
                 if (response.isSuccessful()) {
                     List<Product> products = new Gson().fromJson(new Gson().toJson(response.body().getData()), new TypeToken<List<Product>>(){}.getType());
-                    recyclerView.setAdapter(new AdapterMyProduct(products));
+                    recyclerView.setAdapter(new AdapterProduct(products));
                 } else {
                     try {
                         Log.e("Erro", "Resposta não foi sucesso no list products name: " + response.code() + " - " + response.errorBody().string()+"token: "+token);

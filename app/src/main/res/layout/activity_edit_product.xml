@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundBeige"
+    tools:context=".ui.product.EditProduct">
+
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="316dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_fill"
+        android:onClick="onClickEdit"
+        android:text="Salvar Produto"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="313dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/button_border_red"
+        android:onClick="onClickDelete"
+        android:text="Excluir Produto"
+        android:textAllCaps="false"
+        android:textColor="@color/red"
+        app:layout_constraintBottom_toTopOf="@+id/button_save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newCategory" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/value"
+        android:layout_width="312dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/newValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Valor"
+            android:inputType="number|numberDecimal"
+            android:text="exemplo de valor"
+            android:textColor="@color/seaGreen" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/description"
+        android:layout_width="312dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/newDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Descrião"
+            android:text="exemplo de descrição"
+            android:textColor="@color/seaGreen" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/title"
+        android:layout_width="312dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newProductImg">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/newtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Titulo"
+            android:text="exemplo de titulo"
+            android:textColor="@color/seaGreen" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="149dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="16dp"
+        android:text="Editar Anúncio"
+        android:textColor="@color/orange"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageView11"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_back" />
+
+    <ImageView
+        android:id="@+id/newProductImg"
+        android:layout_width="244dp"
+        android:layout_height="225dp"
+        android:layout_marginTop="20dp"
+        android:onClick="onClickPhoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:srcCompat="@drawable/img_take_photo" />
+
+    <Spinner
+        android:id="@+id/newCategory"
+        android:layout_width="315dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/value" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
