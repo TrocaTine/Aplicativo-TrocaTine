@@ -17,7 +17,7 @@
             android:layout_height="729dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/activity_card_product" />
+            tools:listitem="@layout/activity_card_fav_product" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

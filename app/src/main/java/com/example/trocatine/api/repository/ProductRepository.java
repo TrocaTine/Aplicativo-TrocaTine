@@ -1,6 +1,8 @@
 package com.example.trocatine.api.repository;
 
+import com.example.trocatine.api.requestDTO.product.DeleteProductRequestDTO;
 import com.example.trocatine.api.requestDTO.product.EditProductRequestDTO;
+import com.example.trocatine.api.requestDTO.product.FindProductByUserRequestDTO;
 import com.example.trocatine.api.requestDTO.product.FindProductCardNameRequestDTO;
 import com.example.trocatine.api.requestDTO.product.FindProductFavoriteRequestDTO;
 import com.example.trocatine.api.requestDTO.product.FindTagByTypeRequestDTO;
@@ -22,9 +24,12 @@ public interface ProductRepository {
 
     @POST("/products/edit-product")
     Call<StandardResponseDTO> editProduct(@Body EditProductRequestDTO request);
-//    findProductByNameIsContainingIgnoreCase
     @POST("/products/find-product-card-name")
     Call<StandardResponseDTO> findProductByNameIsContainingIgnoreCase(@Body FindProductCardNameRequestDTO request);
+    @POST("/products/find-product-user")
+    Call<StandardResponseDTO> findProductByUser(@Body FindProductByUserRequestDTO request);
+    @POST("/products/delete-product")
+    Call<StandardResponseDTO> deleteProduct(@Body DeleteProductRequestDTO request);
     @POST("/tag/find-tag-type")
     Call<StandardResponseDTO> findTagByType(@Body FindTagByTypeRequestDTO request);
     @GET("/category/find-all-category")

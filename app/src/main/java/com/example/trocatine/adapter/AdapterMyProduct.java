@@ -1,6 +1,8 @@
 package com.example.trocatine.adapter;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trocatine.R;
 import com.example.trocatine.api.models.RecycleViewModels.Product;
+import com.example.trocatine.ui.database.DatabaseCamera;
+import com.example.trocatine.ui.product.EditProduct;
 import com.example.trocatine.ui.product.ProductBuy;
+import com.example.trocatine.util.ProductUtil;
 
 import java.util.List;
 
@@ -36,25 +41,45 @@ public class AdapterMyProduct extends RecyclerView.Adapter<AdapterMyProduct.View
     public void onBindViewHolder(@NonNull AdapterMyProduct.ViewHolder holder, int position) {
 
         Product product = listProduct.get(position);
+        DatabaseCamera databaseCamera = new DatabaseCamera();
 
         if (product != null) {
-            holder.name.setText(product.getName());
-//        holder.description.setText(product.getDescription());
-            holder.value.setText(String.valueOf(product.getValue()));
-//            holder.stock.setText(String.valueOf(product.getStock()));
-            holder.createdAt.setText(product.getCreatedAt());
-            holder.description.setText(product.getDescription());
-//            if (product.getFlagTroca()) {
-//                holder.flagTroca.setImageResource(R.drawable.icon_arrows_trade);
-//            } else {
-//                holder.flagTroca.setImageResource(R.drawable.icon_bag_buy);
-//            }
-//            holder.flagTroca.setImageDrawable( R.drawable.icon_arrows_trade));
+            Log.e("flag troca", String.valueOf(product.getFlagTrade()));
+            if (product.getFlagTrade()) {
+                holder.flagTrade.setImageResource(R.drawable.icon_arrows_trade);
+                holder.value.setText("Troca");
+                Log.e("é troca", "sim");
+                holder.name.setText(product.getName());
+                holder.createdAt.setText(product.getCreatedAt());
+                holder.description.setText(product.getDescription());
+                databaseCamera.downloadGaleriaProduct(holder.itemView.getContext(), holder.image, String.valueOf(product.getid()));
+            } else {
+                Log.e("é troca", "nao");
+                holder.name.setText(product.getName());
+                holder.value.setText("R$ " + product.getValue());
+                holder.createdAt.setText(product.getCreatedAt());
+                holder.description.setText(product.getDescription());
+                Log.e("id do produto", String.valueOf(product.getid()));
+                databaseCamera.downloadGaleriaProduct(holder.itemView.getContext(), holder.image, String.valueOf(product.getid()));
+            }
+
         };
         holder.itemView.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ProductBuy.class);
+                Log.e("entrou no metodo edit", "entrou no metodo");
+                Intent intent = new Intent(view.getContext(), EditProduct.class);
+                Bundle dados = new Bundle();
+
+                dados.putString("title",listProduct.get(position).getName());
+                dados.putString("value",String.valueOf(listProduct.get(position).getValue()));
+                dados.putString("createdAt",listProduct.get(position).getCreatedAt());
+                dados.putString("description",listProduct.get(position).getDescription());
+                Log.e("id do produto edit", String.valueOf(product.getid()));
+                dados.putString("id",String.valueOf(product.getid()));
+                ProductUtil.idProduct = String.valueOf(product.getid());
+                intent.putExtras(dados);
                 view.getContext().startActivity(intent);
             }
         });
@@ -65,7 +90,7 @@ public class AdapterMyProduct extends RecyclerView.Adapter<AdapterMyProduct.View
     //fazer o innerclass para carregar os elementos XML vs Java
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView name,description,value,stock,createdAt;
-        ImageView image, flagTroca;
+        ImageView image, flagTrade;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             description = itemView.findViewById(R.id.description);
@@ -73,6 +98,7 @@ public class AdapterMyProduct extends RecyclerView.Adapter<AdapterMyProduct.View
             name = itemView.findViewById(R.id.productdName);
             createdAt = itemView.findViewById(R.id.productCreatedAt);
             image = itemView.findViewById(R.id.productImage);
+            flagTrade = itemView.findViewById(R.id.productFlagTroca);
         }
     }
 }
