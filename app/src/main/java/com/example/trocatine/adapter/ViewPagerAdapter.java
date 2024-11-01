@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 
-import com.example.trocatine.ui.fragments.MyUserProfileFragment;
+import com.example.trocatine.ui.userProfile.MyUserProfileFragment;
 
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 

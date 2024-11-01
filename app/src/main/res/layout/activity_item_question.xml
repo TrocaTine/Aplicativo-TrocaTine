@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ui.buy.item_question">
+    tools:context=".ui.buy_or_trade.buy.item_question">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

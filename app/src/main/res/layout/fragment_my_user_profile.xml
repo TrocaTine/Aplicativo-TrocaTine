@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/backgroundBeige"
-    tools:context=".ui.fragments.MyUserProfileFragment" >
+    tools:context=".ui.userProfile.MyUserProfileFragment" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -140,17 +140,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
             <TextView
-                android:id="@+id/userCpf"
+                android:id="@+id/listCardCvv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="9dp"
                 android:layout_marginTop="10dp"
                 android:text="11 9876432"
                 app:layout_constraintStart_toEndOf="@+id/textView5"
-                app:layout_constraintTop_toBottomOf="@+id/userValue" />
+                app:layout_constraintTop_toBottomOf="@+id/listCardNumber" />
 
             <TextView
-                android:id="@+id/userAddress"
+                android:id="@+id/listCardExpirationDate"
                 android:layout_width="194dp"
                 android:layout_height="17dp"
                 android:layout_marginStart="13dp"
@@ -160,7 +160,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/BirthDate" />
 
             <TextView
-                android:id="@+id/userValue"
+                android:id="@+id/listCardNumber"
                 android:layout_width="76dp"
                 android:layout_height="21dp"
                 android:layout_marginStart="12dp"
@@ -170,14 +170,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <TextView
-                android:id="@+id/userBirthDate"
+                android:id="@+id/listCardFullName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="8dp"
                 android:text="11 9876432"
                 app:layout_constraintStart_toEndOf="@+id/BirthDate"
-                app:layout_constraintTop_toBottomOf="@+id/userCpf" />
+                app:layout_constraintTop_toBottomOf="@+id/listCardCvv" />
 
             <TextView
                 android:id="@+id/textView7"

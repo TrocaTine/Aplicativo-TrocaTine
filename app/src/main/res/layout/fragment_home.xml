@@ -4,22 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.HomeFragment">
+    tools:context=".ui.home.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/backgroundBeige">
 
         <ImageButton
             android:id="@+id/buttonFilter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="20dp"
+            android:layout_width="25dp"
+            android:layout_height="23dp"
+            android:layout_marginEnd="11dp"
             android:background="#FEFBF7"
             android:src="@drawable/icon_filter"
+            app:layout_constraintBottom_toBottomOf="@+id/searchBar"
             app:layout_constraintEnd_toEndOf="@+id/searchBar"
             app:layout_constraintTop_toTopOf="@+id/searchBar" />
 
@@ -53,7 +54,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/userBirthDate"
+            android:id="@+id/listCardFullName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
@@ -94,12 +95,12 @@
 
         <EditText
             android:id="@+id/searchBar"
-            android:layout_width="351dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="19dp"
+            android:layout_width="360dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/search_bar"
             android:drawableStart="?android:attr/actionModeWebSearchDrawable"
-            android:drawableEnd="@drawable/icon_filter"
 
             android:ems="10"
             android:hint="Pesquisar"
@@ -108,15 +109,19 @@
             android:textColor="#AFAFAF"
             android:textColorHint="#9E9E9E"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/buttonBuy2"
             app:layout_constraintTop_toBottomOf="@+id/buttonTrade2" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/productRv"
-            android:layout_width="413dp"
-            android:layout_height="486dp"
-            android:layout_marginTop="56dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="60dp"
             android:background="#F0F0F0"
+            android:paddingHorizontal="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchBar"
             tools:listitem="@layout/activity_card_product" />
@@ -153,6 +158,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/imgLoading"
+            android:layout_width="143dp"
+            android:layout_height="140dp"
+            android:src="@android:mipmap/sym_def_app_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/productRv" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

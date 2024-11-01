@@ -20,7 +20,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface ProductRepository {
-    @POST("/products/find-product-card")
+    @GET("/products/find-product-card")
     Call<StandardResponseDTO> findProductCard();
     @POST("/products/save-product")
     Call<StandardResponseDTO> saveProduct(@Body SaveProductRequestDTO request);
@@ -29,8 +29,8 @@ public interface ProductRepository {
     Call<StandardResponseDTO> editProduct(@Body EditProductRequestDTO request);
     @POST("/products/find-product-card-name")
     Call<StandardResponseDTO> findProductByNameIsContainingIgnoreCase(@Body FindProductCardNameRequestDTO request);
-    @POST("/products/find-product-user")
-    Call<StandardResponseDTO> findProductByUser(@Body FindProductByUserRequestDTO request);
+    @GET("/products/find-product-user/{email}")
+    Call<StandardResponseDTO> findProductByUser(@Path("email") String request);
     @DELETE("/products/delete-product/{ID}")
     Call<StandardResponseDTO> deleteProduct(@Path("ID") long idProduct);
     @POST("/tag/find-tag-type")
@@ -41,9 +41,12 @@ public interface ProductRepository {
     Call<StandardResponseDTO> saveFavoriteProduct(@Body SaveFavoriteProductRequestDTO request);
     @POST("/favorite/unfavorite-product")
     Call<StandardResponseDTO> unfavoriteProduct(@Body UnfavoriteProductRequestDTO request);
-    @POST("/favorite/find-product-favorite")
-    Call<StandardResponseDTO> findProductFavorite(@Body FindProductFavoriteRequestDTO request);
+    @GET("/favorite/find-product-favorite/{email}")
+    Call<StandardResponseDTO> findProductFavorite(@Path("email")  String request);
     @POST("/order/finished-order")
     Call<StandardResponseDTO> finishedOrder(@Body FinishedOrderRequestDTO request);
+
+    @POST("/card//find-card-user")
+    Call<StandardResponseDTO> findCardByUser(@Body String request);
 
 }

@@ -75,18 +75,21 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView8"
             app:srcCompat="@drawable/icon_bag_buy" />
 
         <TextView
             android:id="@+id/description"
-            android:layout_width="119dp"
+            android:layout_width="0dp"
             android:layout_height="24dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:text="Definitivamente uma das camisetas azuis sociais, muito bonita"
             android:textSize="8sp"
+            app:layout_constraintEnd_toStartOf="@+id/productFlagTroca"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/productdName" />
 

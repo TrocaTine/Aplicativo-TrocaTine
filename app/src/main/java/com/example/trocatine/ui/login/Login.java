@@ -177,7 +177,7 @@ public class Login extends AppCompatActivity {
                 .build();
 
         UsersRepository usersApi = retrofit.create(UsersRepository.class);
-        Call<StandardResponseDTO> call = usersApi.findPersonalInformation(new FindPersonalInformationRequestDTO(email));
+        Call<StandardResponseDTO> call = usersApi.findPersonalInformation(email);
         call.enqueue(new Callback<StandardResponseDTO>() {
             @Override
             public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {

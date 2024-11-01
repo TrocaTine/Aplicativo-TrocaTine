@@ -1,5 +1,6 @@
 package tabs;
 
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,14 +11,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.AdapterMyProduct;
-import com.example.trocatine.adapter.AdapterProduct;
-import com.example.trocatine.api.models.RecycleViewModels.Product;
+import com.example.trocatine.adapter.RecycleViewModels.Product;
 import com.example.trocatine.api.repository.ProductRepository;
 import com.example.trocatine.api.requestDTO.product.FindProductByUserRequestDTO;
-import com.example.trocatine.api.requestDTO.product.FindProductFavoriteRequestDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.util.UserUtil;
 import com.google.gson.Gson;
@@ -53,6 +54,7 @@ public class MyAnnouncement extends Fragment {
     private String mParam2;
     private RecyclerView productRv;
     List<Product> listProduct = new ArrayList<>();
+    ImageView imgLoading;
 
 
     public MyAnnouncement() {
@@ -97,6 +99,8 @@ public class MyAnnouncement extends Fragment {
         AdapterMyProduct adapterMyProduct = new AdapterMyProduct(listProduct);
         productRv.setAdapter(adapterMyProduct);
         productRv.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
+        imgLoading = view.findViewById(R.id.imgLoading);
+        Glide.with(this).load("https://loading.io/assets/img/p/articles/quality/clamp-threshold.gif").centerCrop().into(imgLoading);
         // Inflate the layout for this fragment
         return view;
     }
@@ -123,11 +127,12 @@ public class MyAnnouncement extends Fragment {
                 .build();
 
         ProductRepository productApi = retrofit.create(ProductRepository.class);
-        Call<StandardResponseDTO> call = productApi.findProductByUser(new FindProductByUserRequestDTO(UserUtil.email));
+        Call<StandardResponseDTO> call = productApi.findProductByUser(UserUtil.email);
         call.enqueue(new Callback<StandardResponseDTO>() {
             @Override
             public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
                 if (response.isSuccessful()) {
+                    imgLoading.setVisibility(View.INVISIBLE);
                     List<Product> products = new Gson().fromJson(new Gson().toJson(response.body().getData()), new TypeToken<List<Product>>(){}.getType());
                     recyclerView.setAdapter(new AdapterMyProduct(products));
                 } else {

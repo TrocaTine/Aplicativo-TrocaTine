@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trocatine.R;
-import com.example.trocatine.api.models.RecycleViewModels.Product;
+import com.example.trocatine.adapter.RecycleViewModels.Product;
 import com.example.trocatine.ui.database.DatabaseCamera;
 import com.example.trocatine.ui.product.ProductBuy;
 import com.example.trocatine.ui.product.ProductTrade;
