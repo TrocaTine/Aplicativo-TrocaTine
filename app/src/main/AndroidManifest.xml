@@ -28,6 +28,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.buy.item_question"
+            android:exported="false" />
+        <activity
+            android:name=".ui.product.testeee"
+            android:exported="false" />
+        <activity
             android:name=".ui.product.EditProduct"
             android:exported="false" />
         <activity

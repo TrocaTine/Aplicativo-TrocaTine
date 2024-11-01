@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.trocatine.R;
+import com.example.trocatine.util.CardUtil;
 
 public class Buy3CardMethod extends AppCompatActivity {
     private EditText fullName, cardNumber, expirationDate, cvvNumber;
@@ -71,6 +72,11 @@ public class Buy3CardMethod extends AppCompatActivity {
             finish();
             startActivity(intent);
         }
+        CardUtil.cardNumber = cardNumber.getText().toString();
+        CardUtil.expirationDate = expirationDate.getText().toString();
+        CardUtil.cvvNumber = cvvNumber.getText().toString();
+        CardUtil.fullName = fullName.getText().toString();
+
     }
     public void showError(String mensagem, TextView texto) {
         texto.setText(mensagem);

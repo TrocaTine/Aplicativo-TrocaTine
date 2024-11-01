@@ -15,6 +15,8 @@ public class ProductUtil {
     public static List<TagDTO> tags;
     public static List<String> categories = new ArrayList<>();
     public static String idProduct;
+    public static String valueBuy;
+
 
 
 

@@ -16,12 +16,14 @@ import com.example.trocatine.R;
 import com.example.trocatine.api.models.RecycleViewModels.Product;
 import com.example.trocatine.ui.database.DatabaseCamera;
 import com.example.trocatine.ui.product.ProductBuy;
+import com.example.trocatine.ui.product.ProductTrade;
 
 import java.util.List;
 
 public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHolder>{
 
     private List<Product> listProduct;
+    Intent intent;
 
     public AdapterProduct(List<Product> arg){
         this.listProduct = arg;
@@ -66,9 +68,12 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ProductBuy.class);
+                if (product.getFlagTrade()){
+                    intent = new Intent(view.getContext(), ProductTrade.class);
+                } else {
+                    intent = new Intent(view.getContext(), ProductBuy.class);
+                }
                 Bundle dados = new Bundle();
-
                 dados.putString("name",listProduct.get(position).getName());
                 dados.putDouble("value",listProduct.get(position).getValue());
                 dados.putString("createdAt",listProduct.get(position).getCreatedAt());

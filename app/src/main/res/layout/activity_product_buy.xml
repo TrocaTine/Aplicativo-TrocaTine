@@ -1,171 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundBeige"
-    tools:context=".ui.product.ProductBuy">
+    tools:context=".ui.product.testeee">
 
-    <ImageView
-        android:id="@+id/photoProduct"
-        android:layout_width="314dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/image_border"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/openUserProfile"
-        app:srcCompat="@drawable/product_photo" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:background="@color/backgroundBeige"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
 
-    <Button
-        android:id="@+id/buttonAddCart"
-        android:layout_width="282dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/button_border"
-        android:onClick="onClickAddToCart"
-        android:text="Adicionar ao carrinho"
-        android:textAllCaps="false"
-        android:textColor="@color/seaGreen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonBuyNow" />
+        <TextView
+            android:id="@+id/openUserProfile"
+            android:layout_width="48dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:onClick="onClickOtherUserProfile"
+            android:text="usuario"
+            android:textColor="@color/seaGreen"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/buttonBack"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="86dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="19dp"
-        android:background="@drawable/tag_border"
-        android:text="Cor: azul"
-        android:textColor="@color/orange"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/photoProduct" />
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="86dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="19dp"
+            android:background="@drawable/tag_border"
+            android:text="Cor: azul"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/photoProduct" />
 
-    <TextView
-        android:id="@+id/productName"
-        android:layout_width="245dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="15dp"
-        android:backgroundTint="#000000"
-        android:text="Camiseta social azul"
-        android:textColor="#222222"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        <Button
+            android:id="@+id/buttonAddCart"
+            android:layout_width="282dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_border"
+            android:onClick="onClickAddToCart"
+            android:text="Adicionar ao carrinho"
+            android:textAllCaps="false"
+            android:textColor="@color/seaGreen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonBuyNow" />
 
-    <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="15dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
-        android:onClick="OnClickBackActivity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_back" />
+        <ImageView
+            android:id="@+id/photoProduct"
+            android:layout_width="314dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/image_border"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/openUserProfile"
+            app:srcCompat="@drawable/product_photo" />
 
-    <TextView
-        android:id="@+id/userPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="22dp"
-        android:text="R$20,99"
-        android:textColor="@color/seaGreen"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productDescription" />
+        <TextView
+            android:id="@+id/productName"
+            android:layout_width="245dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="#000000"
+            android:text="Camiseta social azul"
+            android:textColor="#222222"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <TextView
-        android:id="@+id/buttonBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:onClick="onClickBackView"
-        android:text="Vendido por"
-        app:layout_constraintStart_toEndOf="@+id/imageView12"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/buttonBuyNow"
+            android:layout_width="282dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/button_fill"
+            android:onClick="onClickBuyNow"
+            android:text="Comprar"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userValue" />
 
-    <TextView
-        android:id="@+id/productDescription"
-        android:layout_width="241dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="13dp"
-        android:text="Definitivamente uma das camisetas azuis sociais, muito bonita"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productName" />
+        <ImageView
+            android:id="@+id/buttonFavorite"
+            android:layout_width="81dp"
+            android:layout_height="96dp"
+            android:layout_marginTop="172dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/photoProduct"
+            app:layout_constraintTop_toTopOf="@+id/photoProduct"
+            app:srcCompat="@drawable/icon_heart" />
 
-    <Button
-        android:id="@+id/buttonBuyNow"
-        android:layout_width="282dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="44dp"
-        android:background="@drawable/button_fill"
-        android:onClick="onClickBuyNow"
-        android:text="Comprar"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userPhone" />
+        <TextView
+            android:id="@+id/productDescription"
+            android:layout_width="241dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="13dp"
+            android:text="Definitivamente uma das camisetas azuis sociais, muito bonita"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productName" />
 
-    <TextView
-        android:id="@+id/productCreated"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="168dp"
-        android:layout_marginEnd="40dp"
-        android:text="24/05/24"
-        android:textColor="@color/orange"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonFavorite" />
+        <TextView
+            android:id="@+id/productCreated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="168dp"
+            android:layout_marginEnd="40dp"
+            android:text="24/05/24"
+            android:textColor="@color/orange"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonFavorite" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="72dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="19dp"
-        android:background="@drawable/tag_border"
-        android:text="Tam: P"
-        android:textColor="@color/orange"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/photoProduct" />
+        <TextView
+            android:id="@+id/userValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="22dp"
+            android:text="R$20,99"
+            android:textColor="@color/seaGreen"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productDescription" />
 
-    <TextView
-        android:id="@+id/openUserProfile"
-        android:layout_width="48dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:onClick="onClickOtherUserProfile"
-        android:text="usuario"
-        android:textColor="@color/seaGreen"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/buttonBack"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="72dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="19dp"
+            android:background="@drawable/tag_border"
+            android:text="Tam: P"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/photoProduct" />
 
-    <ImageView
-        android:id="@+id/buttonFavorite"
-        android:layout_width="81dp"
-        android:layout_height="96dp"
-        android:layout_marginTop="172dp"
-        android:layout_marginEnd="4dp"
-        app:layout_constraintEnd_toEndOf="@+id/photoProduct"
-        app:layout_constraintTop_toTopOf="@+id/photoProduct"
-        app:srcCompat="@drawable/icon_heart" />
+        <TextView
+            android:id="@+id/buttonBack"
+            android:layout_width="83dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:onClick="onClickBackView"
+            android:text="Vendido por"
+            app:layout_constraintStart_toEndOf="@+id/imageView12"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="15dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="16dp"
+            android:onClick="OnClickBackActivity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/icon_back" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="11dp"
+            android:text="Perguntas"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonAddCart" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/questionRv"
+            android:layout_width="354dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="13dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView21"
+            tools:listitem="@layout/activity_item_question" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

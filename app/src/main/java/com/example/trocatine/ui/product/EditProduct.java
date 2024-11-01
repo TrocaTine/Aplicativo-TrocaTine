@@ -201,13 +201,12 @@ public class EditProduct extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ProductRepository productRepository = retrofit.create(ProductRepository.class);
-        Call<StandardResponseDTO> call = productRepository.deleteProduct(new DeleteProductRequestDTO(id));
+        Call<StandardResponseDTO> call = productRepository.deleteProduct(id);
         call.enqueue(new Callback<StandardResponseDTO>() {
             @Override
             public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
                 if (response.isSuccessful()) {
                     Log.e("dados resgatados", String.valueOf(response.errorBody()));
-                    StandardResponseDTO responseBody = response.body();
                     Log.e("delete product", "deu green");
 
                 } else {

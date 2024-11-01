@@ -1,5 +1,6 @@
 package com.example.trocatine.api.repository;
 
+import com.example.trocatine.api.requestDTO.order.FinishedOrderRequestDTO;
 import com.example.trocatine.api.requestDTO.product.DeleteProductRequestDTO;
 import com.example.trocatine.api.requestDTO.product.EditProductRequestDTO;
 import com.example.trocatine.api.requestDTO.product.FindProductByUserRequestDTO;
@@ -13,8 +14,10 @@ import com.example.trocatine.api.requestDTO.product.SaveProductRequestDTO;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface ProductRepository {
     @POST("/products/find-product-card")
@@ -28,8 +31,8 @@ public interface ProductRepository {
     Call<StandardResponseDTO> findProductByNameIsContainingIgnoreCase(@Body FindProductCardNameRequestDTO request);
     @POST("/products/find-product-user")
     Call<StandardResponseDTO> findProductByUser(@Body FindProductByUserRequestDTO request);
-    @POST("/products/delete-product")
-    Call<StandardResponseDTO> deleteProduct(@Body DeleteProductRequestDTO request);
+    @DELETE("/products/delete-product/{ID}")
+    Call<StandardResponseDTO> deleteProduct(@Path("ID") long idProduct);
     @POST("/tag/find-tag-type")
     Call<StandardResponseDTO> findTagByType(@Body FindTagByTypeRequestDTO request);
     @GET("/category/find-all-category")
@@ -40,5 +43,7 @@ public interface ProductRepository {
     Call<StandardResponseDTO> unfavoriteProduct(@Body UnfavoriteProductRequestDTO request);
     @POST("/favorite/find-product-favorite")
     Call<StandardResponseDTO> findProductFavorite(@Body FindProductFavoriteRequestDTO request);
+    @POST("/order/finished-order")
+    Call<StandardResponseDTO> finishedOrder(@Body FinishedOrderRequestDTO request);
 
 }
