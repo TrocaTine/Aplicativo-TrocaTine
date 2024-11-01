@@ -17,6 +17,7 @@ public class Buy3PicpayMethod extends AppCompatActivity {
     }
 
     public void onClickEnd(View view) {
+        finish();
         Intent intent = new Intent(Buy3PicpayMethod.this, Buy4PurchaseMade.class);
         startActivity(intent);
     }

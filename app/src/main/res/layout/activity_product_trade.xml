@@ -78,7 +78,7 @@
         app:srcCompat="@drawable/icon_back" />
 
     <TextView
-        android:id="@+id/userPhone"
+        android:id="@+id/userValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -116,15 +116,15 @@
         android:id="@+id/buttonNext"
         android:layout_width="282dp"
         android:layout_height="43dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="56dp"
         android:background="@drawable/button_fill"
         android:onClick="openLogin"
-        android:text="Comprar"
+        android:text="Trocar"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userPhone" />
+        app:layout_constraintTop_toBottomOf="@+id/userValue" />
 
     <TextView
         android:id="@+id/productCreated"
@@ -134,7 +134,7 @@
         android:layout_marginTop="172dp"
         android:text="24/05/24"
         android:textColor="@color/orange"
-        app:layout_constraintStart_toEndOf="@+id/userPhone"
+        app:layout_constraintStart_toEndOf="@+id/userValue"
         app:layout_constraintTop_toBottomOf="@+id/imageProduct" />
 
     <TextView
@@ -166,4 +166,14 @@
         app:layout_constraintEnd_toEndOf="@+id/imageProduct"
         app:layout_constraintTop_toTopOf="@+id/imageProduct"
         app:srcCompat="@drawable/icon_heart" />
+
+    <ImageView
+        android:id="@+id/imageView39"
+        android:layout_width="117dp"
+        android:layout_height="127dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonFavorite"
+        app:srcCompat="@drawable/icon_arrows_trade" />
 </androidx.constraintlayout.widget.ConstraintLayout>

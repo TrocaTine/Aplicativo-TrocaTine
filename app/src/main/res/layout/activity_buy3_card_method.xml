@@ -48,6 +48,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/cvvNumber"
+            android:maxLength="3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="CVV"
@@ -58,7 +59,7 @@
         android:id="@+id/textInputLayout5"
         android:layout_width="149dp"
         android:layout_height="60dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/errorTextCardNumber">
 
@@ -81,6 +82,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/cardNumber"
             android:layout_width="match_parent"
+            android:maxLength="16"
             android:layout_height="wrap_content"
             android:hint="Número do cartão"
             android:inputType="number" />

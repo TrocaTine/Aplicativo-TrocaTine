@@ -58,7 +58,7 @@
             android:layout_marginEnd="12dp"
             android:text="11 9876432"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userPhone" />
+            app:layout_constraintTop_toBottomOf="@+id/userValue" />
 
         <TextView
             android:id="@+id/userAddress"
@@ -71,7 +71,7 @@
             app:layout_constraintTop_toBottomOf="@+id/userBirthDate" />
 
         <TextView
-            android:id="@+id/userPhone"
+            android:id="@+id/userValue"
             android:layout_width="76dp"
             android:layout_height="21dp"
             android:layout_marginTop="20dp"
@@ -144,7 +144,6 @@
         android:id="@+id/buttonEnd"
         android:layout_width="282dp"
         android:layout_height="43dp"
-        android:layout_marginStart="64dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/button_fill"
         android:onClick="onClickEnd"
@@ -152,6 +151,7 @@
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView

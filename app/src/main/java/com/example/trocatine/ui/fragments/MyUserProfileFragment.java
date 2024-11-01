@@ -108,7 +108,7 @@ public class MyUserProfileFragment extends Fragment {
         userEmail = view.findViewById(R.id.userEmail);
         userName = view.findViewById(R.id.userName);
         userCpf = view.findViewById(R.id.userCpf);
-        userPhone = view.findViewById(R.id.userPhone);
+        userPhone = view.findViewById(R.id.userValue);
         userAdress = view.findViewById(R.id.userAddress);
         userBirthDate = view.findViewById(R.id.userBirthDate);
 

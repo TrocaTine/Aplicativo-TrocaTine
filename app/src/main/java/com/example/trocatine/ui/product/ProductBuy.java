@@ -1,6 +1,7 @@
 package com.example.trocatine.ui.product;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -13,7 +14,9 @@ import android.widget.Toast;
 
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.AdapterProduct;
+import com.example.trocatine.adapter.AdapterQuestion;
 import com.example.trocatine.api.models.RecycleViewModels.Product;
+import com.example.trocatine.api.models.RecycleViewModels.Question;
 import com.example.trocatine.api.repository.ProductRepository;
 import com.example.trocatine.api.requestDTO.product.SaveFavoriteProductRequestDTO;
 import com.example.trocatine.api.requestDTO.product.UnfavoriteProductRequestDTO;
@@ -22,11 +25,12 @@ import com.example.trocatine.ui.buy.Buy1;
 import com.example.trocatine.ui.database.DatabaseCamera;
 import com.example.trocatine.ui.home.HomeNavBar;
 import com.example.trocatine.ui.userProfile.OthersUserProfile;
+import com.example.trocatine.util.ProductUtil;
 import com.example.trocatine.util.UserUtil;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Interceptor;
@@ -42,6 +46,8 @@ public class ProductBuy extends AppCompatActivity {
     TextView productName, productDescription, productCreatedAt, productValue;
     String id;
     ImageView buttonFavorite;
+    RecyclerView questionRv;
+    List<Question> listQuestion = new ArrayList<>();
 
 
 
@@ -50,11 +56,15 @@ public class ProductBuy extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_buy);
         DatabaseCamera databaseCamera = new DatabaseCamera();
+        questionRv = findViewById(R.id.questionRv);
+        AdapterQuestion adapterQuestion = new AdapterQuestion(listQuestion);
+        questionRv.setAdapter(adapterQuestion);
+        questionRv.setLayoutManager(new GridLayoutManager(this, 1));
 
         productName = findViewById(R.id.productName);
         productDescription = findViewById(R.id.productDescription);
         productCreatedAt = findViewById(R.id.productCreated);
-        productValue = findViewById(R.id.userPhone);
+        productValue = findViewById(R.id.userValue);
 
         Bundle dados = getIntent().getExtras();
         productValue.setText("R$ "+String.valueOf(dados.getDouble("value")));
@@ -62,6 +72,8 @@ public class ProductBuy extends AppCompatActivity {
         productDescription.setText(dados.getString("description"));
         productName.setText(dados.getString("name"));
         id = dados.getString("id");
+        ProductUtil.idProduct = id;
+        ProductUtil.value = new BigDecimal(dados.getDouble("value"));
         databaseCamera.downloadGaleriaProduct(this, findViewById(R.id.photoProduct), id);
         buttonFavorite = findViewById(R.id.buttonFavorite);
         buttonFavorite.setOnClickListener(new View.OnClickListener() {
