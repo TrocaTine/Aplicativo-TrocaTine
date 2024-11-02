@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.AdapterTrocadinhas;
 import com.example.trocatine.api.repository.TrocadinhaRepository;
@@ -32,6 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TrocadinhasRank extends AppCompatActivity {
     RecyclerView trocadinhasRv;
+    ImageView imgLoading;
     List<FindRankingTrocadinhaResponseDTO> listTrocadinhas = new ArrayList<>();
 
 
@@ -39,6 +42,9 @@ public class TrocadinhasRank extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trocadinhas_rank);
+        imgLoading = findViewById(R.id.imgLoading);
+        Glide.with(this).load("https://loading.io/assets/img/p/articles/quality/clamp-threshold.gif").centerCrop().into(imgLoading);
+
 
         trocadinhasRv = findViewById(R.id.trocadinhasRv);
         AdapterTrocadinhas adapterTrocadinhas = new AdapterTrocadinhas(listTrocadinhas);
@@ -74,6 +80,7 @@ public class TrocadinhasRank extends AppCompatActivity {
             @Override
             public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
                 if (response.isSuccessful()) {
+                    imgLoading.setVisibility(View.INVISIBLE);
                     List<FindRankingTrocadinhaResponseDTO> trocadinhas = new Gson().fromJson(new Gson().toJson(response.body().getData()), new TypeToken<List<FindRankingTrocadinhaResponseDTO>>(){}.getType());
                     recyclerView.setAdapter(new AdapterTrocadinhas(trocadinhas));
                     Log.e("rank", "deu certo");

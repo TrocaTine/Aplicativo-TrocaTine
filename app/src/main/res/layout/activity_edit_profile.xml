@@ -163,14 +163,14 @@
 
     <ImageView
         android:id="@+id/productImg"
-        android:layout_width="138dp"
-        android:layout_height="127dp"
+        android:layout_width="142dp"
+        android:layout_height="152dp"
         android:layout_marginTop="40dp"
+        android:background="@drawable/user_default_img"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/user_default_img" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/editUserImage"

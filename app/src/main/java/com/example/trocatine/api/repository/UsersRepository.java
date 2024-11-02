@@ -9,7 +9,9 @@ import com.example.trocatine.api.requestDTO.user.CreateUserRequestDTO;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface UsersRepository {
     @POST("/users/checking-email-already-registered")
@@ -19,8 +21,8 @@ public interface UsersRepository {
     Call<StandardResponseDTO> createUser(@Body CreateUserRequestDTO request);
     @POST("/api/auth/login")
     Call<StandardResponseDTO> login(@Body LoginDTO request);
-    @POST("/users/find-personal-information")
-    Call<StandardResponseDTO> findPersonalInformation(@Body FindPersonalInformationRequestDTO request);
+    @GET("/users/find-personal-information/{email}")
+    Call<StandardResponseDTO> findPersonalInformation(@Path("email") String email);
     @POST("/users/edit-personal-information")
     Call<StandardResponseDTO> editPersonalInformation (@Body EditPersonalInformationRequestDTO request);
 }

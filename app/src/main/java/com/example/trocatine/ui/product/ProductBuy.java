@@ -8,25 +8,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trocatine.R;
-import com.example.trocatine.adapter.AdapterProduct;
 import com.example.trocatine.adapter.AdapterQuestion;
-import com.example.trocatine.api.models.RecycleViewModels.Product;
-import com.example.trocatine.api.models.RecycleViewModels.Question;
+import com.example.trocatine.adapter.RecycleViewModels.Question;
 import com.example.trocatine.api.repository.ProductRepository;
 import com.example.trocatine.api.requestDTO.product.SaveFavoriteProductRequestDTO;
 import com.example.trocatine.api.requestDTO.product.UnfavoriteProductRequestDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
-import com.example.trocatine.ui.buy.Buy1;
+import com.example.trocatine.ui.buy_or_trade.buy.Buy1;
 import com.example.trocatine.ui.database.DatabaseCamera;
 import com.example.trocatine.ui.home.HomeNavBar;
 import com.example.trocatine.ui.userProfile.OthersUserProfile;
 import com.example.trocatine.util.ProductUtil;
 import com.example.trocatine.util.UserUtil;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -48,6 +48,9 @@ public class ProductBuy extends AppCompatActivity {
     ImageView buttonFavorite;
     RecyclerView questionRv;
     List<Question> listQuestion = new ArrayList<>();
+    Button buttonNewQuestion;
+
+    BottomSheetDialog dialog;
 
 
 
@@ -57,6 +60,7 @@ public class ProductBuy extends AppCompatActivity {
         setContentView(R.layout.activity_product_buy);
         DatabaseCamera databaseCamera = new DatabaseCamera();
         questionRv = findViewById(R.id.questionRv);
+        buttonNewQuestion = findViewById(R.id.newQuestion);
         AdapterQuestion adapterQuestion = new AdapterQuestion(listQuestion);
         questionRv.setAdapter(adapterQuestion);
         questionRv.setLayoutManager(new GridLayoutManager(this, 1));
@@ -64,7 +68,7 @@ public class ProductBuy extends AppCompatActivity {
         productName = findViewById(R.id.productName);
         productDescription = findViewById(R.id.productDescription);
         productCreatedAt = findViewById(R.id.productCreated);
-        productValue = findViewById(R.id.userValue);
+        productValue = findViewById(R.id.listCardNumber);
 
         Bundle dados = getIntent().getExtras();
         productValue.setText("R$ "+String.valueOf(dados.getDouble("value")));
@@ -87,6 +91,15 @@ public class ProductBuy extends AppCompatActivity {
                     unFavoriteProduct(UserUtil.email, Long.parseLong(id));
                     buttonFavorite.setImageDrawable(getResources().getDrawable(R.drawable.icon_heart));
                 }
+            }
+        });
+        dialog = new BottomSheetDialog(this);
+        buttonNewQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View view = getLayoutInflater().inflate(R.layout.new_question_dialog, null, false);
+                dialog.setContentView(view);
+                dialog.show();
             }
         });
 

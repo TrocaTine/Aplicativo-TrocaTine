@@ -1,5 +1,6 @@
 package tabs;
 
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,10 +11,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.AdapterProduct;
-import com.example.trocatine.api.models.RecycleViewModels.Product;
+import com.example.trocatine.adapter.RecycleViewModels.Product;
 import com.example.trocatine.api.repository.ProductRepository;
 import com.example.trocatine.api.requestDTO.product.FindProductFavoriteRequestDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
@@ -49,6 +52,7 @@ public class FavAnnouncement extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    ImageView imgLoading;
     private RecyclerView productRv;
     List<Product> listProduct = new ArrayList<>();
 
@@ -98,6 +102,8 @@ public class FavAnnouncement extends Fragment {
         productRv.setAdapter(adapterProduct);
         productRv.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
         // Inflate the layout for this fragment
+        imgLoading = view.findViewById(R.id.imgLoading);
+        Glide.with(this).load("https://loading.io/assets/img/p/articles/quality/clamp-threshold.gif").centerCrop().into(imgLoading);
         return view;
     }
     private void listFavoriteProduct(RecyclerView recyclerView, String token) {
@@ -123,16 +129,18 @@ public class FavAnnouncement extends Fragment {
                 .build();
 
         ProductRepository productApi = retrofit.create(ProductRepository.class);
-        Call<StandardResponseDTO> call = productApi.findProductFavorite(new FindProductFavoriteRequestDTO(UserUtil.email));
+        Log.e("favorite email;", UserUtil.email);
+        Call<StandardResponseDTO> call = productApi.findProductFavorite(UserUtil.email);
         call.enqueue(new Callback<StandardResponseDTO>() {
             @Override
             public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
                 if (response.isSuccessful()) {
+                    imgLoading.setVisibility(View.INVISIBLE);
                     List<Product> products = new Gson().fromJson(new Gson().toJson(response.body().getData()), new TypeToken<List<Product>>(){}.getType());
                     recyclerView.setAdapter(new AdapterProduct(products));
                 } else {
                     try {
-                        Log.e("Erro", "Resposta não foi sucesso no list products name: " + response.code() + " - " + response.errorBody().string()+"token: "+token);
+                        Log.e("Erro", "Resposta não foi sucesso no list products favorite: " + response.code() + " - " + response.errorBody().string()+"token: "+token);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

@@ -8,31 +8,31 @@
 
     <fragment
         android:id="@+id/menu_cart"
-        android:name="com.example.trocatine.ui.fragments.CartFragment"
+        android:name="com.example.trocatine.ui.product.Cart.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
 
     <fragment
         android:id="@+id/menu_community"
-        android:name="com.example.trocatine.ui.fragments.CommunityFragment"
+        android:name="com.example.trocatine.ui.community.CommunityFragment"
         android:label="fragment_community"
         tools:layout="@layout/fragment_community" />
 
     <fragment
         android:id="@+id/menu_home"
-        android:name="com.example.trocatine.ui.fragments.HomeFragment"
+        android:name="com.example.trocatine.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/menu_newProduct"
-        android:name="com.example.trocatine.ui.fragments.NewProductFragment"
+        android:name="com.example.trocatine.ui.product.newProduct.NewProductFragment"
         android:label="fragment_new_product"
         tools:layout="@layout/fragment_new_product" />
 
     <fragment
         android:id="@+id/menu_userProfile"
-        android:name="com.example.trocatine.ui.fragments.MyUserProfileFragment"
+        android:name="com.example.trocatine.ui.userProfile.MyUserProfileFragment"
         android:label="fragment_user_profile"
         tools:layout="@layout/fragment_my_user_profile" />
 </navigation>

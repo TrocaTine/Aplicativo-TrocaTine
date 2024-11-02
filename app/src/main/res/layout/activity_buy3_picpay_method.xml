@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.buy.Buy3PicpayMethod">
+    tools:context=".ui.buy_or_trade.buy.PicPay.Buy3PicpayMethod">
 
     <ImageView
         android:id="@+id/imageView9"
@@ -31,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/userAddress"
+        android:id="@+id/listCardExpirationDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -97,7 +97,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userAddress"
+        app:layout_constraintTop_toBottomOf="@+id/listCardExpirationDate"
         app:srcCompat="@drawable/icon_waiting" />
 
     <ImageView
@@ -119,5 +119,5 @@
         android:text="Em aguardo do pagamento..."
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageView14"
-        app:layout_constraintTop_toBottomOf="@+id/userAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/listCardExpirationDate" />
 </androidx.constraintlayout.widget.ConstraintLayout>

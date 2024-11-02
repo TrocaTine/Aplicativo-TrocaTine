@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trocatine.R;
-import com.example.trocatine.api.models.RecycleViewModels.CartProduct;
+import com.example.trocatine.adapter.RecycleViewModels.CartProduct;
 
 import java.util.List;
 

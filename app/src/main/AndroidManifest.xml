@@ -28,7 +28,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ui.buy.item_question"
+            android:name=".ui.buy_or_trade.buy.Card.Buy3NewCard"
+            android:exported="false" />
+        <activity
+            android:name=".ui.buy_or_trade.buy.item_question"
             android:exported="false" />
         <activity
             android:name=".ui.product.testeee"
@@ -37,13 +40,13 @@
             android:name=".ui.product.EditProduct"
             android:exported="false" />
         <activity
-            android:name=".ui.newProduct.buy.NewProductBuy2"
+            android:name=".ui.product.newProduct.buy.NewProductBuy2"
             android:exported="false" />
         <activity
-            android:name=".ui.newProduct.buy.NewProductBuy1"
+            android:name=".ui.product.newProduct.buy.NewProductBuy1"
             android:exported="false" />
         <activity
-            android:name=".ui.newProduct.trade.NewProductTrade3Camera"
+            android:name=".ui.product.newProduct.trade.NewProductTrade3Camera"
             android:exported="false" />
         <activity
             android:name=".ui.notifications.Notifications"
@@ -73,34 +76,34 @@
             android:name=".ui.userProfile.EditProfile"
             android:exported="false" />
         <activity
-            android:name=".ui.newProduct.trade.NewProductTrade2"
+            android:name=".ui.product.newProduct.trade.NewProductTrade2"
             android:exported="false" />
         <activity
             android:name=".newProduct.trade.NewProductCamera2"
             android:exported="false" />
         <activity
-            android:name=".ui.newProduct.trade.NewProductTrade1"
+            android:name=".ui.product.newProduct.trade.NewProductTrade1"
             android:exported="false" />
         <activity
             android:name=".ui.footer.Footer"
             android:exported="false" />
         <activity
-            android:name=".ui.product.card_cart_product"
+            android:name=".ui.product.Cart.card_cart_product"
             android:exported="false" />
         <activity
-            android:name=".ui.buy.Buy4PurchaseMade"
+            android:name=".ui.buy_or_trade.buy.Card.Buy4PurchaseMade"
             android:exported="false" />
         <activity
-            android:name=".ui.buy.Buy3CardMethod"
+            android:name=".ui.buy_or_trade.buy.Card.Buy3CardMethod"
             android:exported="false" />
         <activity
-            android:name=".ui.buy.Buy3PicpayMethod"
+            android:name=".ui.buy_or_trade.buy.PicPay.Buy3PicpayMethod"
             android:exported="false" />
         <activity
-            android:name=".ui.buy.Buy2"
+            android:name=".ui.buy_or_trade.buy.Buy2"
             android:exported="false" />
         <activity
-            android:name=".ui.buy.Buy1"
+            android:name=".ui.buy_or_trade.buy.Buy1"
             android:exported="false" />
         <activity
             android:name=".ui.product.ProductTrade"
