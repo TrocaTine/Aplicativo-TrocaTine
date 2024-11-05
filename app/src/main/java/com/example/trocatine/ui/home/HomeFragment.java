@@ -1,7 +1,6 @@
 package com.example.trocatine.ui.home;
 
 import android.app.Dialog;
-import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -27,12 +26,9 @@ import com.example.trocatine.R;
 import com.example.trocatine.adapter.AdapterProduct;
 import com.example.trocatine.adapter.RecycleViewModels.Product;
 import com.example.trocatine.api.repository.TrocadinhaRepository;
-import com.example.trocatine.api.requestDTO.product.FindProductCardNameRequestDTO;
-import com.example.trocatine.api.requestDTO.trocadinha.FindTrocadinhaCountRequestDTO;
 import com.example.trocatine.api.responseDTO.trocadinha.FindTrocadinhaCountResponseDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.api.repository.ProductRepository;
-import com.example.trocatine.ui.notifications.NotificationsView;
 import com.example.trocatine.ui.trocadinha.TrocadinhasRank;
 import com.example.trocatine.util.UserUtil;
 import com.google.gson.Gson;
@@ -228,13 +224,13 @@ public class HomeFragment extends Fragment {
             }
         });
         findTrocadinhaCount(UserUtil.email);
-        buttonNotification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), NotificationsView.class);
-                startActivity(intent);
-            }
-        });
+//        buttonNotification.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getContext(), NotificationsView.class);
+//                startActivity(intent);
+//            }
+//        });
         return view;
     }
 

@@ -16,7 +16,7 @@ import com.example.trocatine.R;
 import com.example.trocatine.adapter.RecycleViewModels.Product;
 import com.example.trocatine.database.DatabaseCamera;
 import com.example.trocatine.ui.product.ProductBuy;
-import com.example.trocatine.ui.product.ProductTrade;
+import com.example.trocatine.ui.product.productTrade.ProductTrade;
 
 import java.util.List;
 
