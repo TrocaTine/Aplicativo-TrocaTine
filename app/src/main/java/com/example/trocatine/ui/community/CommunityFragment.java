@@ -3,6 +3,10 @@ package com.example.trocatine.ui.community;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
@@ -38,6 +42,8 @@ public class CommunityFragment extends Fragment {
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://trocatine-a226a-default-rtdb.firebaseio.com/");
     List<Community> listCommunity = new ArrayList<>();
     List<Community> listMessageTrade = new ArrayList<>();
+    NavController navController;
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -90,10 +96,12 @@ public class CommunityFragment extends Fragment {
         communityRv = view.findViewById(R.id.communityRv);
         communityRv.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
 
-        AdapterCommunity adapterCommunity = new AdapterCommunity(listCommunity);
+        navController = NavHostFragment.findNavController(this);
+
+        AdapterCommunity adapterCommunity = new AdapterCommunity(listCommunity, navController);
         communityRv.setAdapter(adapterCommunity);
 
-        AdapterCommunity adapterTrade = new AdapterCommunity(listMessageTrade);
+        AdapterCommunity adapterTrade = new AdapterCommunity(listMessageTrade, navController);
         messageTradeRv.setAdapter(adapterTrade);
 
         databaseReference.child("comunity").addValueEventListener(new ValueEventListener() {
@@ -120,30 +128,39 @@ public class CommunityFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listMessageTrade.clear();
+
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                     String user1 = snapshot1.child("user_1").getValue(String.class);
                     String user2 = snapshot1.child("user_2").getValue(String.class);
 
-                    if ((user1 != null && user1.equals(UserUtil.userName)) || (user2 != null && user2.equals(UserUtil.userName))) {
+                    if (UserUtil.userName != null &&
+                            ((user1 != null && user1.equals(UserUtil.userName)) || (user2 != null && user2.equals(UserUtil.userName)))) {
+
+                        // Cria o item a ser adicionado
                         Community itemList = new Community();
-                        if (user1 != null && !user1.equals(UserUtil.userName)) {
-                            itemList.setName(user1);
-                            itemList.setPhoto("https://media.istockphoto.com/id/1399395748/pt/foto/cheerful-business-woman-with-glasses-posing-with-her-hands-under-her-face-showing-her-smile-in.jpg?s=612x612&w=0&k=20&c=V2hdZm-cPTPXYT4U7VEsXr9M4CR3QqxOCMY_2qqJQAI=");
-                            itemList.setCommunity(false);
-                        }
+
+                        // Define o nome do outro usuário na conversa
+                        itemList.setName(user1.equals(UserUtil.userName) ? user2 : user1);
+                        itemList.setPhoto("https://media.istockphoto.com/id/1399395748/pt/foto/cheerful-business-woman-with-glasses-posing-with-her-hands-under-her-face-showing-her-smile-in.jpg?s=612x612&w=0&k=20&c=V2hdZm-cPTPXYT4U7VEsXr9M4CR3QqxOCMY_2qqJQAI=");
+                        itemList.setCommunity(false);
+
+                        // Adiciona à lista de mensagens
                         listMessageTrade.add(itemList);
+
                         Log.e("CHAT message trade", "LISTA Nome: " + itemList.getName() + ", Foto: " + itemList.getPhoto());
                     }
                 }
 
-                adapterTrade.notifyDataSetChanged(); // Notifica o adapter que os dados foram atualizados
+                // Notifica o adapter que os dados foram atualizados
+                adapterTrade.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("CHAT COMUNITY", "Erro ao carregar dados: " + error.getMessage());
+                Log.e("CHAT COMMUNITY", "Erro ao carregar dados: " + error.getMessage());
             }
         });
+
 
 
 
