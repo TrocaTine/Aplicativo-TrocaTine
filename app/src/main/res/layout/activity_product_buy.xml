@@ -68,7 +68,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonAddTrocadinha" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonTrade" />
 
         <ImageView
             android:id="@+id/photoProduct"
@@ -100,7 +100,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
         <Button
-            android:id="@+id/buttonAddTrocadinha"
+            android:id="@+id/buttonTrade"
             android:layout_width="282dp"
             android:layout_height="43dp"
             android:layout_marginTop="32dp"

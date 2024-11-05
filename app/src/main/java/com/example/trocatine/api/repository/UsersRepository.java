@@ -25,4 +25,7 @@ public interface UsersRepository {
     Call<StandardResponseDTO> findPersonalInformation(@Path("email") String email);
     @POST("/users/edit-personal-information")
     Call<StandardResponseDTO> editPersonalInformation (@Body EditPersonalInformationRequestDTO request);
+
+    @POST("/users/user-info-product/{idProduct}/{email}")
+    Call<StandardResponseDTO> saveInfoProduct (@Path("idProduct") Long idProduct, @Path("email") String email);
 }

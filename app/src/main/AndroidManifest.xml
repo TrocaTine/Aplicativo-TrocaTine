@@ -106,7 +106,7 @@
             android:name=".ui.buy_or_trade.buy.Buy1"
             android:exported="false" />
         <activity
-            android:name=".ui.product.ProductTrade"
+            android:name=".ui.product.productTrade.ProductTrade"
             android:exported="false" />
         <activity
             android:name=".ui.product.ProductBuy"
@@ -131,6 +131,9 @@
             android:exported="false" />
         <activity
             android:name=".ui.beginning.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.product.productTrade.Chat"
             android:exported="false" />
         <activity
             android:name=".ui.beginning.SplashScreen"

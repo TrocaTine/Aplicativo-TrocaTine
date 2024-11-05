@@ -42,6 +42,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment:2.7.7")
     implementation("androidx.navigation:navigation-ui:2.7.7")
     implementation("com.google.firebase:firebase-storage:21.0.0")
+    implementation("com.google.firebase:firebase-database:21.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
@@ -57,5 +58,12 @@ dependencies {
 
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
+
+
+    implementation("com.squareup.picasso:picasso:2.8")
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
+
+
 
 }

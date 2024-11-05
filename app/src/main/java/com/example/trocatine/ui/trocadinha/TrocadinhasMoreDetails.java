@@ -1,7 +1,6 @@
 package com.example.trocatine.ui.trocadinha;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,18 +8,13 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.trocatine.R;
-import com.example.trocatine.adapter.AdapterTrocadinhas;
 import com.example.trocatine.api.repository.TrocadinhaRepository;
 import com.example.trocatine.api.requestDTO.trocadinha.AddingTrocadinhaRequestDTO;
 import com.example.trocatine.api.requestDTO.trocadinha.RetiredTrocadinhaRequestDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
-import com.example.trocatine.api.responseDTO.trocadinha.FindRankingTrocadinhaResponseDTO;
 import com.example.trocatine.util.UserUtil;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
-import java.util.List;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -38,7 +32,7 @@ public class TrocadinhasMoreDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trocadinhas_more_details);
-        buttonAddTrocadinha = findViewById(R.id.buttonAddTrocadinha);
+        buttonAddTrocadinha = findViewById(R.id.buttonTrade);
         buttonRemoveTrocadinha = findViewById(R.id.buttonRemoveTrocadinha);
         buttonAddTrocadinha.setOnClickListener(new View.OnClickListener() {
             @Override

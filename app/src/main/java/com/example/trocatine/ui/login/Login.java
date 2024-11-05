@@ -197,6 +197,7 @@ public class Login extends AppCompatActivity {
                     UserUtil.phone = personalInfo.getPhone().toString();
                     UserUtil.address = personalInfo.getAddresses().toString();
                     UserUtil.cpf = personalInfo.getCpf();
+                    UserUtil.userName = personalInfo.getNickname();
 
                     UserUtil.token = token;
                     Log.e("token", token);
