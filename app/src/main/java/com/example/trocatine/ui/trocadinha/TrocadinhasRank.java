@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,7 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TrocadinhasRank extends AppCompatActivity {
     RecyclerView trocadinhasRv;
-    ImageView imgLoading;
+    ImageView imgLoading, trocadinhasInfo;
     List<FindRankingTrocadinhaResponseDTO> listTrocadinhas = new ArrayList<>();
 
 
@@ -43,6 +44,7 @@ public class TrocadinhasRank extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trocadinhas_rank);
         imgLoading = findViewById(R.id.imgLoading);
+        trocadinhasInfo = findViewById(R.id.trocadinhasInfo);
         Glide.with(this).load("https://loading.io/assets/img/p/articles/quality/clamp-threshold.gif").centerCrop().into(imgLoading);
 
 
@@ -50,8 +52,15 @@ public class TrocadinhasRank extends AppCompatActivity {
         AdapterTrocadinhas adapterTrocadinhas = new AdapterTrocadinhas(listTrocadinhas);
         trocadinhasRv.setAdapter(adapterTrocadinhas);
         trocadinhasRv.setLayoutManager(new GridLayoutManager(this, 1));
-        listTrocadinhas.add(new FindRankingTrocadinhaResponseDTO("Usuário 1", 5));
         listTrocadinhasRank(trocadinhasRv, UserUtil.token);
+        trocadinhasInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrocadinhasRank.this, TrocadinhasMoreDetails.class);
+                finish();
+                startActivity(intent);
+            }
+        });
     }
     private void listTrocadinhasRank(RecyclerView recyclerView, String token) {
         String API = "https://api-spring-boot-trocatine.onrender.com/";

@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/menu_cart"
-        android:name="com.example.trocatine.ui.product.Cart.CartFragment"
+        android:name="com.example.trocatine.ui.Cart.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
 

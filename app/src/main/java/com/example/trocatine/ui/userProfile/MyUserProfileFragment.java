@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.ViewPagerAdapter;
-import com.example.trocatine.ui.database.DatabaseCamera;
+import com.example.trocatine.database.DatabaseCamera;
 import com.example.trocatine.ui.home.HomeFragment;
 import com.example.trocatine.util.UserUtil;
 import com.google.android.material.tabs.TabLayout;
@@ -45,7 +45,6 @@ public class MyUserProfileFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    DatabaseCamera databaseCamera;
 
     public MyUserProfileFragment() {
         // Required empty public constructor
@@ -91,6 +90,7 @@ public class MyUserProfileFragment extends Fragment {
         userPhone = view.findViewById(R.id.listCardNumber);
         userAdress = view.findViewById(R.id.listCardExpirationDate);
         userBirthDate = view.findViewById(R.id.listCardFullName);
+        userImg = view.findViewById(R.id.userImg);
 
         userEmail.setText(UserUtil.email);
         userBirthDate.setText(UserUtil.birthDate);
@@ -99,16 +99,20 @@ public class MyUserProfileFragment extends Fragment {
         userName.setText(UserUtil.fullName);
         userCpf.setText(UserUtil.cpf);
 
+        DatabaseCamera databaseCamera = new DatabaseCamera();
+        databaseCamera.downloadGaleriaUserProfile(getContext(), userImg, UserUtil.email);
+
+
         userImg = view.findViewById(R.id.userImg);
-        if (UserUtil.imageProfile != null){
-            Glide.with(userImg.getContext())
-                    .asBitmap()
-                    .load(UserUtil.imageProfile)
-                    .circleCrop()
-                    .into(userImg);
-        } else {
-            Log.e("userprofile image profile", "null");
-        }
+//        if (UserUtil.imageProfile != null){
+//            Glide.with(userImg.getContext())
+//                    .asBitmap()
+//                    .load(UserUtil.imageProfile)
+//                    .circleCrop()
+//                    .into(userImg);
+//        } else {
+//            Log.e("userprofile image profile", "null");
+//        }
 
         Log.e("userprofile", UserUtil.email+" "+UserUtil.fullName+" "+UserUtil.address+" "+UserUtil.birthDate+" "+UserUtil.cpf+" "+UserUtil.phone);
         buttonEditProfile = view.findViewById(R.id.openEditProfile);

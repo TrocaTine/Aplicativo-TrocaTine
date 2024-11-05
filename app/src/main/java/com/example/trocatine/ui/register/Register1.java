@@ -87,18 +87,18 @@ public class Register1 extends AppCompatActivity {
         }
 
         if (!hasError) {
-            chamarAPI_Retrofit(email.getText().toString());
+            saveApiUser(email.getText().toString());
             Intent intent = new Intent(Register1.this, Register2.class);
             Bundle dados = new Bundle();
             dados.putString("email", email.getText().toString());
             dados.putString("password", password.getText().toString());
             dados.putString("phone", phone.getText().toString());
-
+            saveFirebaseUser(email.getText().toString(), password.getText().toString());
             intent.putExtras(dados);
             startActivity(intent);
         }
     }
-    private void salvarLogin(String emailStr, String senhaStr) {
+    private void saveFirebaseUser(String emailStr, String senhaStr) {
         //fazer o cadastro no firebase
         FirebaseAuth auth = FirebaseAuth.getInstance();
         auth.createUserWithEmailAndPassword(emailStr, senhaStr).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -112,14 +112,15 @@ public class Register1 extends AppCompatActivity {
                     FirebaseUser user = auth.getCurrentUser();
                     UserProfileChangeRequest profileChangeRequest= new UserProfileChangeRequest.Builder()
                             .setDisplayName("nome provisório")
-                            .setPhotoUri(Uri.parse("https://www.vagalume.com.br/bruno-mars/images/bruno-mars.webp"))
                             .build();
 
                     user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                                finish();
+                                Log.e("cadastro firebase", "deu green");
+                            }else {
+                                Log.e("nao deu certo firebase", "aaa");
                             }
                         }
                     });
@@ -128,7 +129,7 @@ public class Register1 extends AppCompatActivity {
         });
     }
 
-    private void chamarAPI_Retrofit(String email) {
+    private void saveApiUser(String email) {
         String API = "https://api-spring-boot-trocatine.onrender.com/";
         retrofit = new Retrofit.Builder()
                 .baseUrl(API)

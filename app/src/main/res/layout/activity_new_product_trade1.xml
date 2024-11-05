@@ -10,7 +10,7 @@
         android:id="@+id/button_save"
         android:layout_width="297dp"
         android:layout_height="45dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="84dp"
         android:background="@drawable/button_fill"
         android:onClick="onClickNext"
         android:text="Próximo"
@@ -91,19 +91,19 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.221"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView10"
         app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
     <TextView
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:text="Esses são os campos que definirão o produto"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.38"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/productDescription"
         app:layout_constraintTop_toBottomOf="@+id/productDescription" />
 
     <ImageView
@@ -139,18 +139,6 @@
         android:src="@drawable/icon_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/spinnerCategory"
-        android:layout_width="314dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="32dp"
-        android:entries="@array/spinner_category"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
 
     <TextView
         android:id="@+id/errorTextTitle"

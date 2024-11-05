@@ -33,7 +33,7 @@
             android:id="@+id/buttonTrade"
             android:layout_width="304dp"
             android:layout_height="51dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="56dp"
             android:background="@drawable/button_border"
             android:drawableStart="@drawable/icon_arrows_trade"
             android:drawableTint="@color/seaGreen"
@@ -44,7 +44,7 @@
             android:textColor="@color/seaGreen"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
@@ -52,13 +52,13 @@
             android:id="@+id/productDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="48dp"
             android:text="Escolha o tipo do anúncio"
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/imageView10"
             app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
         <ImageView
@@ -89,9 +89,9 @@
             android:id="@+id/imageView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
             android:layout_marginTop="44dp"
             android:src="@drawable/flow_new_product1"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -99,10 +99,9 @@
             android:id="@+id/textView20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:text="Selecione uma das opções abaixo:"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/productDescription"
             app:layout_constraintTop_toBottomOf="@+id/productDescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

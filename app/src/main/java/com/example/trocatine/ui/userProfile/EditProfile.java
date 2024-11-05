@@ -22,7 +22,7 @@ import com.example.trocatine.R;
 import com.example.trocatine.api.repository.UsersRepository;
 import com.example.trocatine.api.requestDTO.user.EditPersonalInformationRequestDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
-import com.example.trocatine.ui.database.DatabaseCamera;
+import com.example.trocatine.database.DatabaseCamera;
 import com.example.trocatine.util.UserUtil;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -186,6 +186,7 @@ public class EditProfile extends AppCompatActivity {
                 RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), imageBitmap);
                 roundedBitmapDrawable.setCircular(true);
                 userImage.setImageDrawable(roundedBitmapDrawable);
+                DatabaseCamera databaseCamera = new DatabaseCamera();
                 uploadPhotoToFirebase(imageBitmap);
             }
         }
@@ -198,7 +199,7 @@ public class EditProfile extends AppCompatActivity {
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storage.getReference("userImages")
-                .child("foto" + System.currentTimeMillis() + ".jpeg" + "=" + UserUtil.email)
+                .child("foto.jpeg" + "=" + UserUtil.email)
                 .putBytes(databyte)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override

@@ -20,7 +20,7 @@ import com.example.trocatine.api.repository.ProductRepository;
 import com.example.trocatine.api.requestDTO.product.SaveFavoriteProductRequestDTO;
 import com.example.trocatine.api.requestDTO.product.UnfavoriteProductRequestDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
-import com.example.trocatine.ui.database.DatabaseCamera;
+import com.example.trocatine.database.DatabaseCamera;
 import com.example.trocatine.ui.home.HomeNavBar;
 import com.example.trocatine.ui.userProfile.OthersUserProfile;
 import com.example.trocatine.util.ProductUtil;

@@ -31,7 +31,7 @@
             android:name=".ui.buy_or_trade.buy.Card.Buy3NewCard"
             android:exported="false" />
         <activity
-            android:name=".ui.buy_or_trade.buy.item_question"
+            android:name=".ui.product.item_question"
             android:exported="false" />
         <activity
             android:name=".ui.product.testeee"
@@ -49,7 +49,7 @@
             android:name=".ui.product.newProduct.trade.NewProductTrade3Camera"
             android:exported="false" />
         <activity
-            android:name=".ui.notifications.Notifications"
+            android:name=".ui.notifications.NotificationsView"
             android:exported="false" />
         <activity
             android:name=".ui.trocadinha.TrocadinhasMoreDetails"
@@ -88,7 +88,7 @@
             android:name=".ui.footer.Footer"
             android:exported="false" />
         <activity
-            android:name=".ui.product.Cart.card_cart_product"
+            android:name=".ui.Cart.card_cart_product"
             android:exported="false" />
         <activity
             android:name=".ui.buy_or_trade.buy.Card.Buy4PurchaseMade"

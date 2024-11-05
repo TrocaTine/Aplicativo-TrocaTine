@@ -1,4 +1,4 @@
-package com.example.trocatine.ui.database;
+package com.example.trocatine.database;
 
 import android.app.Activity;
 import android.content.Context;
@@ -74,6 +74,27 @@ public class DatabaseCamera {
                                 .centerCrop()
                                 .into(imageView);
                         Log.e("imagem do produto", "url da imagem" + uri.toString());
+
+                    } else {
+                        Log.w("downloadImageFromFirebase", "A Activity não está mais ativa, imagem não pode ser carregada.");
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("downloadImageFromFirebase", "Erro ao baixar imagem: " + e.getMessage());
+                });
+    }
+    public static void downloadGaleriaUserProfile(Context context, ImageView imageView, String email) {
+        String imagePath = "foto.jpeg=" + email;
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("userImages/"+imagePath);
+        storageRef.getDownloadUrl()
+                .addOnSuccessListener(uri -> {
+                    if (context instanceof Activity && !((Activity) context).isFinishing() && !((Activity) context).isDestroyed()) {
+                        Glide.with(context)
+                                .load(uri)
+                                .centerCrop()
+                                .circleCrop()
+                                .into(imageView);
+                        Log.e("imagem do usuario", "url da imagem" + uri.toString());
 
                     } else {
                         Log.w("downloadImageFromFirebase", "A Activity não está mais ativa, imagem não pode ser carregada.");

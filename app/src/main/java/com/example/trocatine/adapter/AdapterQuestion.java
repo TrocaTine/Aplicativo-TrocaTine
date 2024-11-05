@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.RecycleViewModels.Question;
-import com.example.trocatine.ui.database.DatabaseCamera;
 
 
 import java.util.List;
@@ -38,10 +37,8 @@ public class AdapterQuestion  extends RecyclerView.Adapter<AdapterQuestion.ViewH
     public void onBindViewHolder(@NonNull AdapterQuestion.ViewHolder holder, int position) {
 
         Question question = listQuestion.get(position);
-        DatabaseCamera databaseCamera = new DatabaseCamera();
         holder.userName.setText(question.getUserName());
         holder.text.setText(question.getText());
-        databaseCamera.downloadGaleriaProduct(holder.itemView.getContext(), holder.userImage, String.valueOf(question.getEmail()));
     }
     public int getItemCount() {
         return listQuestion.size();

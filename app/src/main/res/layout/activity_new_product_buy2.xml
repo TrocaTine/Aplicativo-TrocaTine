@@ -33,26 +33,26 @@
         android:id="@+id/productDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="44dp"
         android:text="Selecione o valor das tags"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.277"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView10"
         app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
     <Spinner
         android:id="@+id/spinnerSize"
         android:layout_width="314dp"
         android:layout_height="41dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="48dp"
         android:entries="@array/spinner_size"
         app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintHorizontal_bias="0.525"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/spinnerCategory"
         app:layout_constraintTop_toBottomOf="@+id/spinnerCategory" />
 
     <TextView
@@ -91,8 +91,8 @@
         android:entries="@array/spinner_quality"
         app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintHorizontal_bias="0.525"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/spinnerSize"
         app:layout_constraintTop_toBottomOf="@+id/spinnerSize" />
 
     <TextView
@@ -102,19 +102,20 @@
         android:layout_marginTop="16dp"
         android:text="As tags são para que seu produto seja detalhado e alcance mais clientes!"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/productDescription"
         app:layout_constraintTop_toBottomOf="@+id/productDescription" />
 
     <Spinner
         android:id="@+id/spinnerCategory"
         android:layout_width="314dp"
         android:layout_height="41dp"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="44dp"
         android:entries="@array/spinner_color"
-        app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintHorizontal_bias="0.525"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView20"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 </androidx.constraintlayout.widget.ConstraintLayout>

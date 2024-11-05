@@ -25,18 +25,18 @@
             app:layout_constraintTop_toTopOf="@+id/searchBar" />
 
         <Button
-            android:id="@+id/buttonTrade2"
+            android:id="@+id/buttonListProductTrade"
             android:layout_width="77dp"
             android:layout_height="35dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/button_buy_trade"
             android:drawableStart="@drawable/icon_arrows_trade"
             android:padding="8dp"
             android:text="Trocar"
             android:textAllCaps="false"
             android:textColor="#5D564F"
-            app:layout_constraintStart_toEndOf="@+id/buttonBuy2"
+            app:layout_constraintStart_toEndOf="@+id/buttonListProductBuy"
             app:layout_constraintTop_toBottomOf="@+id/initialText2" />
 
         <TextView
@@ -78,7 +78,7 @@
             app:srcCompat="@drawable/icon_notification" />
 
         <Button
-            android:id="@+id/buttonBuy2"
+            android:id="@+id/buttonListProductBuy"
             android:layout_width="95dp"
             android:layout_height="34dp"
             android:layout_marginStart="28dp"
@@ -110,8 +110,8 @@
             android:textColorHint="#9E9E9E"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/buttonBuy2"
-            app:layout_constraintTop_toBottomOf="@+id/buttonTrade2" />
+            app:layout_constraintStart_toStartOf="@+id/buttonListProductBuy"
+            app:layout_constraintTop_toBottomOf="@+id/buttonListProductTrade" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/productRv"

@@ -39,8 +39,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NewProductBuy2 extends AppCompatActivity {
     private Retrofit retrofit;
     private Spinner spinnerQuality, spinnerSize, spinnerCategory;
-    private static final int REQUEST_IMAGE_PICK = 1001;
-    private static final int REQUEST_IMAGE_CAPTURE = 1002;
     Uri selectedImageUri;
     String idProduto;
 

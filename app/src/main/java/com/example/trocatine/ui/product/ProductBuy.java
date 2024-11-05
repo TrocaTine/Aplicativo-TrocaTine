@@ -13,20 +13,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.AdapterQuestion;
 import com.example.trocatine.adapter.RecycleViewModels.Question;
 import com.example.trocatine.api.repository.ProductRepository;
+import com.example.trocatine.api.requestDTO.product.FindQuestionsByProductRequestDTO;
 import com.example.trocatine.api.requestDTO.product.SaveFavoriteProductRequestDTO;
+import com.example.trocatine.api.requestDTO.product.SaveQuestionsProductRequestDTO;
 import com.example.trocatine.api.requestDTO.product.UnfavoriteProductRequestDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
+import com.example.trocatine.api.responseDTO.product.FindQuestionsByProductResponseDTO;
+import com.example.trocatine.api.responseDTO.product.QuestionDTO;
 import com.example.trocatine.ui.buy_or_trade.buy.Buy1;
-import com.example.trocatine.ui.database.DatabaseCamera;
+import com.example.trocatine.database.DatabaseCamera;
 import com.example.trocatine.ui.home.HomeNavBar;
 import com.example.trocatine.ui.userProfile.OthersUserProfile;
 import com.example.trocatine.util.ProductUtil;
 import com.example.trocatine.util.UserUtil;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -45,7 +52,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ProductBuy extends AppCompatActivity {
     TextView productName, productDescription, productCreatedAt, productValue;
     String id;
-    ImageView buttonFavorite;
+    ImageView buttonFavorite, imgLoading, questionsNull;
     RecyclerView questionRv;
     List<Question> listQuestion = new ArrayList<>();
     Button buttonNewQuestion;
@@ -69,6 +76,12 @@ public class ProductBuy extends AppCompatActivity {
         productDescription = findViewById(R.id.productDescription);
         productCreatedAt = findViewById(R.id.productCreated);
         productValue = findViewById(R.id.listCardNumber);
+
+        imgLoading = findViewById(R.id.imgLoading);
+        Glide.with(this).load("https://loading.io/assets/img/p/articles/quality/clamp-threshold.gif").centerCrop().into(imgLoading);
+
+        questionsNull = findViewById(R.id.questionsNull);
+        questionsNull.setVisibility(View.INVISIBLE);
 
         Bundle dados = getIntent().getExtras();
         productValue.setText("R$ "+String.valueOf(dados.getDouble("value")));
@@ -100,9 +113,17 @@ public class ProductBuy extends AppCompatActivity {
                 View view = getLayoutInflater().inflate(R.layout.new_question_dialog, null, false);
                 dialog.setContentView(view);
                 dialog.show();
+                ImageView buttonAddQuestion = dialog.findViewById(R.id.buttonAddQuestion);
+                buttonAddQuestion.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        TextInputEditText question = dialog.findViewById(R.id.question);
+                        saveQuestion(UserUtil.email, UserUtil.password, Long.parseLong(id),question.getText().toString());
+                    }
+                });
             }
         });
-
+        listQuestion(questionRv, Long.parseLong(id));
     }
 
 
@@ -173,7 +194,6 @@ public class ProductBuy extends AppCompatActivity {
     }
     private void unFavoriteProduct(String email, long id) {
         String API = "https://api-spring-boot-trocatine.onrender.com/";
-        Log.e("unsave favorite", "token: "+UserUtil.token);
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
                     @Override
@@ -204,6 +224,111 @@ public class ProductBuy extends AppCompatActivity {
                 } else {
                     try {
                         Log.e("Erro", "Resposta não foi sucesso no favoritar: " + response.code() + " - " + response.errorBody().string()+"token: "+UserUtil.token);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
+                Log.e("ERRO no onFailure", throwable.getMessage());
+            }
+        });
+    }
+    private void saveQuestion(String email, String password, long idProduct, String message) {
+        String API = "https://api-mongodb-trocatine.onrender.com";
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        Request originalRequest = chain.request();
+                        Request newRequest = originalRequest.newBuilder()
+                                .header("Authorization", UserUtil.token)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ProductRepository productApi = retrofit.create(ProductRepository.class);
+        Call<StandardResponseDTO> call = productApi.saveQuestion(new SaveQuestionsProductRequestDTO(email,password, idProduct, message));
+        call.enqueue(new Callback<StandardResponseDTO>() {
+            @Override
+            public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "Pergunta adicionada", Toast.LENGTH_SHORT).show();
+                    Log.e("dados resgatados", response.body().getData().toString());
+                } else {
+                    try {
+                        Log.e("Erro", "Resposta não foi sucesso no pergunta: " + response.code() + " - " + response.errorBody().string()+"token: "+UserUtil.token);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
+                Log.e("ERRO no onFailure", throwable.getMessage());
+            }
+        });
+    }
+    private void listQuestion(RecyclerView recyclerView, long id) {
+        String API = "https://api-mongodb-trocatine.onrender.com";
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        Request originalRequest = chain.request();
+                        Request newRequest = originalRequest.newBuilder()
+                                .header("Authorization", UserUtil.token)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ProductRepository productApi = retrofit.create(ProductRepository.class);
+        Call<StandardResponseDTO> call = productApi.findQuestions(new FindQuestionsByProductRequestDTO(UserUtil.email, UserUtil.password, id));
+        call.enqueue(new Callback<StandardResponseDTO>() {
+            @Override
+            public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    imgLoading.setVisibility(View.INVISIBLE);
+                    // Obtendo a lista de perguntas dentro do objeto de resposta
+                    FindQuestionsByProductResponseDTO result = new Gson().fromJson(
+                            new Gson().toJson(response.body().getData()), FindQuestionsByProductResponseDTO.class
+                    );
+                    List<Question> questions = new ArrayList<>();
+                    for (QuestionDTO questionDTO : result.getQuestionDTOList()) {
+                        questions.add(new Question(
+                                questionDTO.getId(),
+                                questionDTO.getMessage(),
+                                questionDTO.getId_user()
+                        ));
+                    }
+                    if (questions.isEmpty()){
+                        questionsNull.setVisibility(View.VISIBLE);
+                    }
+                    recyclerView.setAdapter(new AdapterQuestion(questions));
+                    Log.e("dados resgatados", response.body().getData().toString());
+                } else {
+                    try {
+                        Log.e("Erro", "Resposta não foi sucesso no list products name: " + response.code() + " - " + response.errorBody().string()+"token: "+UserUtil.token);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
