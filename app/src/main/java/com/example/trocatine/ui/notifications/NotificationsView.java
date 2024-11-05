@@ -15,7 +15,7 @@ import android.view.View;
 
 import com.example.trocatine.R;
 
-public class Notifications extends AppCompatActivity {
+public class NotificationsView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,13 +23,13 @@ public class Notifications extends AppCompatActivity {
         setContentView(R.layout.activity_notifications);
     }
     public void notificar() {
-        Intent intent = new Intent(getApplicationContext(), Notifications.class);
+        Intent intent = new Intent(getApplicationContext(), NotificationsView.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "channel_id")
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle("Título da notificação")
-                .setContentText("Deu green! Clique e receba  R$ 8,99")
+                .setSmallIcon(R.drawable.icone)
+                .setContentTitle("Você recebeu uma solicitação de troca!")
+                .setContentText("Entre no app e saiba mais!")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentIntent(pendingIntent);
         NotificationChannel channel = new NotificationChannel("channel_id", "channel_name", NotificationManager.IMPORTANCE_HIGH);

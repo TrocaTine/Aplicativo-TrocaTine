@@ -17,7 +17,7 @@
             android:layout_width="99dp"
             android:layout_height="28dp"
             android:layout_marginStart="189dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="28dp"
             android:background="@drawable/button_border_orange"
             android:onClick="onClickNewQuestion"
             android:text="Faça uma pergunta!"
@@ -25,9 +25,9 @@
             android:textColor="@color/orange"
             android:textSize="9sp"
             app:layout_constraintEnd_toEndOf="@+id/productCreated"
-            app:layout_constraintHorizontal_bias="0.906"
+            app:layout_constraintHorizontal_bias="0.89"
             app:layout_constraintStart_toEndOf="@+id/textView21"
-            app:layout_constraintTop_toBottomOf="@+id/buttonAddCart" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonRemoveTrocadinha" />
 
         <TextView
             android:id="@+id/openUserProfile"
@@ -56,7 +56,7 @@
             app:layout_constraintTop_toBottomOf="@+id/photoProduct" />
 
         <Button
-            android:id="@+id/buttonAddCart"
+            android:id="@+id/buttonRemoveTrocadinha"
             android:layout_width="282dp"
             android:layout_height="43dp"
             android:layout_marginTop="12dp"
@@ -68,7 +68,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonBuyNow" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonAddTrocadinha" />
 
         <ImageView
             android:id="@+id/photoProduct"
@@ -100,7 +100,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
         <Button
-            android:id="@+id/buttonBuyNow"
+            android:id="@+id/buttonAddTrocadinha"
             android:layout_width="282dp"
             android:layout_height="43dp"
             android:layout_marginTop="32dp"
@@ -116,9 +116,9 @@
 
         <ImageView
             android:id="@+id/buttonFavorite"
-            android:layout_width="81dp"
-            android:layout_height="96dp"
-            android:layout_marginTop="172dp"
+            android:layout_width="65dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="216dp"
             android:layout_marginEnd="4dp"
             app:layout_constraintEnd_toEndOf="@+id/photoProduct"
             app:layout_constraintTop_toTopOf="@+id/photoProduct"
@@ -201,7 +201,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="144dp"
+            android:layout_marginTop="160dp"
             android:text="Perguntas"
             android:textColor="@color/orange"
             android:textStyle="bold"
@@ -211,12 +211,36 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/questionRv"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginTop="13dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView21"
             tools:listitem="@layout/activity_item_question" />
+
+        <ImageView
+            android:id="@+id/imgLoading"
+            android:layout_width="108dp"
+            android:layout_height="94dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="44dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.275"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/questionRv"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/questionsNull"
+            android:layout_width="220dp"
+            android:layout_height="228dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/questionRv"
+            app:srcCompat="@drawable/questions_null" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

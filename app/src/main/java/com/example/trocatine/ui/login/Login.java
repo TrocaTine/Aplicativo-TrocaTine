@@ -134,6 +134,7 @@ public class Login extends AppCompatActivity {
                     UserUtil.email = email;
                     dadosParaHome.putString("token", token);
                     UserUtil.token = token;
+                    UserUtil.password = password;
                     Log.e("token", token);
                     intent.putExtras(dadosParaHome);
                     Log.e("LOGIIIJNN", "Funfou deu green");

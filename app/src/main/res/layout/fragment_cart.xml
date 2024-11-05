@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.product.Cart.CartFragment">
+    tools:context=".ui.Cart.CartFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,15 +14,15 @@
             android:id="@+id/button_buyCart"
             android:layout_width="297dp"
             android:layout_height="45dp"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/button_fill"
             android:onClick="onClickNext"
             android:text="Comprar carrinho"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/totalPriceCart" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/textView7"
@@ -49,10 +49,11 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cartProductRv"
-            android:layout_width="410dp"
+            android:layout_width="match_parent"
             android:layout_height="551dp"
             android:layout_marginTop="16dp"
             android:background="@color/backgroundBeige"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7"
             tools:listitem="@layout/activity_card_cart_product" />
@@ -62,13 +63,13 @@
             android:layout_width="165dp"
             android:layout_height="29dp"
             android:layout_marginStart="56dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginBottom="65dp"
             android:text="Total: R$00.00"
             android:textColor="@color/seaGreen"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cartProductRv" />
+            app:layout_constraintBottom_toBottomOf="@+id/button_buyCart"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

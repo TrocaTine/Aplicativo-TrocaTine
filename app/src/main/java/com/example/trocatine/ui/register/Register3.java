@@ -240,6 +240,7 @@ public class Register3 extends AppCompatActivity {
                     dadosParaHome.putString("usuario", email);
                     dadosParaHome.putString("token", token);
                     UserUtil.token = token;
+                    UserUtil.password = password;
                     Log.e("token:", token);
                     intent.putExtras(dadosParaHome);
                     finish();

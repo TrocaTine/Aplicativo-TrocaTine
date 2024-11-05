@@ -5,11 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="13dp"
-    tools:context=".ui.product.Cart.card_cart_product">
+    app:cardCornerRadius="15dp"
+
+    tools:context=".ui.Cart.card_cart_product">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/backgroundBeige">
 
         <ImageButton
             android:id="@+id/decreaseQuantity"

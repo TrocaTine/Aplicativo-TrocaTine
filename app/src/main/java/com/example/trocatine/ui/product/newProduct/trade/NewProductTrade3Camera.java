@@ -80,7 +80,6 @@ public class NewProductTrade3Camera extends AppCompatActivity {
 
             if (imageBitmap != null) {
                 RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), imageBitmap);
-                roundedBitmapDrawable.setCircular(true);
                 productImg.setImageDrawable(roundedBitmapDrawable);
                 uploadPhotoToFirebase(imageBitmap, ProductUtil.idProduct);
                 Log.e("id da imagem", ProductUtil.idProduct);

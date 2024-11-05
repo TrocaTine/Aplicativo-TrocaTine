@@ -1,4 +1,4 @@
-package com.example.trocatine.ui.product.Cart;
+package com.example.trocatine.ui.Cart;
 
 import android.os.Bundle;
 

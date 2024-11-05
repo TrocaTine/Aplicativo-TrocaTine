@@ -23,11 +23,11 @@
         android:id="@+id/textView20"
         android:layout_width="311dp"
         android:layout_height="40dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:text="Essa foto representara seu produto na venda, tire em um ângulo e iluminação boa!"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/productDescription"
         app:layout_constraintTop_toBottomOf="@+id/productDescription" />
 
     <ImageView
@@ -51,8 +51,8 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.193"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.009"
+        app:layout_constraintStart_toStartOf="@+id/imageView10"
         app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
     <ImageView
@@ -84,13 +84,12 @@
         android:id="@+id/buttonFoto"
         android:layout_width="293dp"
         android:layout_height="52dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/button_border"
         android:onClick="onClickFoto"
         android:text="Foto"
         android:textColor="@color/seaGreen"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/productImg" />
 
@@ -98,9 +97,9 @@
         android:id="@+id/productImg"
         android:layout_width="313dp"
         android:layout_height="294dp"
-        android:layout_marginTop="228dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20"
         app:srcCompat="@drawable/img_take_photo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

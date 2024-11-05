@@ -1,4 +1,4 @@
-package com.example.trocatine.ui.buy_or_trade.buy;
+package com.example.trocatine.ui.Cart;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.trocatine.R;
 
-public class item_question extends AppCompatActivity {
+public class card_cart_product extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_question);
+        setContentView(R.layout.activity_card_cart_product);
     }
 }

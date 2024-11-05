@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.RecycleViewModels.Product;
-import com.example.trocatine.ui.database.DatabaseCamera;
+import com.example.trocatine.database.DatabaseCamera;
 import com.example.trocatine.ui.product.EditProduct;
 import com.example.trocatine.util.ProductUtil;
 

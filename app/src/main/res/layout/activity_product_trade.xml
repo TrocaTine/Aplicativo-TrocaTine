@@ -27,7 +27,7 @@
             app:layout_constraintEnd_toEndOf="@+id/productCreated"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/textView21"
-            app:layout_constraintTop_toBottomOf="@+id/buttonBuyNow" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonAddTrocadinha" />
 
         <TextView
             android:id="@+id/openUserProfile"
@@ -85,7 +85,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
         <Button
-            android:id="@+id/buttonBuyNow"
+            android:id="@+id/buttonAddTrocadinha"
             android:layout_width="282dp"
             android:layout_height="43dp"
             android:layout_marginTop="32dp"
@@ -191,7 +191,7 @@
             android:textColor="@color/orange"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/listCardNumber"
-            app:layout_constraintTop_toBottomOf="@+id/buttonBuyNow" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonAddTrocadinha" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/questionRv"

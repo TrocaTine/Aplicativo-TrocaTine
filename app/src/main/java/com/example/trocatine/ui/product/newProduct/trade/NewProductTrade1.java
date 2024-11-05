@@ -59,9 +59,7 @@ public class NewProductTrade1 extends AppCompatActivity {
         }
 
         if (!hasError) {
-            spinnerCategory = findViewById(R.id.spinnerCategory);
 
-            ProductUtil.categories.add(spinnerCategory.getSelectedItem().toString());
             Intent intent = new Intent(NewProductTrade1.this, NewProductTrade2.class);
             ProductUtil.name = inputTitle.getText().toString();
             ProductUtil.description = inputDescription.getText().toString();
