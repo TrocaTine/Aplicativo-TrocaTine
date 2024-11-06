@@ -1,6 +1,7 @@
 package com.example.trocatine.adapter;
 
 import android.content.Intent;
+import android.media.audiofx.BassBoost;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +28,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.JsonParseException;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -35,6 +38,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class AdapterCommunity extends RecyclerView.Adapter<AdapterCommunity.ViewHolder>{
     private List<Community> listCommunity;
     private NavController navController;
+    private boolean comeIn = false;
     String nameUser1, nameUser2, chatKey;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://trocatine-a226a-default-rtdb.firebaseio.com/");
 
@@ -73,8 +77,44 @@ public class AdapterCommunity extends RecyclerView.Adapter<AdapterCommunity.View
                     Log.e("FRAGMENT", "entrou");
 
 
+                    databaseReference.child("comunity").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            listCommunity.clear();
+                            comeIn = false;
 
-                    navController.navigate(R.id.community_to_community_two);
+                            for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                                String name = snapshot1.child("name").getValue(String.class);
+                                if (name != null && name.equals(community.getName())) {
+                                    ChatCommunityUtil.chatKey = snapshot1.getKey();
+                                    Log.e("name com", "iffffff");
+
+                                    for (DataSnapshot userSnapshot : snapshot1.child("users").getChildren()) {
+
+                                        if (userSnapshot.getKey().equals(ChatCommunityUtil.userNickname)) {
+                                            comeIn = true;
+                                        }
+                                    }
+                                } else {
+                                    Log.e("name com", "name" + name + " " + community.getName());
+                                }
+                            }
+                            navController.navigate(R.id.community_to_community_two);
+//                            if (comeIn) {
+//                                Log.e("name com", "name" + navController + " " + community.getName());
+//                                navController.navigate(R.id.community_to_community_chat);
+//                            } else {
+//                                Log.e("name com", "name" + navController + " " + community.getName());
+//                                navController.navigate(R.id.community_to_community_two);
+//                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Log.e("CHAT COMUNITY", "Erro ao carregar dados: " + error.getMessage());
+                        }
+                    });
+
                 }else{
                     nameUser2 = community.getName();
                     nameUser1 = UserUtil.userName;
