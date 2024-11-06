@@ -1,0 +1,43 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <!-- Profile Image -->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/default_user_img" />
+
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/profileImage"
+        android:layout_alignTop="@id/profileImage"
+        android:text="moscachiqui9"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/commentDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userName"
+        android:layout_alignStart="@id/userName"
+        android:layout_marginTop="4dp"
+        android:text="Lorem ipsum dolor sit amet res aut impedit nisi est consequatur itaque ut eaque unde. Quo accusantium dolore aut"
+        android:textColor="@android:color/black"
+        android:textSize="14sp" />
+
+
+
+</RelativeLayout>

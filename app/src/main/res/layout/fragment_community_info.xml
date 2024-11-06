@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.community.CommunityInfoFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:layout_margin="30dp">
+
+        <!-- Community Icon -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/communityIcon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/default_user_img" />
+
+        <!-- Community Title -->
+        <TextView
+            android:id="@+id/communityTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/communityIcon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="Roupas infantis | 🌎 país"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <!-- Info Card -->
+        <LinearLayout
+            android:id="@+id/infoCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/communityTitle"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_border">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:weightSum="2">
+
+                <!-- Creation Date Section -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/data"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Data de criação"
+                        android:textSize="14sp"
+                        android:textColor="@android:color/darker_gray" />
+
+                    <TextView
+                        android:id="@+id/creationDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="11/02/208"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Participant Count Section -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/participantes"
+                         />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Participantes"
+                        android:textSize="14sp"
+                        android:textColor="@android:color/darker_gray" />
+
+                    <TextView
+                        android:id="@+id/participantCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="41"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Community Description Label -->
+        <TextView
+            android:id="@+id/descriptionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/infoCard"
+            android:layout_marginTop="16dp"
+            android:text="Descrição:"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="16sp" />
+
+        <!-- Community Description -->
+        <TextView
+            android:id="@+id/communityDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/descriptionLabel"
+            android:layout_marginTop="4dp"
+            android:text="Lorem ipsum dolor sit amet. Et dolorem aspernatur..."
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+
+        <!-- Leave Community Button -->
+        <Button
+            android:id="@+id/leaveCommunityButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_border"
+            android:drawableLeft="@drawable/delete"
+            android:drawablePadding="8dp"
+            android:gravity="start|center"
+            android:paddingLeft="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:text="Sair da comunidade"
+            android:textColor="@color/seaGreen" />
+
+    </RelativeLayout>
+
+
+
+</FrameLayout>
