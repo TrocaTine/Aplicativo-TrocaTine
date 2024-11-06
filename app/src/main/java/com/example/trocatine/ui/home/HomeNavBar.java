@@ -34,14 +34,14 @@ public class HomeNavBar extends AppCompatActivity {
         String usuario = UserUtil.email;
         String token = UserUtil.token;
 
-        Bundle bundle = new Bundle();
-        bundle.putString("usuario", usuario);
-        bundle.putString("token", token);
-        Log.e("TESTE NO HOME", "email" + usuario+ "- token" + token);
+//        Bundle bundle = new Bundle();
+//        bundle.putString("usuario", usuario);
+//        bundle.putString("token", token);
+//        Log.e("TESTE NO HOME", "email" + usuario+ "- token" + token);
         navController.navigate(R.id.menu_home);
 
     }
-private void initNavigation() {
+protected void initNavigation() {
     BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
     NavigationUI.setupWithNavController(bottomNavigationView, navController);
 }

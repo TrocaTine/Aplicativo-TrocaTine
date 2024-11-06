@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.community.CommunityComeInFragment">
+
+    <RelativeLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:paddingStart="12sp"
+            android:paddingEnd="2dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/baseline_arrow_back_ios_24"
+            android:id="@+id/backBtn"
+            />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/default_user_img"
+            android:layout_toEndOf="@+id/backBtn"
+            android:id="@+id/profilePic"/>
+
+        <LinearLayout
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toEndOf="@id/profilePic"
+            android:layout_centerVertical="true">
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User Name"
+                android:maxLines="1"
+                android:textColor="#424"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+    <View
+        android:layout_below="@+id/topBar"
+        android:id="@+id/hr"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:background="@color/orange"></View>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@+id/hr"
+        android:layout_above="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/chattingRecyclerview"/>
+
+        <Button
+            android:id="@+id/bottomBar"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/button_fill"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:text="Entrar na comunidade"
+            android:textColor="@color/backgroundBeige"
+
+            />
+
+
+</RelativeLayout>

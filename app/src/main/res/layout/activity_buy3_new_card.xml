@@ -11,7 +11,7 @@
         android:id="@+id/buttonAddNewCard"
         android:layout_width="304dp"
         android:layout_height="51dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/button_border"
         android:drawableStart="@android:drawable/ic_input_add"
         android:drawableTint="@color/seaGreen"
@@ -22,6 +22,7 @@
         android:textColor="@color/seaGreen"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardRv" />
 
@@ -54,8 +55,7 @@
         android:layout_height="42dp"
         android:layout_marginTop="20dp"
         android:text="Selecione o cartão que deseja usar, se não houver nenhum, cadastre."
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/productDescription"
         app:layout_constraintTop_toBottomOf="@+id/productDescription" />
 
     <ImageView
@@ -78,16 +78,16 @@
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.214"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView9"
         app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cardRv"
-        android:layout_width="294dp"
-        android:layout_height="290dp"
+        android:layout_width="match_parent"
+        android:layout_height="363dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
@@ -95,8 +95,8 @@
 
     <ImageView
         android:id="@+id/imgLoading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="76dp"
+        android:layout_height="82dp"
         android:layout_marginStart="82dp"
         android:layout_marginTop="92dp"
         android:layout_marginEnd="84dp"

@@ -1,5 +1,6 @@
 package com.example.trocatine.adapter;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.RecycleViewModels.Card;
+import com.example.trocatine.api.requestDTO.product.UnfavoriteProductRequestDTO;
+import com.example.trocatine.ui.buy_or_trade.buy.Card.Buy4PurchaseMade;
 import com.example.trocatine.util.CardUtil;
+import com.example.trocatine.util.UserUtil;
 
 import java.util.List;
 
@@ -45,17 +49,18 @@ public class AdapterCard extends RecyclerView.Adapter<AdapterCard.ViewHolder>{
 
         if (card != null) {
             holder.listCardNumber.setText(card.getCardNumber());
-            holder.listCardCvv.setText(card.getCvv());
-            holder.listCardFullName.setText(card.getFullName());
+            holder.listCardCvv.setText(String.valueOf(card.getCvv()));
+            holder.listCardFullName.setText(UserUtil.fullName);
             holder.listCardExpirationDate.setText(String.valueOf(card.getExpirationDate()));
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CardUtil.fullName = holder.listCardFullName.getText().toString();
                 CardUtil.cardNumber = holder.listCardNumber.getText().toString();
                 CardUtil.expirationDate = holder.listCardExpirationDate.getText().toString();
                 CardUtil.cvvNumber = holder.listCardCvv.getText().toString();
+                Intent intent = new Intent(v.getContext(), Buy4PurchaseMade.class);
+                v.getContext().startActivity(intent);
                 Log.e("card", "cartao setado");
             }
         });
@@ -63,12 +68,12 @@ public class AdapterCard extends RecyclerView.Adapter<AdapterCard.ViewHolder>{
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView listCardNumber, listCardCvv, listCardFullName, listCardExpirationDate;
+        TextView listCardNumber, listCardCvv, listCardExpirationDate, listCardFullName;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            listCardFullName = itemView.findViewById(R.id.listCardFullName);
             listCardCvv = itemView.findViewById(R.id.listCardCvv);
             listCardNumber = itemView.findViewById(R.id.listCardNumber);
-            listCardFullName = itemView.findViewById(R.id.listCardFullName);
             listCardExpirationDate = itemView.findViewById(R.id.listCardExpirationDate);
         }
     }

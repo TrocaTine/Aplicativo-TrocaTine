@@ -3,22 +3,22 @@ package com.example.trocatine.api.responseDTO.user;
 import com.example.trocatine.api.models.AdressDTO;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 public class FindPersonalInformationResponseDTO {
-    private Set<String> phone;
+    private List<String> phone;
     private String cpf;
     private String birthDate;
-    private Set<AdressDTO> addresses;
+    private List<AdressDTO> addresses;
     private String fullName;
     private String nickname;
     private String email;
 
-    public Set<String> getPhone() {
+    public List<String> getPhone() {
         return phone;
     }
 
-    public void setPhone(Set<String> phone) {
+    public void setPhone(List<String> phone) {
         this.phone = phone;
     }
 
@@ -38,11 +38,11 @@ public class FindPersonalInformationResponseDTO {
         this.birthDate = birthDate;
     }
 
-    public Set<AdressDTO> getAddresses() {
+    public List<AdressDTO> getAddresses() {
         return addresses;
     }
 
-    public void setAddresses(Set<AdressDTO> addresses) {
+    public void setAddresses(List<AdressDTO> addresses) {
         this.addresses = addresses;
     }
 
@@ -70,7 +70,7 @@ public class FindPersonalInformationResponseDTO {
         this.email = email;
     }
 
-    public FindPersonalInformationResponseDTO(Set<String> phone, String cpf, String birthDate, Set<AdressDTO> addresses, String fullName, String nickname, String email) {
+    public FindPersonalInformationResponseDTO(List<String> phone, String cpf, String birthDate, List<AdressDTO> addresses, String fullName, String nickname, String email) {
         this.phone = phone;
         this.cpf = cpf;
         this.birthDate = birthDate;

@@ -81,6 +81,7 @@ public class NewProductTrade1 extends AppCompatActivity {
 
     public void OnClickBack(View view) {
         Intent intent = new Intent(NewProductTrade1.this, HomeFragment.class);
+        finish();
         startActivity(intent);
     }
 //    private void findCategory() {

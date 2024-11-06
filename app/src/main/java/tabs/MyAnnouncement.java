@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.trocatine.R;
@@ -54,7 +55,8 @@ public class MyAnnouncement extends Fragment {
     private String mParam2;
     private RecyclerView productRv;
     List<Product> listProduct = new ArrayList<>();
-    ImageView imgLoading;
+    TextView textNotFound;
+    ImageView imgLoading, imgNotFound;
 
 
     public MyAnnouncement() {
@@ -94,6 +96,12 @@ public class MyAnnouncement extends Fragment {
         View view = inflater.inflate(R.layout.fragment_my_announcement, container, false);
         productRv = view.findViewById(R.id.productRv);
         productRv.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
+
+        imgNotFound = view.findViewById(R.id.imgNotFound);
+        imgNotFound.setVisibility(View.INVISIBLE);
+        textNotFound = view.findViewById(R.id.textNotFound);
+        textNotFound.setVisibility(View.INVISIBLE);
+
         //Populando a recycle view
         listProductByUser(productRv, UserUtil.token);
         AdapterMyProduct adapterMyProduct = new AdapterMyProduct(listProduct);
@@ -134,8 +142,18 @@ public class MyAnnouncement extends Fragment {
                 if (response.isSuccessful()) {
                     imgLoading.setVisibility(View.INVISIBLE);
                     List<Product> products = new Gson().fromJson(new Gson().toJson(response.body().getData()), new TypeToken<List<Product>>(){}.getType());
+                    if (products.isEmpty()){
+                        imgNotFound.setVisibility(View.VISIBLE);
+                        textNotFound.setVisibility(View.VISIBLE);
+                        Log.e("entrou no is empty", "entrou");
+                    }
                     recyclerView.setAdapter(new AdapterMyProduct(products));
                 } else {
+                    if (response.code() == 404){
+                        textNotFound.setVisibility(View.VISIBLE);
+                        imgNotFound.setVisibility(View.VISIBLE);
+                        imgLoading.setVisibility(View.INVISIBLE);
+                    }
                     try {
                         Log.e("Erro", "Resposta não foi sucesso no list products name: " + response.code() + " - " + response.errorBody().string()+"token: "+token);
                     } catch (IOException e) {

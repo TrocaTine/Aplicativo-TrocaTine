@@ -69,8 +69,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:boxStrokeColor="@android:color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textInputLayout3"
         app:layout_constraintTop_toBottomOf="@+id/errorTextStreet">
         >
@@ -88,10 +86,9 @@
         android:id="@+id/textInputLayout3"
         android:layout_width="149dp"
         android:layout_height="46dp"
-        android:layout_marginStart="48dp"
         android:layout_marginTop="8dp"
         app:boxStrokeColor="@android:color/black"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/errorTextStreet"
         app:layout_constraintTop_toBottomOf="@+id/errorTextStreet">
         >
 

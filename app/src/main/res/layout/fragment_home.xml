@@ -13,17 +13,6 @@
         android:layout_height="match_parent"
         android:background="@color/backgroundBeige">
 
-        <ImageButton
-            android:id="@+id/buttonFilter"
-            android:layout_width="25dp"
-            android:layout_height="23dp"
-            android:layout_marginEnd="11dp"
-            android:background="#FEFBF7"
-            android:src="@drawable/icon_filter"
-            app:layout_constraintBottom_toBottomOf="@+id/searchBar"
-            app:layout_constraintEnd_toEndOf="@+id/searchBar"
-            app:layout_constraintTop_toTopOf="@+id/searchBar" />
-
         <Button
             android:id="@+id/buttonListProductTrade"
             android:layout_width="77dp"

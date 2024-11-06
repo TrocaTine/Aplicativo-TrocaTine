@@ -29,6 +29,7 @@ import com.example.trocatine.api.repository.TrocadinhaRepository;
 import com.example.trocatine.api.responseDTO.trocadinha.FindTrocadinhaCountResponseDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.api.repository.ProductRepository;
+import com.example.trocatine.ui.notification.NotificationView;
 import com.example.trocatine.ui.trocadinha.TrocadinhasRank;
 import com.example.trocatine.util.UserUtil;
 import com.google.gson.Gson;
@@ -73,6 +74,8 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView productRv;
     private TextView initialText;
+    private boolean isBuySelected = false;
+    private boolean isTradeSelected = false;
     private Dialog dialog;
     private Button buttonCancel, buttonListBuy, buttonListTrade;
     private String token;
@@ -122,7 +125,6 @@ public class HomeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         productRv = view.findViewById(R.id.productRv);
-        buttonFilter = view.findViewById(R.id.buttonFilter);
         buttonNotification = view.findViewById(R.id.buttonNotification);
         buttonListBuy = view.findViewById(R.id.buttonListProductBuy);
         buttonListTrade = view.findViewById(R.id.buttonListProductTrade);
@@ -138,18 +140,40 @@ public class HomeFragment extends Fragment {
         AdapterProduct adapterProduct = new AdapterProduct(listProduct);
         productRv.setAdapter(adapterProduct);
         productRv.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
+        // Variáveis para controlar o estado dos botões
+
         buttonListBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listProductBuy(productRv);
+                if (!isBuySelected) {
+                    buttonListBuy.setBackgroundResource(R.drawable.button_buy_trade_selected);
+                    buttonListTrade.setBackgroundResource(R.drawable.button_buy_trade);
+                    isTradeSelected = false;
+                    listProductBuy(productRv);
+                } else {
+                    buttonListBuy.setBackgroundResource(R.drawable.button_buy_trade);
+                    listProducts(productRv, UserUtil.token);
+                }
+                isBuySelected = !isBuySelected;
             }
         });
+
         buttonListTrade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listProductTrade(productRv);
+                if (!isTradeSelected) {
+                    buttonListTrade.setBackgroundResource(R.drawable.button_buy_trade_selected);
+                    buttonListBuy.setBackgroundResource(R.drawable.button_buy_trade);
+                    isBuySelected = false;
+                    listProductTrade(productRv);
+                } else {
+                    buttonListTrade.setBackgroundResource(R.drawable.button_buy_trade);
+                    listProducts(productRv, UserUtil.token); // Chama a função padrão
+                }
+                isTradeSelected = !isTradeSelected; // Alterna o estado do botão de troca
             }
         });
+
         //Configurando o filtro
         dialog = new Dialog(view.getContext());
         dialog.setContentView(R.layout.card_filter);
@@ -157,12 +181,6 @@ public class HomeFragment extends Fragment {
         dialog.getWindow().setBackgroundDrawableResource(R.drawable.custom_dialog_bg);
         dialog.setCancelable(false);
         buttonCancel = dialog.findViewById(R.id.buttonCancel);
-        buttonFilter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.show();
-            }
-        });
         buttonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -224,13 +242,13 @@ public class HomeFragment extends Fragment {
             }
         });
         findTrocadinhaCount(UserUtil.email);
-//        buttonNotification.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getContext(), NotificationsView.class);
-//                startActivity(intent);
-//            }
-//        });
+        buttonNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), NotificationView.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 

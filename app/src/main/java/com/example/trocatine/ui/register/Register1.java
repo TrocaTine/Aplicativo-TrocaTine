@@ -111,7 +111,7 @@ public class Register1 extends AppCompatActivity {
                     //Atualizar o nome do usuario e foto
                     FirebaseUser user = auth.getCurrentUser();
                     UserProfileChangeRequest profileChangeRequest= new UserProfileChangeRequest.Builder()
-                            .setDisplayName("nome provisório")
+                            .setDisplayName(senhaStr)
                             .build();
 
                     user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {

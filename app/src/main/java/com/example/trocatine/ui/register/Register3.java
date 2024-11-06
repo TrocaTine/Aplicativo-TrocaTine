@@ -1,14 +1,17 @@
 package com.example.trocatine.ui.register;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.trocatine.R;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
@@ -17,6 +20,12 @@ import com.example.trocatine.api.models.LoginDTO;
 import com.example.trocatine.api.requestDTO.user.CreateUserRequestDTO;
 import com.example.trocatine.ui.home.HomeNavBar;
 import com.example.trocatine.util.UserUtil;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.io.IOException;
 
@@ -148,6 +157,11 @@ public class Register3 extends AppCompatActivity {
                 cityBundle = city.getText().toString();
                 cepBundle = cep.getText().toString();
 
+                UserUtil.state = state.getText().toString();
+                UserUtil.street = street.getText().toString();
+                UserUtil.city = city.getText().toString();
+                UserUtil.cep = cep.getText().toString();
+
                 birthDateBundle = dados.getString("birthDate");
 
                 assert birthDateBundle != null;
@@ -242,6 +256,7 @@ public class Register3 extends AppCompatActivity {
                     UserUtil.token = token;
                     UserUtil.password = password;
                     Log.e("token:", token);
+                    saveFirebaseRegister(UserUtil.password, UserUtil.email, UserUtil.password);
                     intent.putExtras(dadosParaHome);
                     finish();
                     startActivity(intent);
@@ -257,6 +272,34 @@ public class Register3 extends AppCompatActivity {
             @Override
             public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
                 Log.e("ERRO", "Falha na requisição: " + throwable.getMessage(), throwable);
+            }
+        });
+    }
+    private void saveFirebaseRegister(String nomeStr, String emailStr, String senhaStr) {
+        //fazer o cadastro no firebase
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        auth.createUserWithEmailAndPassword(emailStr, senhaStr).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                if (task.isSuccessful()) {
+                    Toast.makeText(Register3.this, "Cadastro efetuado", Toast.LENGTH_SHORT).show();
+
+                    //Atualizar o nome do usuario e foto
+                    FirebaseUser user = auth.getCurrentUser();
+                    UserProfileChangeRequest profileChangeRequest= new UserProfileChangeRequest.Builder()
+                            .setDisplayName(nomeStr)
+                            .setPhotoUri(Uri.parse("https://www.vagalume.com.br/bruno-mars/images/bruno-mars.webp"))
+                            .build();
+                    user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                finish();
+                            }
+                        }
+                    });
+                }
             }
         });
     }

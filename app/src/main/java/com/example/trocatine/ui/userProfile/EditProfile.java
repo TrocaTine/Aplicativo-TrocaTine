@@ -15,6 +15,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import com.example.trocatine.api.repository.UsersRepository;
 import com.example.trocatine.api.requestDTO.user.EditPersonalInformationRequestDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.database.DatabaseCamera;
+import com.example.trocatine.ui.RestrictedArea.RestrictedArea;
 import com.example.trocatine.util.UserUtil;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -48,6 +50,7 @@ public class EditProfile extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 1002;
     Uri selectedImageUri;
     ImageView userImage;
+    ImageButton buttonRestrictedArea;
     private DatabaseCamera database = new DatabaseCamera();
 
 
@@ -56,6 +59,7 @@ public class EditProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
+        buttonRestrictedArea = findViewById(R.id.buttonRestrictedArea);
 
         newEmail = findViewById(R.id.newEmail);
         newPhone = findViewById(R.id.newPhone);
@@ -73,6 +77,15 @@ public class EditProfile extends AppCompatActivity {
         newBirthdate.setText(UserUtil.birthDate);
 
         userImage = findViewById(R.id.productImg);
+
+        buttonRestrictedArea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EditProfile.this, RestrictedArea.class);
+                finish();
+                startActivity(intent);
+            }
+        });
     }
 
     public void onClickBack(View view) {
