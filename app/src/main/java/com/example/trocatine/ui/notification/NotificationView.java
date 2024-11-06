@@ -1,10 +1,9 @@
-package com.example.trocatine.ui.buy_or_trade.buy.Card;
+package com.example.trocatine.ui.notification;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,8 +11,11 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.trocatine.R;
-import com.example.trocatine.adapter.AdapterCard;
-import com.example.trocatine.adapter.RecycleViewModels.Card;
+import com.example.trocatine.adapter.AdapterNotification;
+import com.example.trocatine.adapter.AdapterProduct;
+import com.example.trocatine.adapter.RecycleViewModels.Notification;
+import com.example.trocatine.adapter.RecycleViewModels.Product;
+import com.example.trocatine.api.repository.NotificationRepository;
 import com.example.trocatine.api.repository.ProductRepository;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.util.UserUtil;
@@ -33,32 +35,38 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Buy3NewCard extends AppCompatActivity {
-    RecyclerView cardRv;
-    ImageView imgLoading;
-    List<Card> listCard = new ArrayList<>();
+public class NotificationView extends AppCompatActivity {
+    RecyclerView notificationRv;
+    ImageView imgLoading, backSet;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buy3_new_card);
-        imgLoading = findViewById(R.id.imgLoading);
-        cardRv = findViewById(R.id.cardRv);
-        AdapterCard adapterCard = new AdapterCard(listCard);
-        cardRv.setAdapter(adapterCard);
-        cardRv.setLayoutManager(new GridLayoutManager(this, 1));
-        listCards(cardRv);
-        Glide.with(this).load("https://loading.io/assets/img/p/articles/quality/clamp-threshold.gif").centerCrop().into(imgLoading);
-//        listCard.add(new Card(1, 1, "asdfghj", LocalDate.of(2000, Month.AUGUST, 9), 1, "asadasd"));
-    }
+        List<Notification> listNotification = new ArrayList<>();
+        setContentView(R.layout.activity_notification_view);
+        backSet = findViewById(R.id.backSet);
 
-    public void onClickAddNewCard(View view) {
-        Intent intent = new Intent(this, Buy3CardMethod.class);
-        finish();
-        startActivity(intent);
+        backSet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        notificationRv = findViewById(R.id.notificationRv);
+        imgLoading = findViewById(R.id.imgLoading);
+        Glide.with(this).load("https://loading.io/assets/img/p/articles/quality/clamp-threshold.gif").centerCrop().into(imgLoading);
+
+
+        AdapterNotification adapterNotification = new AdapterNotification(listNotification);
+        notificationRv.setAdapter(adapterNotification);
+        notificationRv.setLayoutManager(new GridLayoutManager(this, 1));
+
+        listNotifications(notificationRv);
+
     }
-    private void listCards(RecyclerView recyclerView) {
+    private void listNotifications(RecyclerView recyclerView) {
         String API = "https://api-spring-boot-trocatine.onrender.com/";
 
         OkHttpClient client = new OkHttpClient.Builder()
@@ -80,19 +88,19 @@ public class Buy3NewCard extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        ProductRepository productApi = retrofit.create(ProductRepository.class);
-        Call<StandardResponseDTO> call = productApi.findCardByUser(UserUtil.email);
+        NotificationRepository notification = retrofit.create(NotificationRepository.class);
+        Call<StandardResponseDTO> call = notification.findNotification(UserUtil.email);
         call.enqueue(new Callback<StandardResponseDTO>() {
             @Override
             public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
                 if (response.isSuccessful()) {
                     imgLoading.setVisibility(View.INVISIBLE);
-                    List<Card> cards = new Gson().fromJson(new Gson().toJson(response.body().getData()), new TypeToken<List<Card>>(){}.getType());
-                    recyclerView.setAdapter(new AdapterCard(cards));
-                    Log.e("dados resgatados", response.body().getData().toString());
+                    List<Notification> notifications = new Gson().fromJson(new Gson().toJson(response.body().getData()), new TypeToken<List<Notification>>(){}.getType());
+                    recyclerView.setAdapter(new AdapterNotification(notifications));
+                    Log.e("dados resgatados notifications", response.body().getData().toString());
                 } else {
                     try {
-                        Log.e("Erro", "Resposta não foi sucesso no list card: " + response.code() + " - " + response.errorBody().string()+"token: "+UserUtil.token);
+                        Log.e("Erro", "Resposta não foi sucesso no list notifications: " + response.code() + " - " + response.errorBody().string()+"token: "+UserUtil.token);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -101,7 +109,7 @@ public class Buy3NewCard extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
-                Log.e("ERRO no onFailure card", throwable.getMessage());
+                Log.e("ERRO no onFailure notifications", throwable.getMessage());
             }
         });
     }

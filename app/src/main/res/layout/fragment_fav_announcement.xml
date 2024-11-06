@@ -31,6 +31,28 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.179"
             tools:src="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/imgNotFound"
+            android:layout_width="92dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="112dp"
+            android:src="@drawable/not_found"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textNotFound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Não encontramos produtos favoritos"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgNotFound" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

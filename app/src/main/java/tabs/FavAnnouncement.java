@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.trocatine.R;
@@ -52,8 +53,9 @@ public class FavAnnouncement extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    ImageView imgLoading;
+    ImageView imgLoading, imgNotFound;
     private RecyclerView productRv;
+    TextView textNotFound;
     List<Product> listProduct = new ArrayList<>();
 
 
@@ -95,6 +97,10 @@ public class FavAnnouncement extends Fragment {
         View view = inflater.inflate(R.layout.fragment_fav_announcement, container, false);
         productRv = view.findViewById(R.id.productRv);
         productRv.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
+        imgNotFound = view.findViewById(R.id.imgNotFound);
+        imgNotFound.setVisibility(View.INVISIBLE);
+        textNotFound = view.findViewById(R.id.textNotFound);
+        textNotFound.setVisibility(View.INVISIBLE);
         //Populando a recycle view
         listFavoriteProduct(productRv, UserUtil.token);
 
@@ -137,9 +143,20 @@ public class FavAnnouncement extends Fragment {
                 if (response.isSuccessful()) {
                     imgLoading.setVisibility(View.INVISIBLE);
                     List<Product> products = new Gson().fromJson(new Gson().toJson(response.body().getData()), new TypeToken<List<Product>>(){}.getType());
+                    if (products.isEmpty()){
+                        imgNotFound.setVisibility(View.VISIBLE);
+                        textNotFound.setVisibility(View.VISIBLE);
+                        Log.e("entrou no is empty", "entrou");
+                    }
                     recyclerView.setAdapter(new AdapterProduct(products));
                 } else {
+                    if (response.code() == 404){
+                        textNotFound.setVisibility(View.VISIBLE);
+                        imgNotFound.setVisibility(View.VISIBLE);
+                        imgLoading.setVisibility(View.INVISIBLE);
+                    }
                     try {
+
                         Log.e("Erro", "Resposta não foi sucesso no list products favorite: " + response.code() + " - " + response.errorBody().string()+"token: "+token);
                     } catch (IOException e) {
                         throw new RuntimeException(e);

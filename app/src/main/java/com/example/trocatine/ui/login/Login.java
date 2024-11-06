@@ -54,12 +54,6 @@ public class Login extends AppCompatActivity {
         errorTextLoginEmail = findViewById(R.id.errorTextLoginEmail);
         errorTextLoginPassword = findViewById(R.id.errorTextLoginPassword);
 
-//        FirebaseAuth auth = FirebaseAuth.getInstance();
-//        if(auth.getCurrentUser() != null){
-//            Intent main = new Intent(Login.this, HomeNavBar.class);
-//            startActivity(main);
-//        }
-
         Button logar = findViewById(R.id.button_save);
         backSet = findViewById(R.id.backSet);
         backSet.setOnClickListener(new View.OnClickListener() {
@@ -183,7 +177,8 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
                 if (response.isSuccessful()) {
-                    Log.e("dados resgatados", response.body().getData().toString());
+                    Log.e("dados do usuario", response.body().getData().toString());
+                    Log.e("user profile", "aaaa");
                     StandardResponseDTO responseBody = response.body();
 
                     Gson gson = new Gson();

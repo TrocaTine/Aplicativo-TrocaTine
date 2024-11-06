@@ -87,6 +87,7 @@ public class EditProduct extends AppCompatActivity {
 
         List<String> category = new ArrayList<>();
         category.add(newCategory.getSelectedItem().toString());
+        Log.e("category", category.toString());
         finish();
 
         Log.e("edit product", "id: " + bundle.getString("id")+" new title: "+newTitle.getText().toString()+"new description: "+newDescription.getText().toString()+"new value: "+newValue.getText().toString()+"new category: "+newCategory.getSelectedItem().toString());

@@ -1,18 +1,27 @@
-package com.example.trocatine.adapter.RecycleViewModels;
+package com.example.trocatine.api.requestDTO.product;
 
-
-public class Card {
+public class SaveInformactionCardRequestDTO {
+    private String email;
     private String cardNumber;
     private String expirationDate;
     private int cvv;
 
-    public Card(String cardNumber, String expirationDate, int cvv) {
+    public SaveInformactionCardRequestDTO(String email, String cardNumber, String expirationDate, int cvv) {
+        this.email = email;
         this.cardNumber = cardNumber;
         this.expirationDate = expirationDate;
         this.cvv = cvv;
     }
 
-    public Card() {
+    public SaveInformactionCardRequestDTO() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getCardNumber() {

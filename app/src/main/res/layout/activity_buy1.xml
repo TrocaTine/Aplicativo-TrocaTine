@@ -11,15 +11,16 @@
         android:id="@+id/buttonNext"
         android:layout_width="282dp"
         android:layout_height="43dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="108dp"
         android:background="@drawable/button_fill"
         android:onClick="onClickNext"
         android:text="Prosseguir com o padrão"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_with_icon" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonAddNewAddress" />
 
     <ImageView
         android:id="@+id/imageView12"
@@ -49,8 +50,8 @@
         android:id="@+id/imageView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
         android:layout_marginTop="88dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/flow_purchase1" />
@@ -59,43 +60,41 @@
         android:id="@+id/productDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="36dp"
         android:text="Endereço de entrega"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView9"
         app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="314dp"
         android:layout_height="42dp"
-        android:layout_marginStart="52dp"
         android:layout_marginTop="20dp"
-        android:text="Esse é seu endereço padrão de entrega, para edita-lo, clique no lápis ao lado"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="Selecione o endereço que deseja usar para realizar a compra"
+        app:layout_constraintStart_toStartOf="@+id/productDescription"
         app:layout_constraintTop_toBottomOf="@+id/productDescription" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/addressCard"
         android:layout_width="305dp"
         android:layout_height="117dp"
-        android:layout_marginStart="52dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/button_border"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/addressText"
         android:layout_width="179dp"
         android:layout_height="60dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:text="Rua blablablabla, xxx CEP: xxxxxx-xxx   São paulo, Sp. Complemento: pipopip"
-        app:layout_constraintStart_toStartOf="@+id/button3"
+        app:layout_constraintStart_toStartOf="@+id/textView16"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     <TextView
@@ -106,14 +105,13 @@
         android:layout_marginTop="16dp"
         android:text="Endereço de entrega padrão:"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/button3"
-        app:layout_constraintTop_toTopOf="@+id/button3" />
+        app:layout_constraintStart_toStartOf="@+id/addressCard"
+        app:layout_constraintTop_toTopOf="@+id/addressCard" />
 
     <Button
-        android:id="@+id/button_with_icon"
+        android:id="@+id/buttonAddNewAddress"
         android:layout_width="304dp"
         android:layout_height="51dp"
-        android:layout_marginStart="52dp"
         android:layout_marginTop="36dp"
         android:background="@drawable/button_border"
         android:drawableStart="@android:drawable/ic_input_add"
@@ -123,7 +121,8 @@
         android:textAllCaps="false"
         android:textColor="@color/seaGreen"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/addressCard" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

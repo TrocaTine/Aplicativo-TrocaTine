@@ -11,7 +11,6 @@
         android:id="@+id/button_picpay"
         android:layout_width="304dp"
         android:layout_height="51dp"
-        android:layout_marginStart="52dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/button_border"
         android:drawableStart="@drawable/icon_picpay_2"
@@ -21,6 +20,7 @@
         android:textAllCaps="false"
         android:textColor="@color/seaGreen"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_card" />
 
@@ -28,7 +28,6 @@
         android:id="@+id/button_card"
         android:layout_width="304dp"
         android:layout_height="51dp"
-        android:layout_marginStart="52dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/button_border"
         android:drawableStart="@drawable/icon_wallet"
@@ -39,6 +38,7 @@
         android:textAllCaps="false"
         android:textColor="@color/seaGreen"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
@@ -46,21 +46,20 @@
         android:id="@+id/productDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
         android:layout_marginTop="36dp"
         android:text="Método de pagamento"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView9"
         app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
     <ImageView
         android:id="@+id/imageView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
         android:layout_marginTop="88dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/flow_purchase2" />
@@ -69,10 +68,9 @@
         android:id="@+id/textView15"
         android:layout_width="314dp"
         android:layout_height="42dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:text="Selecione um dos métodos de pagamento a seguir"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/productDescription"
         app:layout_constraintTop_toBottomOf="@+id/productDescription" />
 
     <TextView

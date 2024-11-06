@@ -9,6 +9,7 @@ import com.example.trocatine.api.requestDTO.product.FindProductFavoriteRequestDT
 import com.example.trocatine.api.requestDTO.product.FindQuestionsByProductRequestDTO;
 import com.example.trocatine.api.requestDTO.product.FindTagByTypeRequestDTO;
 import com.example.trocatine.api.requestDTO.product.SaveFavoriteProductRequestDTO;
+import com.example.trocatine.api.requestDTO.product.SaveInformactionCardRequestDTO;
 import com.example.trocatine.api.requestDTO.product.SaveQuestionsProductRequestDTO;
 import com.example.trocatine.api.requestDTO.product.UnfavoriteProductRequestDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
@@ -19,6 +20,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ProductRepository {
@@ -26,7 +28,7 @@ public interface ProductRepository {
     Call<StandardResponseDTO> findProductCard();
     @POST("/products/save-product")
     Call<StandardResponseDTO> saveProduct(@Body SaveProductRequestDTO request);
-    @POST("/products/edit-product")
+    @PUT("/products/edit-product")
     Call<StandardResponseDTO> editProduct(@Body EditProductRequestDTO request);
     @GET("/products/find-product-card-name/{name}")
     Call<StandardResponseDTO> findProductByNameIsContainingIgnoreCase(@Path("name") String request);
@@ -54,8 +56,10 @@ public interface ProductRepository {
     @POST("/order/finished-order")
     Call<StandardResponseDTO> finishedOrder(@Body FinishedOrderRequestDTO request);
 
-    @POST("/card/find-card-user")
-    Call<StandardResponseDTO> findCardByUser(@Body String request);
+    @GET("/card/find-card-user/{email}")
+    Call<StandardResponseDTO> findCardByUser(@Path("email") String request);
+    @POST("/card/save-informaction-card")
+    Call<StandardResponseDTO> saveInformationCard(@Body SaveInformactionCardRequestDTO request);
 
     @POST("/questions/find-questions")
     Call<StandardResponseDTO> findQuestions(@Body FindQuestionsByProductRequestDTO request);

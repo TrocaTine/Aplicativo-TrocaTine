@@ -14,4 +14,10 @@ public class UserUtil {
     public static Uri imageProfile;
     public static String fullName;
     public static int countTrocadinha;
+    public static String street;
+    public static String state;
+    public static String city;
+    public static String houseNumber;
+    public static String cep;
+
 }

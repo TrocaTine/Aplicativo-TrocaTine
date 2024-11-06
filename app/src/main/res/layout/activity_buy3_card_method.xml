@@ -11,7 +11,6 @@
         android:id="@+id/buttonEnd"
         android:layout_width="282dp"
         android:layout_height="43dp"
-        android:layout_marginStart="64dp"
         android:layout_marginBottom="68dp"
         android:background="@drawable/button_fill"
         android:onClick="onClickEnd"
@@ -19,6 +18,7 @@
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -41,26 +41,25 @@
         android:layout_width="159dp"
         android:layout_height="61dp"
         android:layout_marginStart="7dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout0"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textInputLayout5"
         app:layout_constraintTop_toBottomOf="@+id/errorTextCardNumber">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/cvvNumber"
-            android:maxLength="3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="CVV"
-            android:inputType="number" />
+            android:inputType="number"
+            android:maxLength="3" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout5"
         android:layout_width="149dp"
         android:layout_height="60dp"
-        android:layout_marginStart="48dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout0"
         app:layout_constraintTop_toBottomOf="@+id/errorTextCardNumber">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -74,28 +73,28 @@
         android:id="@+id/textInputLayout0"
         android:layout_width="314dp"
         android:layout_height="50dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/cardNumber"
             android:layout_width="match_parent"
-            android:maxLength="16"
             android:layout_height="wrap_content"
             android:hint="Número do cartão"
-            android:inputType="number" />
+            android:inputType="number"
+            android:maxLength="16" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="314dp"
         android:layout_height="42dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:text="Digite as informações do cartão a ser usado para o pagamento"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/productDescription"
         app:layout_constraintTop_toBottomOf="@+id/productDescription" />
 
     <ImageView
@@ -117,9 +116,7 @@
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.253"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView9"
         app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
     <ImageView
