@@ -41,7 +41,7 @@ public class HomeNavBar extends AppCompatActivity {
         navController.navigate(R.id.menu_home);
 
     }
-private void initNavigation() {
+protected void initNavigation() {
     BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
     NavigationUI.setupWithNavController(bottomNavigationView, navController);
 }

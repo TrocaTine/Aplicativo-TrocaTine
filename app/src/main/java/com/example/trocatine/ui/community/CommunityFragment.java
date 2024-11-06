@@ -13,10 +13,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.RecycleViewModels.Community;
 import com.example.trocatine.adapter.AdapterCommunity;
 import com.example.trocatine.util.UserUtil;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +40,7 @@ public class CommunityFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private RecyclerView communityRv;
+    private ImageView back;
 
     private RecyclerView messageTradeRv;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://trocatine-a226a-default-rtdb.firebaseio.com/");
@@ -79,6 +83,8 @@ public class CommunityFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
 
@@ -90,6 +96,10 @@ public class CommunityFragment extends Fragment {
         Log.e("USER INFO", "USER: " + UserUtil.token);
         Log.e("USER INFO", "USER: " + UserUtil.userName);
         Log.e("USER INFO", "USER: " + UserUtil.fullName);
+
+        back = view.findViewById(R.id.imageView24);
+
+
 
         messageTradeRv = view.findViewById(R.id.tradeMessagesRv);
 

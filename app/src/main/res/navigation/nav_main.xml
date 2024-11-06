@@ -20,9 +20,9 @@
         <action
             android:id="@+id/community_to_community_two"
             app:destination="@+id/communityTwoFragment"/>
-<!--        <action-->
-<!--            android:id="@+id/community_to_community_chat"-->
-<!--            app:destination="@+id/communityChatFragment"/>-->
+        <action
+            android:id="@+id/community_to_community_chat"
+            app:destination="@+id/communityChatFragment"/>
     </fragment>
 
     <fragment
@@ -48,23 +48,28 @@
         android:name="com.example.trocatine.ui.community.CommunityComeInFragment"
         android:label="fragment_community_two"
         tools:layout="@layout/fragment_community_two" >
+
+        <action
+            android:id="@+id/community_two_to_community_chat"
+            app:destination="@+id/communityChatFragment"/>
+        <action
+            android:id="@+id/community_two_to_community_info"
+            app:destination="@+id/communityInfoFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/communityChatFragment"
+        android:name="com.example.trocatine.ui.community.CommunityChatFragment"
+        android:label="fragment_community_chat"
+        tools:layout="@layout/fragment_community_chat" >
         <action
             android:id="@+id/community_chat_to_community_info"
             app:destination="@+id/communityInfoFragment"/>
-    </fragment>
-<!--    <fragment-->
-<!--        android:id="@+id/communityChatFragment"-->
-<!--        android:name="com.example.trocatine.ui.community.CommunityChatFragment"-->
-<!--        android:label="fragment_community_chat"-->
-<!--        tools:layout="@layout/fragment_community_chat" >-->
-<!--        <action-->
-<!--            android:id="@+id/community_chat_to"-->
-<!--            app:destination="@+id/communityInfoFragment"/>-->
-<!--    </fragment>-->
 
-<!--    <fragment-->
-<!--        android:id="@+id/communityInfoFragment"-->
-<!--        android:name="com.example.trocatine.ui.community.CommunityInfoFragment"-->
-<!--        android:label="fragment_community_info"-->
-<!--        tools:layout="@layout/fragment_community_info" />-->
+    </fragment>
+
+    <fragment
+        android:id="@+id/communityInfoFragment"
+        android:name="com.example.trocatine.ui.community.CommunityInfoFragment"
+        android:label="fragment_community_info"
+        tools:layout="@layout/fragment_community_info" />
 </navigation>

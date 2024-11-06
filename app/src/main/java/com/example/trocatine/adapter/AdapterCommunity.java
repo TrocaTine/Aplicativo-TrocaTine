@@ -18,7 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.RecycleViewModels.Community;
+import com.example.trocatine.ui.community.CommunityComeInFragment;
 import com.example.trocatine.ui.community.CommunityFragment;
+import com.example.trocatine.ui.home.HomeNavBar;
 import com.example.trocatine.ui.product.productTrade.Chat;
 import com.example.trocatine.util.ChatCommunityUtil;
 import com.example.trocatine.util.ChatUtil;
@@ -71,42 +73,40 @@ public class AdapterCommunity extends RecyclerView.Adapter<AdapterCommunity.View
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(communityType){
+                if (communityType) {
                     ChatCommunityUtil.name = community.getName();
                     ChatCommunityUtil.userNickname = UserUtil.userName;
-                    Log.e("FRAGMENT", "entrou");
 
-
-                    databaseReference.child("comunity").addValueEventListener(new ValueEventListener() {
+                    databaseReference.child("comunity").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            listCommunity.clear();
                             comeIn = false;
 
+                            // Loop through all communities to find a matching community
                             for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                                 String name = snapshot1.child("name").getValue(String.class);
                                 if (name != null && name.equals(community.getName())) {
                                     ChatCommunityUtil.chatKey = snapshot1.getKey();
-                                    Log.e("name com", "iffffff");
 
+                                    // Check if the user is already a participant
                                     for (DataSnapshot userSnapshot : snapshot1.child("users").getChildren()) {
-
                                         if (userSnapshot.getKey().equals(ChatCommunityUtil.userNickname)) {
                                             comeIn = true;
+                                            break;
                                         }
                                     }
-                                } else {
-                                    Log.e("name com", "name" + name + " " + community.getName());
+                                    break; // Break the loop once we find the community
                                 }
                             }
-                            navController.navigate(R.id.community_to_community_two);
-//                            if (comeIn) {
-//                                Log.e("name com", "name" + navController + " " + community.getName());
-//                                navController.navigate(R.id.community_to_community_chat);
-//                            } else {
-//                                Log.e("name com", "name" + navController + " " + community.getName());
-//                                navController.navigate(R.id.community_to_community_two);
-//                            }
+
+                            // Navigate based on `comeIn` result
+                            if (comeIn) {
+                                Log.e("name com", "name" + navController + " " + community.getName());
+                                navController.navigate(R.id.community_to_community_chat);
+                            } else {
+                                Log.e("name com", "name" + navController + " " + community.getName());
+                                navController.navigate(R.id.community_to_community_two);
+                            }
                         }
 
                         @Override
@@ -114,35 +114,35 @@ public class AdapterCommunity extends RecyclerView.Adapter<AdapterCommunity.View
                             Log.e("CHAT COMUNITY", "Erro ao carregar dados: " + error.getMessage());
                         }
                     });
-
-                }else{
+                } else {
+                    // Existing code for private chat
                     nameUser2 = community.getName();
                     nameUser1 = UserUtil.userName;
                     databaseReference.child("chat").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             boolean chatFound = false;
-                            chatKey = ""; // Reseta a chatKey
+                            chatKey = ""; // Reset chatKey
 
                             for (DataSnapshot dataSnapshot1 : snapshot.getChildren()) {
                                 final String getUserOne = dataSnapshot1.child("user_1").getValue(String.class);
                                 final String getUserTwo = dataSnapshot1.child("user_2").getValue(String.class);
 
-                                // Verifica se os usuários correspondem
+                                // Check if users match
                                 if ((getUserOne.equals(nameUser2) && getUserTwo.equals(nameUser1)) ||
                                         (getUserOne.equals(nameUser1) && getUserTwo.equals(nameUser2))) {
-                                    chatKey = dataSnapshot1.getKey(); // Usa a chave do chat existente
+                                    chatKey = dataSnapshot1.getKey(); // Use the existing chat key
                                     chatFound = true;
-                                    break; // Sai do loop se o chat for encontrado
+                                    break;
                                 }
                             }
 
-                            // Se não encontrar, cria uma nova chave para o chat
+                            // If chat not found, create a new chat key
                             if (!chatFound) {
-                                chatKey = String.valueOf(snapshot.getChildrenCount() + 1); // Nova chave
+                                chatKey = String.valueOf(snapshot.getChildrenCount() + 1); // New key
                             }
 
-                            // Inicie a atividade Chat após definir chatKey
+                            // Start Chat activity with the correct chatKey
                             Intent intent = new Intent(v.getContext(), Chat.class);
                             ChatUtil.name = nameUser2;
                             ChatUtil.send = nameUser1;
@@ -156,7 +156,6 @@ public class AdapterCommunity extends RecyclerView.Adapter<AdapterCommunity.View
                         }
                     });
                 }
-
             }
         });
 

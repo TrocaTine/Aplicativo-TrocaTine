@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.trocatine.R;
@@ -44,11 +45,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class CommunityChatFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private ImageView sendBtn;
+    private ImageView sendBtn, back;
     private NavController navController;
     private TextView txt;
     private CircleImageView photo;
     private List<ChatCommunity> listCommunity = new ArrayList<>();
+    private RelativeLayout topBar;
 
 
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://trocatine-a226a-default-rtdb.firebaseio.com/");
@@ -64,10 +66,27 @@ public class CommunityChatFragment extends Fragment {
 
         navController = NavHostFragment.findNavController(this);
 
+        topBar = view.findViewById(R.id.topBar);
         txt = view.findViewById(R.id.name);
         photo = view.findViewById(R.id.profilePic);
         sendBtn = view.findViewById(R.id.sendBtn);
         final EditText messageEditText = view.findViewById(R.id.messageEditText);
+        back = view.findViewById(R.id.backBtn);
+
+        topBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.community_chat_to_community_info);
+            }
+        });
+
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().popBackStack();
+            }
+        });
 
         databaseReference.child("comunity").child(ChatCommunityUtil.chatKey).addValueEventListener(new ValueEventListener() {
             @Override
@@ -108,9 +127,7 @@ public class CommunityChatFragment extends Fragment {
                     listCommunity.add(itemList);
                 }
 
-
                 Log.d("CommunityComeInFragment", "Número de itens carregados: " + listCommunity.size());
-
 
                 adapterChatCommunity.notifyDataSetChanged();
             }
@@ -123,27 +140,30 @@ public class CommunityChatFragment extends Fragment {
 
 
 
-//        sendBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (ChatCommunityUtil.chatKey != null) {
-//                    String message = messageEditText.getText().toString();
-//                    String messageKey = String.valueOf(listCommunity.size() + 1);
-//                    databaseReference.child("comunity").child(ChatCommunityUtil.chatKey).child("post").child(messageKey).child("nickname").setValue(UserUtil.userName);
-//                    databaseReference.child("comunity").child(ChatCommunityUtil.chatKey).child("post").child(messageKey).child("message").setValue(message);
-//                    databaseReference.child("comunity").child(ChatCommunityUtil.chatKey).child("post").child(messageKey).child("photo").setValue("https://media.istockphoto.com/id/1399395748/pt/foto/cheerful-business-woman-with-glasses-posing-with-her-hands-under-her-face-showing-her-smile-in.jpg?s=612x612&w=0&k=20&c=V2hdZm-cPTPXYT4U7VEsXr9M4CR3QqxOCMY_2qqJQAI=");
-//
-//                    MemoryData.saveData("nickname", v.getContext());
-//                    MemoryData.saveData("message", v.getContext());
-//                    MemoryData.saveData("photo", v.getContext());
-//
-//                    messageEditText.setText("");
-//
-//                } else {
-//                    Log.e("CommunityComeInFragment", "chatKey está nulo ao tentar entrar na comunidade.");
-//                }
-//            }
-//        });
+        sendBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ChatCommunityUtil.chatKey != null) {
+                    String message = messageEditText.getText().toString();
+                    String messageKey = String.valueOf(listCommunity.size() + 1);
+                    Log.e("mesa", "teste: " + message);
+                    Log.e("mesa", "teste: " + messageKey);
+                    Log.e("mesa", "teste: " + databaseReference.child("comunity").child(ChatCommunityUtil.chatKey).child("post").child(messageKey).child("nickname"));
+                    databaseReference.child("comunity").child(ChatCommunityUtil.chatKey).child("post").child(messageKey).child("nickname").setValue(UserUtil.userName);
+                    databaseReference.child("comunity").child(ChatCommunityUtil.chatKey).child("post").child(messageKey).child("message").setValue(message);
+                    databaseReference.child("comunity").child(ChatCommunityUtil.chatKey).child("post").child(messageKey).child("photo").setValue("https://media.istockphoto.com/id/1399395748/pt/foto/cheerful-business-woman-with-glasses-posing-with-her-hands-under-her-face-showing-her-smile-in.jpg?s=612x612&w=0&k=20&c=V2hdZm-cPTPXYT4U7VEsXr9M4CR3QqxOCMY_2qqJQAI=");
+
+                    MemoryData.saveData("nickname", v.getContext());
+                    MemoryData.saveData("message", v.getContext());
+                    MemoryData.saveData("photo", v.getContext());
+
+                    messageEditText.setText("");
+
+                } else {
+                    Log.e("CommunityComeInFragment", "chatKey está nulo ao tentar entrar na comunidade.");
+                }
+            }
+        });
 
 
         return view;

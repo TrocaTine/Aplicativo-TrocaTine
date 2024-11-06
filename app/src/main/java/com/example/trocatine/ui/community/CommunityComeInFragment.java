@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.trocatine.R;
@@ -44,7 +46,9 @@ public class CommunityComeInFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private Button comeIn;
+    private RelativeLayout topBar;
     private NavController navController;
+    private ImageView back;
     private TextView txt;
     private CircleImageView photo;
     private List<ChatCommunity> listCommunity = new ArrayList<>();
@@ -64,7 +68,22 @@ public class CommunityComeInFragment extends Fragment {
         navController = NavHostFragment.findNavController(this);
 
         txt = view.findViewById(R.id.name);
+        topBar = view.findViewById(R.id.topBar);
         photo = view.findViewById(R.id.profilePic);
+        back = view.findViewById(R.id.backBtn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().popBackStack();
+            }
+        });
+
+        topBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.community_two_to_community_info);
+            }
+        });
 
         databaseReference.child("comunity").child(ChatCommunityUtil.chatKey).addValueEventListener(new ValueEventListener() {
             @Override
@@ -108,7 +127,6 @@ public class CommunityComeInFragment extends Fragment {
 
                 Log.d("CommunityComeInFragment", "Número de itens carregados: " + listCommunity.size());
 
-
                 adapterChatCommunity.notifyDataSetChanged();
             }
 
@@ -126,7 +144,7 @@ public class CommunityComeInFragment extends Fragment {
                     databaseReference.child("comunity").child(ChatCommunityUtil.chatKey).child("users").child(ChatCommunityUtil.userNickname).setValue("teste");
                     MemoryData.saveData(ChatCommunityUtil.userNickname, v.getContext());
 
-
+                    navController.navigate(R.id.community_two_to_community_chat);
                 } else {
                     Log.e("CommunityComeInFragment", "chatKey está nulo ao tentar entrar na comunidade.");
                 }

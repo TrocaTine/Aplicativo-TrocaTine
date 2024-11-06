@@ -8,10 +8,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:layout_margin="30dp">
 
         <!-- Community Icon -->
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/communityIcon"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -136,15 +137,17 @@
         <!-- Leave Community Button -->
         <Button
             android:id="@+id/leaveCommunityButton"
-            android:layout_width="302dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/button_border"
             android:drawableLeft="@drawable/delete"
             android:drawablePadding="8dp"
-            android:gravity=""
+            android:gravity="start|center"
             android:paddingLeft="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:text="Sair da comunidade"
             android:textColor="@color/seaGreen" />
 
