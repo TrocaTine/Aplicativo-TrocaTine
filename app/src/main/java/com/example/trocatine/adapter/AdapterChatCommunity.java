@@ -42,6 +42,7 @@ public class AdapterChatCommunity  extends RecyclerView.Adapter<AdapterChatCommu
         holder.nickname.setText(chatCommunity.getNickname());
 
 
+
     }
     public void updateChat(List<ChatCommunity> chatLists){
         this.chatLists = chatLists;

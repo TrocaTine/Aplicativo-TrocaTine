@@ -2,6 +2,7 @@ package com.example.trocatine.api.responseDTO.product;
 
 public class QuestionDTO {
     private String id;
+    private String email_user;
     private String id_product;
     private String id_user;
     private String message;
@@ -46,5 +47,13 @@ public class QuestionDTO {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getEmail() {
+        return email_user;
+    }
+
+    public void setEmail(String email_user) {
+        this.email_user = email_user;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.trocatine.ui.buy_or_trade.buy;
+package com.example.trocatine.ui.product.buy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,13 +12,9 @@ import android.widget.ImageView;
 
 import com.example.trocatine.R;
 import com.example.trocatine.api.models.AdressDTO;
-import com.example.trocatine.api.models.LoginDTO;
 import com.example.trocatine.api.repository.AddressRepository;
-import com.example.trocatine.api.repository.UsersRepository;
 import com.example.trocatine.api.requestDTO.address.SaveAddressRequestDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
-import com.example.trocatine.ui.home.HomeNavBar;
-import com.example.trocatine.ui.login.Login;
 import com.example.trocatine.util.UserUtil;
 
 import java.io.IOException;

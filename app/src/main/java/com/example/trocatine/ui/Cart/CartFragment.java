@@ -1,23 +1,43 @@
 package com.example.trocatine.ui.Cart;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.AdapterCartProduct;
 import com.example.trocatine.adapter.RecycleViewModels.CartProduct;
 import com.example.trocatine.adapter.RecycleViewModels.Product;
+import com.example.trocatine.api.repository.CartRepository;
+import com.example.trocatine.api.responseDTO.StandardResponseDTO;
+import com.example.trocatine.ui.product.buy.Buy1;
+import com.example.trocatine.util.UserUtil;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,10 +55,10 @@ public class CartFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private TextView totalPriceCart;
+    private TextView totalPriceCart, textNotFound;
 
     private RecyclerView cartProductRv;
-    private TextView initialText;
+    ImageView imgLoading, imgNotFound;
 
     List<CartProduct> listCartProduct = new ArrayList<>();
 
@@ -81,11 +101,80 @@ public class CartFragment extends Fragment {
         cartProductRv = view.findViewById(R.id.cartProductRv);
         cartProductRv.setLayoutManager(new GridLayoutManager(view.getContext(), 1));
         Product product = new Product(1, 1, "nome", "descricao", 2.99, 5, "05/12/2007", true);
-        listCartProduct.add(new CartProduct(product, 1));
+//        listCartProduct.add(new CartProduct(product, 1));
         AdapterCartProduct adapterCartProduct = new AdapterCartProduct(listCartProduct);
         cartProductRv.setAdapter(adapterCartProduct);
-
+        imgNotFound = view.findViewById(R.id.imgNotFound);
+        imgNotFound.setVisibility(View.INVISIBLE);
+        textNotFound = view.findViewById(R.id.textNotFound);
+        imgLoading = view.findViewById(R.id.imgLoading);
+        Glide.with(this).load("https://loading.io/assets/img/p/articles/quality/clamp-threshold.gif").centerCrop().into(imgLoading);
+        textNotFound.setVisibility(View.INVISIBLE);
+        listCartProducts(cartProductRv);
         // Inflate the layout for this fragment
         return view;
+    }
+    private void listCartProducts(RecyclerView recyclerView) {
+        String API = "https://api-spring-boot-trocatine.onrender.com/";
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        Request originalRequest = chain.request();
+                        Request newRequest = originalRequest.newBuilder()
+                                .header("Authorization", UserUtil.token)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        CartRepository cartApi = retrofit.create(CartRepository.class);
+        Call<StandardResponseDTO> call = cartApi.findShoppingCart(UserUtil.email);
+        call.enqueue(new Callback<StandardResponseDTO>() {
+            @Override
+            public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    imgLoading.setVisibility(View.INVISIBLE);
+                    List<CartProduct> cartProducts = new Gson().fromJson(new Gson().toJson(response.body().getData()), new TypeToken<List<CartProduct>>(){}.getType());
+//                    cartProducts.get(0).setIdProduct(Long.parseLong(ProductUtil.idProduct));
+                    if (cartProducts.isEmpty()){
+                        imgNotFound.setVisibility(View.VISIBLE);
+                        textNotFound.setVisibility(View.VISIBLE);
+                        Log.e("entrou no is empty", "entrou");
+                    }
+                    Log.e("deu green", "deu green no carrinho");
+                    recyclerView.setAdapter(new AdapterCartProduct(cartProducts));
+                } else {
+                    if (response.code() == 404){
+                        textNotFound.setVisibility(View.VISIBLE);
+                        imgNotFound.setVisibility(View.VISIBLE);
+                        imgLoading.setVisibility(View.INVISIBLE);
+                    }
+                    try {
+                        Log.e("Erro", "Resposta não foi sucesso no carrinho " + response.code() + " - " + response.errorBody().string()+"token: "+UserUtil.token);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
+                Log.e("ERRO no onFailure carrinho", throwable.getMessage());
+            }
+        });
+    }
+
+    public void onClickNext(View view) {
+        Intent intent = new Intent(getContext(), Buy1.class);
+        startActivity(intent);
     }
 }

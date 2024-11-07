@@ -6,11 +6,8 @@
     <string name="menu_community">Comunidade</string>
     <string name="menu_userProfile">Perfil</string>
     <string-array name="spinner_color">
-        <item>Preto</item>
-        <item>Branco</item>
-        <item>Vermelho</item>
-        <item>Azul</item>
-        <item>Roxo</item>
+        <item>Categoria</item>
+        <item>Carregando...</item>
     </string-array>
     <string-array name="spinner_gender">
         <item>Feminino</item>
@@ -20,7 +17,6 @@
     <string-array name="spinner_quality">
         <item>Usado</item>
         <item>Pouco usado</item>
-        <item>Pedro Moises</item>
         <item>Novo</item>
     </string-array>
     <string-array name="spinner_size">

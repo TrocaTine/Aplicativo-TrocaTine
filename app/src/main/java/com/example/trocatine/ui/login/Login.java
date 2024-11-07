@@ -17,6 +17,7 @@ import com.example.trocatine.api.responseDTO.user.FindPersonalInformationRespons
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.api.models.LoginDTO;
 import com.example.trocatine.api.repository.UsersRepository;
+import com.example.trocatine.error.ErrorDialog;
 import com.example.trocatine.ui.beginning.MainActivity;
 import com.example.trocatine.ui.home.HomeNavBar;
 import com.example.trocatine.util.UserUtil;
@@ -135,13 +136,11 @@ public class Login extends AppCompatActivity {
                     finish();
                     startActivity(intent);
                 } else {
-                    try {
-                        Log.e("Erro", "Resposta não foi sucesso: " + response.code() + " - " + response.errorBody().string());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    ErrorDialog errorDialog = new ErrorDialog(Login.this);
+                    errorDialog.show("Erro", "Não foi possível encontrar um usuário com essas informações");
                 }
-            }
+                        Log.e("Erro", "Resposta não foi sucesso: " + response.code() + " - " + response.errorBody());
+                }
 
             @Override
             public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {

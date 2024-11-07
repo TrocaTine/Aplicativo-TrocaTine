@@ -5,18 +5,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.RecycleViewModels.Card;
-import com.example.trocatine.api.requestDTO.product.UnfavoriteProductRequestDTO;
-import com.example.trocatine.ui.buy_or_trade.buy.Card.Buy4PurchaseMade;
+import com.example.trocatine.ui.product.buy.Card.Buy4PurchaseMade;
 import com.example.trocatine.util.CardUtil;
 import com.example.trocatine.util.UserUtil;
 

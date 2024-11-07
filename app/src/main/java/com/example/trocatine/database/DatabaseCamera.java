@@ -49,20 +49,6 @@ public class DatabaseCamera {
                     }
                 });;
     }
-    public void downloadGaleria(ImageView img, Uri urlFirebase) {
-        img.setRotation(0);
-        Glide.with(img.getContext()).asBitmap().load(urlFirebase).into(img);
-    }
-
-    public void getLastPic(ImageView img, String urlFirebase) {
-        img.setRotation(0);
-        storage.getReference(urlFirebase).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Glide.with(img.getContext()).asBitmap().load(uri).into(img);
-            }
-        });
-    }
     public static void downloadGaleriaProduct(Context context, ImageView imageView, String id) {
         String imagePath = "foto.jpeg=" + Float.parseFloat(id);
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("productImages/"+imagePath);

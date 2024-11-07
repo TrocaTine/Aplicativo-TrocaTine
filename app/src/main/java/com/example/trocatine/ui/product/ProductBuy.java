@@ -17,7 +17,9 @@ import com.bumptech.glide.Glide;
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.AdapterQuestion;
 import com.example.trocatine.adapter.RecycleViewModels.Question;
+import com.example.trocatine.api.repository.CartRepository;
 import com.example.trocatine.api.repository.ProductRepository;
+import com.example.trocatine.api.requestDTO.cart.AddProductShoppingCartResquestDTO;
 import com.example.trocatine.api.requestDTO.product.FindQuestionsByProductRequestDTO;
 import com.example.trocatine.api.requestDTO.product.SaveFavoriteProductRequestDTO;
 import com.example.trocatine.api.requestDTO.product.SaveQuestionsProductRequestDTO;
@@ -25,9 +27,9 @@ import com.example.trocatine.api.requestDTO.product.UnfavoriteProductRequestDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.api.responseDTO.product.FindQuestionsByProductResponseDTO;
 import com.example.trocatine.api.responseDTO.product.QuestionDTO;
-import com.example.trocatine.ui.buy_or_trade.buy.Buy1;
+import com.example.trocatine.error.ErrorDialog;
+import com.example.trocatine.ui.product.buy.Buy1;
 import com.example.trocatine.database.DatabaseCamera;
-import com.example.trocatine.ui.home.HomeNavBar;
 import com.example.trocatine.ui.userProfile.OthersUserProfile;
 import com.example.trocatine.util.ProductUtil;
 import com.example.trocatine.util.UserUtil;
@@ -128,9 +130,7 @@ public class ProductBuy extends AppCompatActivity {
 
 
     public void OnClickBackActivity(View view) {
-        Intent intent = new Intent(ProductBuy.this, HomeNavBar.class);
         finish();
-        startActivity(intent);
     }
 
     public void onClickBuyNow(View view) {
@@ -140,6 +140,7 @@ public class ProductBuy extends AppCompatActivity {
     }
 
     public void onClickAddToCart(View view) {
+        addProductShoppingCart(new AddProductShoppingCartResquestDTO(Long.parseLong(ProductUtil.idProduct), 1,UserUtil.email));
     }
 
     public void onClickOtherUserProfile(View view) {
@@ -316,10 +317,11 @@ public class ProductBuy extends AppCompatActivity {
                     List<Question> questions = new ArrayList<>();
                     for (QuestionDTO questionDTO : result.getQuestionDTOList()) {
                         questions.add(new Question(
-                                questionDTO.getId(),
+                                questionDTO.getEmail(),
                                 questionDTO.getMessage(),
-                                questionDTO.getId_user()
+                                questionDTO.getEmail()
                         ));
+                        Log.e("email da questao", questionDTO.getEmail());
                     }
                     if (questions.isEmpty()){
                         questionsNull.setVisibility(View.VISIBLE);
@@ -338,6 +340,52 @@ public class ProductBuy extends AppCompatActivity {
             @Override
             public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
                 Log.e("ERRO no onFailure", throwable.getMessage());
+            }
+        });
+    }
+    private void addProductShoppingCart(AddProductShoppingCartResquestDTO addProductShoppingCartResquestDTO) {
+        String API = "https://api-spring-boot-trocatine.onrender.com/";
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        Request originalRequest = chain.request();
+                        Request newRequest = originalRequest.newBuilder()
+                                .header("Authorization", UserUtil.token)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        CartRepository cartApi = retrofit.create(CartRepository.class);
+        Call<StandardResponseDTO> call = cartApi.addProduct(addProductShoppingCartResquestDTO);
+        call.enqueue(new Callback<StandardResponseDTO>() {
+            @Override
+            public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    Log.e("dados resgatados no cart deu green", response.body().getData().toString());
+                    StandardResponseDTO responseBody = response.body();
+                } else {
+                    try {
+                        ErrorDialog errorDialog = new ErrorDialog(ProductBuy.this);
+                        errorDialog.show("Erro", "Não é possível adicionar um produto que você criou no carrinho");
+                        Log.e("Erro no cart", "Resposta não foi successosoo: " + response.code() + " - " + response.errorBody().string()+"token: "+UserUtil.token);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
+                Log.e("ERRO no onFailure cart", throwable.getMessage());
             }
         });
     }

@@ -1,4 +1,4 @@
-package com.example.trocatine.ui.buy_or_trade.buy.Card;
+package com.example.trocatine.ui.product.buy.Card;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
