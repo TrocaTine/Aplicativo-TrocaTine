@@ -1,7 +1,6 @@
-package com.example.trocatine.ui.buy_or_trade.buy.Card;
+package com.example.trocatine.ui.product.buy.Card;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,18 +10,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.trocatine.R;
-import com.example.trocatine.adapter.AdapterCard;
-import com.example.trocatine.adapter.RecycleViewModels.Card;
 import com.example.trocatine.api.repository.ProductRepository;
 import com.example.trocatine.api.requestDTO.product.SaveInformactionCardRequestDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.util.CardUtil;
 import com.example.trocatine.util.UserUtil;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
-import java.util.List;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;

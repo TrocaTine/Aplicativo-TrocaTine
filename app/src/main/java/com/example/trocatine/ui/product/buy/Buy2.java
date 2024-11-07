@@ -1,4 +1,4 @@
-package com.example.trocatine.ui.buy_or_trade.buy;
+package com.example.trocatine.ui.product.buy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.trocatine.R;
-import com.example.trocatine.ui.buy_or_trade.buy.Card.Buy3NewCard;
-import com.example.trocatine.ui.buy_or_trade.buy.PicPay.Buy3PicpayMethod;
+import com.example.trocatine.ui.product.buy.Card.Buy3NewCard;
+import com.example.trocatine.ui.product.buy.PicPay.Buy3PicpayMethod;
 import com.example.trocatine.util.CardUtil;
 
 public class Buy2 extends AppCompatActivity {

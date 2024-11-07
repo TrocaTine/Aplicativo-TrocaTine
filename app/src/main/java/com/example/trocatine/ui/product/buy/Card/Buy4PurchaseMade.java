@@ -1,4 +1,4 @@
-package com.example.trocatine.ui.buy_or_trade.buy.PicPay;
+package com.example.trocatine.ui.product.buy.Card;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -13,7 +13,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import com.example.trocatine.R;
 import com.example.trocatine.api.repository.NotificationRepository;
@@ -21,7 +20,6 @@ import com.example.trocatine.api.repository.ProductRepository;
 import com.example.trocatine.api.requestDTO.notification.SavePushRequestDTO;
 import com.example.trocatine.api.requestDTO.order.FinishedOrderRequestDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
-import com.example.trocatine.ui.buy_or_trade.buy.Card.Buy4PurchaseMade;
 import com.example.trocatine.util.CardUtil;
 import com.example.trocatine.util.ProductUtil;
 import com.example.trocatine.util.UserUtil;
@@ -40,25 +38,22 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Buy3PicpayMethod extends AppCompatActivity {
-    Button buttonEnd;
+public class Buy4PurchaseMade extends AppCompatActivity {
+    String numberCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buy3_picpay_method);
-        buttonEnd = findViewById(R.id.buttonEnd);
-        buttonEnd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                notification();
-                List<String> emails = Arrays.asList(UserUtil.email);
-                saveNotificationApi(emails, "Compra efetuada!", "Parabéns! Sua compra foi efetuada e já estara a caminho.");
-                Log.e("id product finished", "id do produto"+Long.valueOf(ProductUtil.idProduct));
-                finishedOrder(UserUtil.email, Long.valueOf(ProductUtil.idProduct), CardUtil.cardNumber, CardUtil.method, ProductUtil.value);
-                finish();
-            }
-        });
+        setContentView(R.layout.activity_buy4_purchase_made);
+    }
+
+    public void onClickEnd(View view) {
+        notification();
+        List<String> emails = Arrays.asList(UserUtil.email);
+        saveNotificationApi(emails, "Compra efetuada!", "Parabéns! Sua compra foi efetuada e já estara a caminho.");
+        Log.e("id product finished", "id do produto"+Long.valueOf(ProductUtil.idProduct));
+        finishedOrder(UserUtil.email, Long.valueOf(ProductUtil.idProduct), CardUtil.cardNumber, CardUtil.method, ProductUtil.value);
+        finish();
     }
     private void finishedOrder(String email, Long idProduct, String numberCard, String paymentType, BigDecimal value) {
         String API = "https://api-spring-boot-trocatine.onrender.com/";
@@ -108,7 +103,7 @@ public class Buy3PicpayMethod extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "channel_id")
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setSmallIcon(R.drawable.icone)
                 .setContentTitle("Compra efetuada!")
                 .setContentText("Parabéns! Sua compra foi efetuada e já estara a caminho.")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)

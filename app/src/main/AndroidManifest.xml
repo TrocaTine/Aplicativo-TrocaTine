@@ -28,7 +28,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ui.buy_or_trade.buy.BuySaveNewAddress"
+            android:name=".ui.product.buy.BuySaveNewAddress"
             android:exported="false" />
         <activity
             android:name=".ui.notification.NotificationView"
@@ -37,7 +37,7 @@
             android:name=".ui.RestrictedArea.RestrictedArea"
             android:exported="false" />
         <activity
-            android:name=".ui.buy_or_trade.buy.Card.Buy3NewCard"
+            android:name=".ui.product.buy.Card.Buy3NewCard"
             android:exported="false" />
         <activity
             android:name=".ui.product.item_question"
@@ -100,19 +100,19 @@
             android:name=".ui.Cart.card_cart_product"
             android:exported="false" />
         <activity
-            android:name=".ui.buy_or_trade.buy.Card.Buy4PurchaseMade"
+            android:name=".ui.product.buy.Card.Buy4PurchaseMade"
             android:exported="false" />
         <activity
-            android:name=".ui.buy_or_trade.buy.Card.Buy3CardMethod"
+            android:name=".ui.product.buy.Card.Buy3CardMethod"
             android:exported="false" />
         <activity
-            android:name=".ui.buy_or_trade.buy.PicPay.Buy3PicpayMethod"
+            android:name=".ui.product.buy.PicPay.Buy3PicpayMethod"
             android:exported="false" />
         <activity
-            android:name=".ui.buy_or_trade.buy.Buy2"
+            android:name=".ui.product.buy.Buy2"
             android:exported="false" />
         <activity
-            android:name=".ui.buy_or_trade.buy.Buy1"
+            android:name=".ui.product.buy.Buy1"
             android:exported="false" />
         <activity
             android:name=".ui.product.productTrade.ProductTrade"

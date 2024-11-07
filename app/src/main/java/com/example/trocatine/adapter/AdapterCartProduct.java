@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.RecycleViewModels.CartProduct;
+import com.example.trocatine.database.DatabaseCamera;
 
 import java.util.List;
 
@@ -38,42 +39,48 @@ public class AdapterCartProduct extends RecyclerView.Adapter<AdapterCartProduct.
     }
 
     public void onBindViewHolder(@NonNull AdapterCartProduct.ViewHolder holder, int position) {
-
         CartProduct cartProduct = listProduct.get(position);
+        DatabaseCamera databaseCamera = new DatabaseCamera();
 
-        if (cartProduct != null) {
-            holder.name.setText(cartProduct.getProduct().getName());
-            holder.value.setText(String.valueOf(cartProduct.getProduct().getValue()));
-            holder.quantity.setText(String.valueOf(cartProduct.getQuantity()));
+        if (cartProduct.getQualit() == 0) {
+            cartProduct.setQualit(1);
         }
+
+        holder.name.setText(cartProduct.getTitle());
+        holder.value.setText(String.valueOf(cartProduct.getValue()));
+        holder.quantity.setText("Quantidade: " + cartProduct.getQualit());
+        databaseCamera.downloadGaleriaProduct(holder.itemView.getContext(), holder.image, String.valueOf(cartProduct.getIdProduct()));
 
         holder.addQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int quantity = cartProduct.getQuantity();
-                quantity += 1;
-                cartProduct.setQuantity(quantity);
-                notifyItemChanged(position);
-            }
-
-        });
-        holder.decreaseQuantity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int quantity = cartProduct.getQuantity();
-                if (quantity > 1) {
-                    quantity -= 1;
-                    cartProduct.setQuantity(quantity);
-                    notifyItemChanged(position);
-                } else {
-                    listProduct.remove(holder.getAdapterPosition());
-                    notifyItemRemoved(holder.getAdapterPosition());
+                if (cartProduct != null) {
+                    int quantity = cartProduct.getQualit();
+                    quantity += 1;
+                    cartProduct.setQualit(quantity);
+                    holder.quantity.setText("Quantidade: " + quantity); // Atualiza a quantidade no TextView
                 }
             }
         });
-        holder.quantity.setText("Quantidade: "+String.valueOf(cartProduct.getQuantity()));
 
+        holder.decreaseQuantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (cartProduct != null) {
+                    int quantity = cartProduct.getQualit();
+                    if (quantity > 1) {
+                        quantity -= 1;
+                        cartProduct.setQualit(quantity);
+                        holder.quantity.setText("Quantidade: " + quantity); // Atualiza a quantidade no TextView
+                    } else {
+                        listProduct.remove(holder.getAdapterPosition());
+                        notifyItemRemoved(holder.getAdapterPosition());
+                    }
+                }
+            }
+        });
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView name, quantity, value, description;

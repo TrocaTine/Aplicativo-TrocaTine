@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundBeige"
-    tools:context=".ui.buy_or_trade.buy.Buy2">
+    tools:context=".ui.product.buy.Buy2">
 
     <Button
         android:id="@+id/button_picpay"

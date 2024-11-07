@@ -23,7 +23,7 @@
             app:srcCompat="@drawable/trocadinha_silver" />
 
         <ImageView
-            android:id="@+id/imageView35"
+            android:id="@+id/imgUser"
             android:layout_width="47dp"
             android:layout_height="54dp"
             android:layout_marginStart="24dp"
@@ -39,7 +39,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
             android:text="Nome usuário"
-            app:layout_constraintStart_toEndOf="@+id/imageView35"
+            app:layout_constraintStart_toEndOf="@+id/imgUser"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView

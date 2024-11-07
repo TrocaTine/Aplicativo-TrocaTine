@@ -55,7 +55,7 @@
             app:layout_constraintTop_toBottomOf="@+id/spinnerSize" />
 
         <TextView
-            android:id="@+id/textView18"
+            android:id="@+id/errorTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -68,7 +68,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView19"
+            android:id="@+id/errorDescription"
             android:layout_width="301dp"
             android:layout_height="46dp"
             android:layout_marginTop="84dp"
@@ -95,7 +95,7 @@
             android:entries="@array/spinner_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+            app:layout_constraintTop_toBottomOf="@+id/errorDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

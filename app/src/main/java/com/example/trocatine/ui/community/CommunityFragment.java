@@ -97,7 +97,7 @@ public class CommunityFragment extends Fragment {
         Log.e("USER INFO", "USER: " + UserUtil.userName);
         Log.e("USER INFO", "USER: " + UserUtil.fullName);
 
-        back = view.findViewById(R.id.imageView24);
+        back = view.findViewById(R.id.backSet);
 
 
 

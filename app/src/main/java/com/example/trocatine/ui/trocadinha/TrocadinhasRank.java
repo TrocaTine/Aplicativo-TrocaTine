@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.trocatine.R;
@@ -36,6 +37,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class TrocadinhasRank extends AppCompatActivity {
     RecyclerView trocadinhasRv;
     ImageView imgLoading, trocadinhasInfo;
+    TextView silverUserName, goldenUserName, bronzeUserName, silverTrocadinhas, goldenTrocadinhas, bronzeTrocadinhas;
     List<FindRankingTrocadinhaResponseDTO> listTrocadinhas = new ArrayList<>();
 
 
@@ -46,7 +48,12 @@ public class TrocadinhasRank extends AppCompatActivity {
         imgLoading = findViewById(R.id.imgLoading);
         trocadinhasInfo = findViewById(R.id.trocadinhasInfo);
         Glide.with(this).load("https://loading.io/assets/img/p/articles/quality/clamp-threshold.gif").centerCrop().into(imgLoading);
-
+        silverTrocadinhas = findViewById(R.id.silverTrocadinhas);
+        silverUserName = findViewById(R.id.silverUserName);
+        goldenTrocadinhas = findViewById(R.id.goldenTrocadinhas);
+        goldenUserName = findViewById(R.id.goldenUserName);
+        bronzeTrocadinhas = findViewById(R.id.bronzeTrocadinhas);
+        bronzeUserName = findViewById(R.id.bronzeUserName);
 
         trocadinhasRv = findViewById(R.id.trocadinhasRv);
         AdapterTrocadinhas adapterTrocadinhas = new AdapterTrocadinhas(listTrocadinhas);
@@ -61,6 +68,7 @@ public class TrocadinhasRank extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
     private void listTrocadinhasRank(RecyclerView recyclerView, String token) {
         String API = "https://api-spring-boot-trocatine.onrender.com/";
@@ -91,6 +99,12 @@ public class TrocadinhasRank extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     imgLoading.setVisibility(View.INVISIBLE);
                     List<FindRankingTrocadinhaResponseDTO> trocadinhas = new Gson().fromJson(new Gson().toJson(response.body().getData()), new TypeToken<List<FindRankingTrocadinhaResponseDTO>>(){}.getType());
+                    goldenUserName.setText(trocadinhas.get(0).getNickname());
+//                    goldenTrocadinhas.setText(trocadinhas.get(0).getCountTrocadinha());
+                    silverTrocadinhas.setText(trocadinhas.get(1).getNickname());
+                    silverUserName.setText(trocadinhas.get(1).getNickname());
+//                    bronzeTrocadinhas.setText(trocadinhas.get(2).getCountTrocadinha());
+                    bronzeUserName.setText(trocadinhas.get(2).getNickname());
                     recyclerView.setAdapter(new AdapterTrocadinhas(trocadinhas));
                     Log.e("rank", "deu certo");
                 } else {
