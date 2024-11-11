@@ -17,6 +17,6 @@ public interface CartRepository {
     @POST("/shopping-cart/add-product")
     Call<StandardResponseDTO> addProduct(@Body AddProductShoppingCartResquestDTO request);
     @DELETE("/delete-product-cart/{email}/{idProduct}")
-    Call<StandardResponseDTO> deleteProductFromCart(@Path("email") String email, @Path("idProduct") String idProduct);
+    Call<StandardResponseDTO> deleteProductFromCart(@Path("email") String email, @Path("idProduct") long idProduct);
 
 }

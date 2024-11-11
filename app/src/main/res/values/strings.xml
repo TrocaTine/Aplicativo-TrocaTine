@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Trocatine</string>
+    <string name="app_name">TrocaTine</string>
     <string name="menu_home">Home</string>
     <string name="menu_cart">Carrinho</string>
     <string name="menu_newProduct">Anúnciar</string>

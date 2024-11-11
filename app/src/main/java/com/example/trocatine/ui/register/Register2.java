@@ -13,6 +13,9 @@ import android.widget.TextView;
 import com.example.trocatine.R;
 import com.example.trocatine.util.UserUtil;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Register2 extends AppCompatActivity {
 
     private EditText fullname, username, cpf, birthdate;
@@ -49,35 +52,51 @@ public class Register2 extends AppCompatActivity {
         //Verificações de input do usuário
         boolean hasError = false;
         if (fullname.getText().toString().equals("")) {
-            showError("Digite a informação necessária", errorTextFullname);
+            fullname.setError("Digite a informação necessária");
             hasError = true;
         } else {
-            hideError(errorTextFullname);
+            String fullNameText = fullname.getText().toString();
+            String[] nameParts = fullNameText.split(" ");
+            if (nameParts.length < 2) {
+                fullname.setError("O nome deve conter nome e sobrenome");
+                hasError = true;
+            } else {
+                hideError(errorTextFullname);
+            }
         }
 
         if (username.getText().toString().equals("")) {
-            showError("Digite a informação necessária", errorTextUsername);
+            username.setError("Digite a informação necessária");
             hasError = true;
         } else {
             hideError(errorTextUsername);
         }
 
         if (cpf.getText().toString().equals("")) {
-            showError("Digite a informação necessária", errorTextCpf);
+            cpf.setError("Digite a informação necessária");
             hasError = true;
         } else if (cpf.getText().toString().length() != 11) {
-            showError("O CPF precisa ter 11 dígitos (sem caracter especial)", errorTextCpf);
+            username.setError("O CPF precisa ter 11 dígitos");
             hasError = true;
         } else {
             hideError(errorTextCpf);
         }
 
         if (birthdate.getText().toString().equals("")) {
-            showError("Digite a informação necessária", errorTextBirthdate);
+            birthdate.setError("Digite a informação necessária");
             hasError = true;
         } else {
-            hideError(errorTextBirthdate);
+            String birthdateText = birthdate.getText().toString();
+            Pattern pattern = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
+            Matcher matcher = pattern.matcher(birthdateText);
+            if (!matcher.matches()) {
+                birthdate.setError("A data precisa estar no formato yyyy-MM-dd (2000-12-05)");
+                hasError = true;
+            } else {
+                hideError(errorTextBirthdate);
+            }
         }
+
 
         if (!hasError) {
             Bundle dados = getIntent().getExtras();

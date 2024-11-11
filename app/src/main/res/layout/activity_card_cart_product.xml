@@ -28,8 +28,8 @@
 
         <ImageView
             android:id="@+id/cartProductImage"
-            android:layout_width="122dp"
-            android:layout_height="151dp"
+            android:layout_width="143dp"
+            android:layout_height="148dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
@@ -50,13 +50,12 @@
             android:id="@+id/cartProductValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:layout_marginTop="2dp"
             android:text="R$20,99"
             android:textColor="@color/seaGreen"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/cartProductImage"
+            app:layout_constraintStart_toStartOf="@+id/cartProductName"
             app:layout_constraintTop_toBottomOf="@+id/cartProductName" />
 
         <TextView
