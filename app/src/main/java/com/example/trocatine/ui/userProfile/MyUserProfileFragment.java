@@ -95,7 +95,7 @@ public class MyUserProfileFragment extends Fragment {
         userEmail.setText(UserUtil.email);
         userBirthDate.setText(UserUtil.birthDate);
         userAdress.setText(UserUtil.city+" "+UserUtil.street+" "+UserUtil.houseNumber+" "+UserUtil.cep);
-        if (UserUtil.phone != null && UserUtil.phone.length() == 10) {
+        if (UserUtil.phone != null && UserUtil.phone.length() == 11) {
             String formattedPhone = UserUtil.phone.replaceFirst("(\\d{2})(\\d{5})(\\d{4})", "($1) $2-$3");
             Log.e("formatted phone", formattedPhone);
             userPhone.setText(formattedPhone);

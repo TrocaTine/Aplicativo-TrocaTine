@@ -33,13 +33,13 @@
         android:id="@+id/button_save"
         android:layout_width="297dp"
         android:layout_height="45dp"
-        android:layout_marginStart="56dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/button_fill"
         android:onClick="onClickNext"
         android:text="Próximo"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/errorTextComplement" />
 

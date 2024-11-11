@@ -12,7 +12,6 @@
         android:layout_width="312dp"
         android:layout_height="51dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/button_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,8 +63,8 @@
     <!-- Campo Telefone com o mesmo estilo do campo de E-mail -->
     <TextView
         android:id="@+id/errorTextEmail"
-        android:layout_width="315dp"
-        android:layout_height="38dp"
+        android:layout_width="306dp"
+        android:layout_height="19dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:textColor="@color/red"

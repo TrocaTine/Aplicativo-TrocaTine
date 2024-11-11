@@ -22,6 +22,7 @@ import com.example.trocatine.adapter.RecycleViewModels.Product;
 import com.example.trocatine.api.repository.CartRepository;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.ui.product.buy.Buy1;
+import com.example.trocatine.util.CartUtil;
 import com.example.trocatine.util.UserUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -98,6 +99,8 @@ public class CartFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         totalPriceCart = view.findViewById(R.id.totalPriceCart);
+        Log.e("cart price", String.valueOf(CartUtil.cartPrice));
+        totalPriceCart.setText("Total: R$ "+ CartUtil.cartPrice);
         cartProductRv = view.findViewById(R.id.cartProductRv);
         cartProductRv.setLayoutManager(new GridLayoutManager(view.getContext(), 1));
         Product product = new Product(1, 1, "nome", "descricao", 2.99, 5, "05/12/2007", true);

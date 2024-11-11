@@ -82,45 +82,51 @@ public class Register3 extends AppCompatActivity {
 
         // Validando os campos e exibindo os erros, se necessário
         if (complement.getText().toString().equals("")) {
-            showError("Digite a informação necessária", errorTextComplement);
+            complement.setError("Digite a informação necessária");
             hasError = true;
         } else {
             hideError(errorTextComplement);
         }
 
         if (houseNumber.getText().toString().equals("")) {
-            showError("Digite a informação necessária", errorTextHouseNumber);
+            houseNumber.setError("Digite a informação necessária");
             hasError = true;
         } else {
             hideError(errorTextHouseNumber);
         }
 
         if (state.getText().toString().equals("")) {
-            showError("Digite a informação necessária", errorTextState);
+            state.setError("Digite a informação necessária");
             hasError = true;
         } else {
-            hideError(errorTextState);
+            String stateText = state.getText().toString();
+            if (stateText.length() != 2) {
+                state.setError("O estado deve ser escrito como SP ou BA");
+                hasError = true;
+            } else {
+                hideError(errorTextState);
+            }
         }
 
         if (street.getText().toString().equals("")) {
-            showError("Digite a informação necessária", errorTextStreet);
+            street.setError("Digite a informação necessária");
             hasError = true;
         } else {
             hideError(errorTextStreet);
         }
 
         if (city.getText().toString().equals("")) {
-            showError("Digite a informação necessária", errorTextCity);
+            city.setError("Digite a informação necessária");
             hasError = true;
         } else {
             hideError(errorTextCity);
         }
 
         if (cep.getText().toString().equals("")) {
-            showError("Digite a informação necessária", errorTextCep);
+            cep.setError("Digite a informação necessária");
             hasError = true;
         } else if (cep.getText().toString().length() != 8) {
-            showError("O CEP precisa ter 8 dígitos (exemplo: 05120060)", errorTextCep);
+            cep.setError("O CEP precisa ter 8 dígitos (exemplo: 05120060)");
             hasError = true;
         } else {
             hideError(errorTextCep);

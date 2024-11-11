@@ -64,14 +64,24 @@ public class Register1 extends AppCompatActivity {
         // Verificações de input do usuário
         boolean hasError = false;
 
-        if (email.getText().toString().equals("")) {
+        String emailText = email.getText().toString();
+
+        if (emailText.equals("")) {
             email.setError("Digite o e-mail necessário");
+            email.requestFocus();
+            hasError = true;
+        } else if (!(emailText.contains("@gmail.com") || emailText.contains("@hotmail.com"))) {
+            email.setError("O e-mail deve conter @gmail.com ou @hotmail.com");
             email.requestFocus();
             hasError = true;
         }
 
         if (password.getText().toString().equals("")) {
             password.setError("Digite a senha necessária");
+            password.requestFocus();
+            hasError = true;
+        } else if (password.getText().length() < 6) {
+            password.setError("A senha precisa ter 6 dígitos");
             password.requestFocus();
             hasError = true;
         }
