@@ -9,7 +9,7 @@
     tools:context=".ui.trocadinha.TrocadinhasRank">
 
     <ImageView
-        android:id="@+id/imageView27"
+        android:id="@+id/imgBronzeUser"
         android:layout_width="76dp"
         android:layout_height="81dp"
         android:layout_marginTop="104dp"
@@ -25,10 +25,10 @@
         android:layout_marginStart="26dp"
         android:layout_marginTop="68dp"
         android:layout_marginEnd="23dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView27"
+        app:layout_constraintEnd_toEndOf="@+id/imgBronzeUser"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView27"
-        app:layout_constraintTop_toTopOf="@+id/imageView27"
+        app:layout_constraintStart_toStartOf="@+id/imgBronzeUser"
+        app:layout_constraintTop_toTopOf="@+id/imgBronzeUser"
         app:srcCompat="@drawable/icon_place_bronze" />
 
     <TextView
@@ -70,7 +70,7 @@
         tools:listitem="@layout/activity_trocadinha_item_rank" />
 
     <ImageView
-        android:id="@+id/imageView26"
+        android:id="@+id/imgSilverUser"
         android:layout_width="78dp"
         android:layout_height="80dp"
         android:layout_marginStart="32dp"
@@ -97,10 +97,10 @@
         android:layout_marginTop="20dp"
         android:text="Usuario2"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView26"
+        app:layout_constraintEnd_toEndOf="@+id/imgSilverUser"
         app:layout_constraintHorizontal_bias="0.523"
-        app:layout_constraintStart_toStartOf="@+id/imageView26"
-        app:layout_constraintTop_toBottomOf="@+id/imageView26" />
+        app:layout_constraintStart_toStartOf="@+id/imgSilverUser"
+        app:layout_constraintTop_toBottomOf="@+id/imgSilverUser" />
 
     <TextView
         android:id="@+id/goldenTrocadinhas"
@@ -123,7 +123,7 @@
         app:srcCompat="@drawable/icon_trocadinhas" />
 
     <ImageView
-        android:id="@+id/imageView18"
+        android:id="@+id/imgGoldenUser"
         android:layout_width="98dp"
         android:layout_height="88dp"
         android:layout_marginTop="40dp"
@@ -140,10 +140,10 @@
         android:layout_marginStart="31dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="30dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView18"
+        app:layout_constraintEnd_toEndOf="@+id/imgGoldenUser"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView18"
-        app:layout_constraintTop_toTopOf="@+id/imageView18"
+        app:layout_constraintStart_toStartOf="@+id/imgGoldenUser"
+        app:layout_constraintTop_toTopOf="@+id/imgGoldenUser"
         app:srcCompat="@drawable/icon_place_golden" />
 
     <TextView
@@ -155,10 +155,10 @@
         android:layout_marginEnd="10dp"
         android:text="Usuario3"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView27"
+        app:layout_constraintEnd_toEndOf="@+id/imgBronzeUser"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView27"
-        app:layout_constraintTop_toBottomOf="@+id/imageView27" />
+        app:layout_constraintStart_toStartOf="@+id/imgBronzeUser"
+        app:layout_constraintTop_toBottomOf="@+id/imgBronzeUser" />
 
     <TextView
         android:id="@+id/bronzeTrocadinhas"
@@ -178,10 +178,10 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="23dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView26"
+        app:layout_constraintEnd_toEndOf="@+id/imgSilverUser"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView26"
-        app:layout_constraintTop_toTopOf="@+id/imageView26"
+        app:layout_constraintStart_toStartOf="@+id/imgSilverUser"
+        app:layout_constraintTop_toTopOf="@+id/imgSilverUser"
         app:srcCompat="@drawable/icon_place_silver" />
 
     <ImageView
@@ -190,10 +190,10 @@
         android:layout_height="44dp"
         android:layout_marginStart="63dp"
         android:layout_marginBottom="64dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView18"
-        app:layout_constraintEnd_toEndOf="@+id/imageView18"
+        app:layout_constraintBottom_toBottomOf="@+id/imgGoldenUser"
+        app:layout_constraintEnd_toEndOf="@+id/imgGoldenUser"
         app:layout_constraintHorizontal_bias="0.473"
-        app:layout_constraintStart_toStartOf="@+id/imageView18"
+        app:layout_constraintStart_toStartOf="@+id/imgGoldenUser"
         app:srcCompat="@drawable/icon_crown" />
 
     <TextView
@@ -205,10 +205,10 @@
         android:layout_marginEnd="18dp"
         android:text="Usuario1"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView18"
+        app:layout_constraintEnd_toEndOf="@+id/imgGoldenUser"
         app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toStartOf="@+id/imageView18"
-        app:layout_constraintTop_toBottomOf="@+id/imageView18" />
+        app:layout_constraintStart_toStartOf="@+id/imgGoldenUser"
+        app:layout_constraintTop_toBottomOf="@+id/imgGoldenUser" />
 
     <ImageView
         android:id="@+id/imageView34"

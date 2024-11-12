@@ -37,10 +37,10 @@
             android:text="Nome Completo"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/tagText" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tagText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -57,7 +57,7 @@
             android:layout_marginStart="9dp"
             android:layout_marginTop="10dp"
             android:text="11 9876432"
-            app:layout_constraintStart_toEndOf="@+id/textView5"
+            app:layout_constraintStart_toEndOf="@+id/tagText"
             app:layout_constraintTop_toBottomOf="@+id/listCardNumber" />
 
         <TextView

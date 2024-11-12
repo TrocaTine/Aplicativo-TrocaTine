@@ -64,7 +64,7 @@ public class Register3 extends AppCompatActivity {
         errorTextCity = findViewById(R.id.errorTextCity);
         errorTextCep = findViewById(R.id.BirthDate);
 
-        backSet = findViewById(R.id.backSet);
+        backSet = findViewById(R.id.imgBack);
         backSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

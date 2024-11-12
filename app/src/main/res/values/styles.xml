@@ -8,7 +8,7 @@
     </style>
     <style name="fotoRedonda" parent="">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">75dp</item>
+        <item name="cornerSize"></item>
         <item name="color">@color/black</item>
     </style>
     <style name="ShapeAppearanceOverlay.MaterialComponents.ShapeableImageView.TopRounded" parent="">

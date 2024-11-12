@@ -48,7 +48,7 @@ public class NewProductTrade2 extends AppCompatActivity {
         spinnerSize = findViewById(R.id.spinnerSize);
         spinnerCategory = findViewById(R.id.spinnerCategory);
         findCategory();
-        findTagType("Quality");
+//        findTagType("Quality");
     }
 
 
@@ -158,7 +158,7 @@ public class NewProductTrade2 extends AppCompatActivity {
 
         ProductRepository productAPI = retrofit.create(ProductRepository.class);
         FindTagByTypeRequestDTO request = new FindTagByTypeRequestDTO(type);
-        Call<StandardResponseDTO> call = productAPI.findTagByType(request);
+        Call<StandardResponseDTO> call = productAPI.findTagByType(type);
         call.enqueue(new Callback<StandardResponseDTO>() {
             @Override
             public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {

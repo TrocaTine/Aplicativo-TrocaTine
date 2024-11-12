@@ -41,8 +41,8 @@ public interface ProductRepository {
     @DELETE("/products/delete-product/{ID}")
     Call<StandardResponseDTO> deleteProduct(@Path("ID") long idProduct);
 
-    @POST("/tag/find-tag-type")
-    Call<StandardResponseDTO> findTagByType(@Body FindTagByTypeRequestDTO request);
+    @GET("/tag/find-tag-type/{type}")
+    Call<StandardResponseDTO> findTagByType(@Body String request);
     @GET("/category/find-all-category")
     Call<StandardResponseDTO> findAllCategory();
 

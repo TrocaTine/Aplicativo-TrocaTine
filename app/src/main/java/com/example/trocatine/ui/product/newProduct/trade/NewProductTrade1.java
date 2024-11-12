@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.trocatine.R;
 import com.example.trocatine.ui.home.HomeFragment;
+import com.example.trocatine.ui.home.HomeNavBar;
 import com.example.trocatine.util.ProductUtil;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -80,7 +81,7 @@ public class NewProductTrade1 extends AppCompatActivity {
     }
 
     public void OnClickBack(View view) {
-        Intent intent = new Intent(NewProductTrade1.this, HomeFragment.class);
+        Intent intent = new Intent(NewProductTrade1.this, HomeNavBar.class);
         finish();
         startActivity(intent);
     }

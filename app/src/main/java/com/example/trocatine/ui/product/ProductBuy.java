@@ -21,6 +21,7 @@ import com.example.trocatine.api.repository.CartRepository;
 import com.example.trocatine.api.repository.ProductRepository;
 import com.example.trocatine.api.requestDTO.cart.AddProductShoppingCartResquestDTO;
 import com.example.trocatine.api.requestDTO.product.FindQuestionsByProductRequestDTO;
+import com.example.trocatine.api.requestDTO.product.FindTagByTypeRequestDTO;
 import com.example.trocatine.api.requestDTO.product.SaveFavoriteProductRequestDTO;
 import com.example.trocatine.api.requestDTO.product.SaveQuestionsProductRequestDTO;
 import com.example.trocatine.api.requestDTO.product.UnfavoriteProductRequestDTO;
@@ -126,6 +127,7 @@ public class ProductBuy extends AppCompatActivity {
             }
         });
         listQuestion(questionRv, Long.parseLong(id));
+//        findTagType("Brinquedo");
     }
 
 
@@ -386,6 +388,49 @@ public class ProductBuy extends AppCompatActivity {
             @Override
             public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
                 Log.e("ERRO no onFailure cart", throwable.getMessage());
+            }
+        });
+    }
+    private void findTagType(String type) {
+        String API = "https://api-spring-boot-trocatine.onrender.com/";
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        Request originalRequest = chain.request();
+                        Request newRequest = originalRequest.newBuilder()
+                                .header("Authorization", UserUtil.token)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ProductRepository productAPI = retrofit.create(ProductRepository.class);
+        FindTagByTypeRequestDTO request = new FindTagByTypeRequestDTO(type);
+        Call<StandardResponseDTO> call = productAPI.findTagByType(type);
+        call.enqueue(new Callback<StandardResponseDTO>() {
+            @Override
+            public void onResponse(Call<StandardResponseDTO> call, Response<StandardResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    Log.e("tag encontrada", "deu green ao encontrar tag");
+                } else {
+                    try {
+                        Log.e("Erro ao encontrar tag", "Resposta não foi sucesso: " + response.code() + " - " + response.errorBody().string());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StandardResponseDTO> call, Throwable throwable) {
+                Log.e("ERRO", "Falha na requisição: " + throwable.getMessage(), throwable);
             }
         });
     }

@@ -8,7 +8,7 @@
     tools:context=".ui.register.Register2">
 
     <ImageView
-        android:id="@+id/backSet"
+        android:id="@+id/imgBack"
         android:layout_width="16dp"
         android:layout_height="17dp"
         android:layout_marginStart="16dp"
@@ -26,7 +26,7 @@
         android:text="Cadastro"
         android:textColor="@color/orange"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/backSet"
+        app:layout_constraintStart_toEndOf="@+id/imgBack"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout

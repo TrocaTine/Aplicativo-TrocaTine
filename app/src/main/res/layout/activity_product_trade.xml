@@ -12,6 +12,21 @@
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/photoProduct"
+            android:layout_width="match_parent"
+            android:layout_height="288dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/image_border"
+            android:scaleType="centerCrop"
+            android:theme="@style/ShapeAppearanceOverlay.MaterialComponents.ShapeableImageView.TopRounded"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView12"
+            app:srcCompat="@drawable/product_photo" />
+
         <ImageView
             android:id="@+id/imgLoading"
             android:layout_width="108dp"
@@ -37,8 +52,7 @@
             android:id="@+id/newQuestion"
             android:layout_width="99dp"
             android:layout_height="28dp"
-            android:layout_marginStart="189dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="28dp"
             android:background="@drawable/button_border_orange"
             android:onClick="onClickNewQuestion"
             android:text="Faça uma pergunta!"
@@ -46,8 +60,6 @@
             android:textColor="@color/orange"
             android:textSize="9sp"
             app:layout_constraintEnd_toEndOf="@+id/productCreated"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/textView21"
             app:layout_constraintTop_toBottomOf="@+id/buttonTrade" />
 
         <TextView
@@ -60,29 +72,14 @@
             android:text="Cor: azul"
             android:textColor="@color/orange"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/textView5"
+            app:layout_constraintStart_toEndOf="@+id/tagText"
             app:layout_constraintTop_toBottomOf="@+id/photoProduct" />
-
-        <ImageView
-            android:id="@+id/photoProduct"
-            android:layout_width="match_parent"
-            android:layout_height="288dp"
-            android:layout_marginStart="50dp"
-
-            android:layout_marginTop="23dp"
-            android:layout_marginEnd="50dp"
-            android:background="@drawable/image_border"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView12"
-            app:srcCompat="@drawable/product_photo" />
 
         <TextView
             android:id="@+id/productName"
-            android:layout_width="311dp"
-            android:layout_height="29dp"
-            android:layout_marginStart="4dp"
+            android:layout_width="313dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="2dp"
             android:layout_marginTop="12dp"
             android:backgroundTint="#000000"
             android:text="Camiseta social azul"
@@ -90,7 +87,7 @@
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/photoProduct"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/tagText" />
 
         <Button
             android:id="@+id/buttonTrade"
@@ -108,10 +105,9 @@
 
         <ImageView
             android:id="@+id/buttonFavorite"
-            android:layout_width="81dp"
-            android:layout_height="96dp"
-            android:layout_marginTop="172dp"
-            android:layout_marginEnd="4dp"
+            android:layout_width="73dp"
+            android:layout_height="73dp"
+            android:layout_marginTop="212dp"
             app:layout_constraintEnd_toEndOf="@+id/photoProduct"
             app:layout_constraintTop_toTopOf="@+id/photoProduct"
             app:srcCompat="@drawable/icon_heart" />
@@ -120,41 +116,37 @@
             android:id="@+id/productDescription"
             android:layout_width="311dp"
             android:layout_height="47dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="2dp"
             android:layout_marginTop="8dp"
             android:text="Definitivamente uma das camisetas azuis sociais, muito bonita"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/photoProduct"
+            app:layout_constraintStart_toStartOf="@+id/productName"
             app:layout_constraintTop_toBottomOf="@+id/productName" />
 
         <TextView
             android:id="@+id/productCreated"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginTop="16dp"
             android:text="24/05/24"
             android:textColor="@color/orange"
-            app:layout_constraintEnd_toEndOf="@+id/photoProduct"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/listCardNumber"
+            app:layout_constraintEnd_toEndOf="@+id/buttonFavorite"
             app:layout_constraintTop_toBottomOf="@+id/productDescription" />
 
         <TextView
             android:id="@+id/listCardNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             android:text="Troca"
             android:textColor="@color/seaGreen"
             android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/photoProduct"
+            app:layout_constraintStart_toStartOf="@+id/productDescription"
             app:layout_constraintTop_toBottomOf="@+id/productDescription" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tagText"
             android:layout_width="72dp"
             android:layout_height="30dp"
             android:layout_marginStart="4dp"

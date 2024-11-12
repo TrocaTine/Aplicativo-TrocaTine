@@ -44,7 +44,7 @@ public class BuySaveNewAddress extends AppCompatActivity {
         street = findViewById(R.id.street);
         city = findViewById(R.id.city);
         cep = findViewById(R.id.cep);
-        backSet = findViewById(R.id.backSet);
+        backSet = findViewById(R.id.imgBack);
 
         backSet.setOnClickListener(new View.OnClickListener() {
             @Override

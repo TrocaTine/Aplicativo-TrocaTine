@@ -27,17 +27,9 @@ public class HomeNavBar extends AppCompatActivity {
         bottom_navigation = findViewById(R.id.bottom_navigation);
         bottom_navigation.setSelectedItemId(R.id.menu_home);
 
-        Bundle dados = getIntent().getExtras();
         navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         navController = navHostFragment.getNavController();
         initNavigation();
-        String usuario = UserUtil.email;
-        String token = UserUtil.token;
-
-//        Bundle bundle = new Bundle();
-//        bundle.putString("usuario", usuario);
-//        bundle.putString("token", token);
-//        Log.e("TESTE NO HOME", "email" + usuario+ "- token" + token);
         navController.navigate(R.id.menu_home);
 
     }

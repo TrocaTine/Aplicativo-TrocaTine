@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.trocatine.R;
 import com.example.trocatine.util.ProductUtil;
@@ -14,6 +16,7 @@ import java.math.BigDecimal;
 
 public class NewProductBuy1 extends AppCompatActivity {
     private TextInputEditText inputTitle, inputDescription, inputTradeFor;
+    ImageView imgBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,13 @@ public class NewProductBuy1 extends AppCompatActivity {
         inputTitle = findViewById(R.id.inputTitle);
         inputDescription = findViewById(R.id.inputDescription);
         inputTradeFor = findViewById(R.id.inputValue);
+        imgBack = findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
     public void onClickNext(View view) {

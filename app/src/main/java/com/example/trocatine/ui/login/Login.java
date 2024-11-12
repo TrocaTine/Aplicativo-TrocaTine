@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.trocatine.R;
-import com.example.trocatine.api.requestDTO.user.FindPersonalInformationRequestDTO;
 import com.example.trocatine.api.responseDTO.user.FindPersonalInformationResponseDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.api.models.LoginDTO;
@@ -56,7 +55,7 @@ public class Login extends AppCompatActivity {
         errorTextLoginPassword = findViewById(R.id.errorTextLoginPassword);
 
         Button logar = findViewById(R.id.button_save);
-        backSet = findViewById(R.id.backSet);
+        backSet = findViewById(R.id.imgBack);
         backSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

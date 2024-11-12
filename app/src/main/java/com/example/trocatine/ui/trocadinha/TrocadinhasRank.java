@@ -17,6 +17,7 @@ import com.example.trocatine.adapter.AdapterTrocadinhas;
 import com.example.trocatine.api.repository.TrocadinhaRepository;
 import com.example.trocatine.api.responseDTO.trocadinha.FindRankingTrocadinhaResponseDTO;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
+import com.example.trocatine.database.DatabaseCamera;
 import com.example.trocatine.util.UserUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -36,9 +37,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TrocadinhasRank extends AppCompatActivity {
     RecyclerView trocadinhasRv;
-    ImageView imgLoading, trocadinhasInfo;
+    ImageView imgLoading, trocadinhasInfo, imgSilverUser, imgBronzeUser, imgGoldenUser;
     TextView silverUserName, goldenUserName, bronzeUserName, silverTrocadinhas, goldenTrocadinhas, bronzeTrocadinhas;
     List<FindRankingTrocadinhaResponseDTO> listTrocadinhas = new ArrayList<>();
+    DatabaseCamera databaseCamera = new DatabaseCamera();
 
 
     @Override
@@ -54,6 +56,9 @@ public class TrocadinhasRank extends AppCompatActivity {
         goldenUserName = findViewById(R.id.goldenUserName);
         bronzeTrocadinhas = findViewById(R.id.bronzeTrocadinhas);
         bronzeUserName = findViewById(R.id.bronzeUserName);
+        imgSilverUser = findViewById(R.id.imgSilverUser);
+        imgBronzeUser = findViewById(R.id.imgBronzeUser);
+        imgGoldenUser = findViewById(R.id.imgGoldenUser);
 
         trocadinhasRv = findViewById(R.id.trocadinhasRv);
         AdapterTrocadinhas adapterTrocadinhas = new AdapterTrocadinhas(listTrocadinhas);
@@ -99,12 +104,20 @@ public class TrocadinhasRank extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     imgLoading.setVisibility(View.INVISIBLE);
                     List<FindRankingTrocadinhaResponseDTO> trocadinhas = new Gson().fromJson(new Gson().toJson(response.body().getData()), new TypeToken<List<FindRankingTrocadinhaResponseDTO>>(){}.getType());
+                    Log.e("trocadinhas", String.valueOf(trocadinhas.get(0).getCountTrocadinha()));
                     goldenUserName.setText(trocadinhas.get(0).getNickname());
-//                    goldenTrocadinhas.setText(trocadinhas.get(0).getCountTrocadinha());
-                    silverTrocadinhas.setText(trocadinhas.get(1).getNickname());
+                    goldenTrocadinhas.setText(String.valueOf(trocadinhas.get(0).getCountTrocadinha()));
+                    silverTrocadinhas.setText(String.valueOf(trocadinhas.get(1).getCountTrocadinha()));
                     silverUserName.setText(trocadinhas.get(1).getNickname());
-//                    bronzeTrocadinhas.setText(trocadinhas.get(2).getCountTrocadinha());
+                    bronzeTrocadinhas.setText(String.valueOf(trocadinhas.get(2).getCountTrocadinha()));
                     bronzeUserName.setText(trocadinhas.get(2).getNickname());
+                    Log.e("fottooo", trocadinhas.get(0).getEmail());
+                    databaseCamera.downloadGaleriaUserProfile(TrocadinhasRank.this, imgGoldenUser, trocadinhas.get(0).getEmail());
+                    databaseCamera.downloadGaleriaUserProfile(TrocadinhasRank.this, imgSilverUser, trocadinhas.get(1).getEmail());
+                    databaseCamera.downloadGaleriaUserProfile(TrocadinhasRank.this, imgBronzeUser, trocadinhas.get(3).getEmail());
+
+
+
                     recyclerView.setAdapter(new AdapterTrocadinhas(trocadinhas));
                     Log.e("rank", "deu certo");
                 } else {

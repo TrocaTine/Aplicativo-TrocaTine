@@ -3,8 +3,10 @@ package com.example.trocatine.ui.community;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
-import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,8 +20,8 @@ import android.widget.ImageView;
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.RecycleViewModels.Community;
 import com.example.trocatine.adapter.AdapterCommunity;
+import com.example.trocatine.ui.home.HomeFragment;
 import com.example.trocatine.util.UserUtil;
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,7 +42,7 @@ public class CommunityFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private RecyclerView communityRv;
-    private ImageView back;
+    private ImageView imgBack;
 
     private RecyclerView messageTradeRv;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://trocatine-a226a-default-rtdb.firebaseio.com/");
@@ -97,8 +99,14 @@ public class CommunityFragment extends Fragment {
         Log.e("USER INFO", "USER: " + UserUtil.userName);
         Log.e("USER INFO", "USER: " + UserUtil.fullName);
 
-        back = view.findViewById(R.id.backSet);
-
+        imgBack = view.findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                navController.navigate(R.id.menu_home);
+            }
+        });
 
 
         messageTradeRv = view.findViewById(R.id.tradeMessagesRv);

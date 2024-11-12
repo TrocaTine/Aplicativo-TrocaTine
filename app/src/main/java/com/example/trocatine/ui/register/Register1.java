@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -48,7 +47,7 @@ public class Register1 extends AppCompatActivity {
         errorTextEmail = findViewById(R.id.errorTextEmail);
         errorTextPassword = findViewById(R.id.errorTextPassword);
         errorTextPhone = findViewById(R.id.errorTextPhone);
-        backSet = findViewById(R.id.backSet);
+        backSet = findViewById(R.id.imgBack);
         backSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

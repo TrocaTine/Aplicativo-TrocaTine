@@ -40,15 +40,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FirebaseAuth autenticar = FirebaseAuth.getInstance();
-        FirebaseUser userLogin = autenticar.getCurrentUser();
-
-        if(userLogin != null){
-            userLogin.getEmail();
-//            Login login = new Login();
-            login(userLogin.getEmail(),userLogin.getDisplayName());
-        }
-        Log.e("aaaaaa", "usuario nao logado");
 
     }
     public void login(String email, String password) {

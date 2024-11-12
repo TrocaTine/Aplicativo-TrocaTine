@@ -39,7 +39,7 @@
             android:text="Cor: azul"
             android:textColor="@color/orange"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/textView5"
+            app:layout_constraintStart_toEndOf="@+id/tagText"
             app:layout_constraintTop_toBottomOf="@+id/photoProduct" />
 
         <Button
@@ -57,12 +57,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonTrade" />
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/photoProduct"
             android:layout_width="match_parent"
             android:layout_height="288dp"
+            android:theme="@style/ShapeAppearanceOverlay.MaterialComponents.ShapeableImageView.TopRounded"
             android:layout_marginStart="50dp"
-
             android:layout_marginTop="23dp"
             android:layout_marginEnd="50dp"
             android:background="@drawable/image_border"
@@ -74,7 +74,7 @@
 
         <TextView
             android:id="@+id/productName"
-            android:layout_width="311dp"
+            android:layout_width="wrap_content"
             android:layout_height="29dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="12dp"
@@ -84,7 +84,7 @@
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/photoProduct"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/tagText" />
 
         <Button
             android:id="@+id/buttonTrade"
@@ -104,7 +104,7 @@
         <ImageView
             android:id="@+id/buttonFavorite"
             android:layout_width="65dp"
-            android:layout_height="72dp"
+            android:layout_height="77dp"
             android:layout_marginTop="216dp"
             android:layout_marginEnd="4dp"
             app:layout_constraintEnd_toEndOf="@+id/photoProduct"
@@ -149,7 +149,7 @@
             app:layout_constraintTop_toBottomOf="@+id/productDescription" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tagText"
             android:layout_width="72dp"
             android:layout_height="30dp"
             android:layout_marginStart="4dp"

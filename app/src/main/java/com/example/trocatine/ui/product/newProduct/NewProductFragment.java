@@ -4,14 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.trocatine.R;
+import com.example.trocatine.ui.home.HomeNavBar;
 import com.example.trocatine.ui.product.newProduct.buy.NewProductBuy1;
 import com.example.trocatine.ui.product.newProduct.trade.NewProductTrade1;
 import com.example.trocatine.util.UserUtil;
@@ -31,6 +35,7 @@ public class NewProductFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private Button buttonTrade, buttonBuy;
+    ImageView imgBack;
     private String mParam1;
     String emailUser, token;
     private String mParam2;
@@ -70,6 +75,15 @@ public class NewProductFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_new_product, container, false);
         buttonTrade = view.findViewById(R.id.buttonTrade);
+        imgBack = view.findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                navController.navigate(R.id.menu_home);
+            }
+        });
+
         buttonBuy = view.findViewById(R.id.buttonBuy);
         Log.e("NEW PRODUCT FRAGMENT", "emailuser" + emailUser + " - token: " + token);
         buttonTrade.setOnClickListener(new View.OnClickListener() {

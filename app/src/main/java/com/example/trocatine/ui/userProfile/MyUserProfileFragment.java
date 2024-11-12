@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.util.Log;
@@ -14,7 +16,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.ViewPagerAdapter;
 import com.example.trocatine.database.DatabaseCamera;
@@ -36,7 +37,7 @@ public class MyUserProfileFragment extends Fragment {
     private ViewPager2 viewPager;
     private TextView userName, userEmail, userPhone, userAdress, userCpf, userBirthDate;
     private ImageButton buttonEditProfile;
-    private ImageView backSet;
+    private ImageView imgBack;
     private ImageView userImg;
 
     private static final String ARG_PARAM1 = "param1";
@@ -82,7 +83,7 @@ public class MyUserProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_user_profile, container, false);
-        backSet = view.findViewById(R.id.backSet);
+        imgBack = view.findViewById(R.id.imgBack);
 
         userEmail = view.findViewById(R.id.userEmail);
         userName = view.findViewById(R.id.userName);
@@ -94,20 +95,32 @@ public class MyUserProfileFragment extends Fragment {
 
         userEmail.setText(UserUtil.email);
         userBirthDate.setText(UserUtil.birthDate);
-        userAdress.setText(UserUtil.city+" "+UserUtil.street+" "+UserUtil.houseNumber+" "+UserUtil.cep);
-        if (UserUtil.phone != null && UserUtil.phone.length() == 11) {
-            String formattedPhone = UserUtil.phone.replaceFirst("(\\d{2})(\\d{5})(\\d{4})", "($1) $2-$3");
-            Log.e("formatted phone", formattedPhone);
-            userPhone.setText(formattedPhone);
+        userAdress.setText(UserUtil.city+" "+UserUtil.street+" "+UserUtil.cep);
+        if (UserUtil.phone != null) {
+            String phoneWithoutBrackets = UserUtil.phone.replaceAll("[\\[\\]]", "");
+            if (phoneWithoutBrackets.length() == 11) {
+                String formattedPhone = phoneWithoutBrackets.replaceFirst("(\\d{2})(\\d{5})(\\d{4})", "($1) $2-$3");
+                Log.e("formatted phone", formattedPhone);
+                userPhone.setText(formattedPhone);
+            } else {
+                userPhone.setText(phoneWithoutBrackets);
+            }
         } else {
             userPhone.setText(UserUtil.phone);
-        }        userName.setText(UserUtil.fullName);
+        }
+        userName.setText(UserUtil.fullName);
         userCpf.setText(UserUtil.cpf);
 
         DatabaseCamera databaseCamera = new DatabaseCamera();
         databaseCamera.downloadGaleriaUserProfile(getContext(), userImg, UserUtil.email);
 
-
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                navController.navigate(R.id.menu_home);
+            }
+        });
         userImg = view.findViewById(R.id.userImg);
 
         Log.e("userprofile", UserUtil.email+" "+UserUtil.fullName+" "+UserUtil.address+" "+UserUtil.birthDate+" "+UserUtil.cpf+" "+UserUtil.phone);
@@ -117,13 +130,6 @@ public class MyUserProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), EditProfile.class);
-                startActivity(intent);
-            }
-        });
-        backSet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(view.getContext(), HomeFragment.class);
                 startActivity(intent);
             }
         });

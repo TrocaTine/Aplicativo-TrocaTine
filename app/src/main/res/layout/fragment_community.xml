@@ -32,11 +32,11 @@
                     android:textColor="@color/orange"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/backSet"
+                    app:layout_constraintStart_toEndOf="@+id/imgBack"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/backSet"
+                    android:id="@+id/imgBack"
                     android:layout_width="17dp"
                     android:layout_height="22dp"
                     android:layout_marginStart="16dp"

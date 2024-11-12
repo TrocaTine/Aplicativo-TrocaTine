@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +25,7 @@ import com.example.trocatine.adapter.RecycleViewModels.CartProduct;
 import com.example.trocatine.adapter.RecycleViewModels.Product;
 import com.example.trocatine.api.repository.CartRepository;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
+import com.example.trocatine.ui.home.HomeFragment;
 import com.example.trocatine.ui.product.buy.Buy1;
 import com.example.trocatine.util.CartUtil;
 import com.example.trocatine.util.UserUtil;
@@ -59,7 +64,7 @@ public class CartFragment extends Fragment {
     private TextView totalPriceCart, textNotFound;
 
     private RecyclerView cartProductRv;
-    ImageView imgLoading, imgNotFound;
+    ImageView imgLoading, imgNotFound, imgBack;
 
     List<CartProduct> listCartProduct = new ArrayList<>();
 
@@ -99,8 +104,8 @@ public class CartFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         totalPriceCart = view.findViewById(R.id.totalPriceCart);
+        imgBack = view.findViewById(R.id.imgBack);
         Log.e("cart price", String.valueOf(CartUtil.cartPrice));
-        totalPriceCart.setText("Total: R$ "+ CartUtil.cartPrice);
         cartProductRv = view.findViewById(R.id.cartProductRv);
         cartProductRv.setLayoutManager(new GridLayoutManager(view.getContext(), 1));
         Product product = new Product(1, 1, "nome", "descricao", 2.99, 5, "05/12/2007", true);
@@ -115,6 +120,13 @@ public class CartFragment extends Fragment {
         textNotFound.setVisibility(View.INVISIBLE);
         listCartProducts(cartProductRv);
         // Inflate the layout for this fragment
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                navController.navigate(R.id.menu_home);
+            }
+        });
         return view;
     }
     private void listCartProducts(RecyclerView recyclerView) {
@@ -151,10 +163,13 @@ public class CartFragment extends Fragment {
                     if (cartProducts.isEmpty()){
                         imgNotFound.setVisibility(View.VISIBLE);
                         textNotFound.setVisibility(View.VISIBLE);
+                        CartUtil.cartPrice = 0;
                         Log.e("entrou no is empty", "entrou");
                     }
                     Log.e("deu green", "deu green no carrinho");
-                    recyclerView.setAdapter(new AdapterCartProduct(cartProducts));
+                    AdapterCartProduct adapter = new AdapterCartProduct(cartProducts);
+                    recyclerView.setAdapter(adapter);
+                    totalPriceCart.setText("Total: R$ " + adapter.getTotal());
                 } else {
                     if (response.code() == 404){
                         textNotFound.setVisibility(View.VISIBLE);

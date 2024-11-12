@@ -16,7 +16,7 @@
         android:textColor="@color/orange"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:layout_constraintStart_toEndOf="@+id/imgBack"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/productDescription" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/imgBack"
         android:layout_width="16dp"
         android:layout_height="19dp"
         android:layout_marginStart="16dp"

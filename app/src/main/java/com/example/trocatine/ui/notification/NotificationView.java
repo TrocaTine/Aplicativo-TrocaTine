@@ -12,11 +12,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.trocatine.R;
 import com.example.trocatine.adapter.AdapterNotification;
-import com.example.trocatine.adapter.AdapterProduct;
 import com.example.trocatine.adapter.RecycleViewModels.Notification;
-import com.example.trocatine.adapter.RecycleViewModels.Product;
 import com.example.trocatine.api.repository.NotificationRepository;
-import com.example.trocatine.api.repository.ProductRepository;
 import com.example.trocatine.api.responseDTO.StandardResponseDTO;
 import com.example.trocatine.util.UserUtil;
 import com.google.gson.Gson;
@@ -45,7 +42,7 @@ public class NotificationView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         List<Notification> listNotification = new ArrayList<>();
         setContentView(R.layout.activity_notification_view);
-        backSet = findViewById(R.id.backSet);
+        backSet = findViewById(R.id.imgBack);
 
         backSet.setOnClickListener(new View.OnClickListener() {
             @Override

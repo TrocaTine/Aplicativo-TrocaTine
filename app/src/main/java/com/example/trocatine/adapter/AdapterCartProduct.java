@@ -23,6 +23,7 @@ import com.example.trocatine.util.CartUtil;
 import com.example.trocatine.util.UserUtil;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 import okhttp3.Interceptor;
@@ -67,7 +68,6 @@ public class AdapterCartProduct extends RecyclerView.Adapter<AdapterCartProduct.
         holder.name.setText(cartProduct.getTitle());
         holder.value.setText("R$ "+cartProduct.getValue());
         Log.e("cart util no adapter", String.valueOf(CartUtil.cartPrice));
-        CartUtil.cartPrice+=Double.parseDouble(String.valueOf(cartProduct.getValue()));
         Log.e("cart util no adapter", String.valueOf(CartUtil.cartPrice));
         holder.quantity.setText("Quantidade: " + cartProduct.getQualit());
         databaseCamera.downloadGaleriaProduct(holder.itemView.getContext(), holder.image, String.valueOf(cartProduct.getIdProduct()));
@@ -166,4 +166,12 @@ public class AdapterCartProduct extends RecyclerView.Adapter<AdapterCartProduct.
             }
         });
     }
+    public BigDecimal getTotal(){
+        BigDecimal totalValue = BigDecimal.valueOf(0);
+        for(CartProduct product : listProduct) {
+            totalValue = totalValue.add(product.getValue());
+        }
+        return totalValue;
+    }
+
 }

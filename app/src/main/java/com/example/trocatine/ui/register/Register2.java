@@ -37,7 +37,7 @@ public class Register2 extends AppCompatActivity {
         errorTextCpf = findViewById(R.id.errorTextCpf);
         errorTextBirthdate = findViewById(R.id.errorTextBirthDate);
 
-        backSet = findViewById(R.id.backSet);
+        backSet = findViewById(R.id.imgBack);
         backSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

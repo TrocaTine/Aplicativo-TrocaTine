@@ -139,7 +139,11 @@ public class HomeFragment extends Fragment {
         //Recycle view de listar produtos
         AdapterProduct adapterProduct = new AdapterProduct(listProduct);
         productRv.setAdapter(adapterProduct);
+        int spacingInPixels = 20;
         productRv.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
+        productRv.addItemDecoration(new GridSpacingItemDecoration(2, spacingInPixels, true));
+
+
         // Variáveis para controlar o estado dos botões
 
         buttonListBuy.setOnClickListener(new View.OnClickListener() {

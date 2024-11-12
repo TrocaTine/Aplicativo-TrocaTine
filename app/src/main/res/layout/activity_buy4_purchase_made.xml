@@ -37,10 +37,10 @@
             android:text="Estado"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/tagText" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tagText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
